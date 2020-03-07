@@ -9,34 +9,43 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import java.nio.file.Path;
+import java.io.File;
+import java.nio.file.Paths;
 
 
 public class IndexManager {
-
-    public String createIndex(Path file,Path directoryPath,String collectionName) {
+    PdfManager pm;
+    public IndexManager() {
+        this.pm = new PdfManager();
+    }
+    public String createIndex(String filePath,String  dirPath,String collectionName) {
+        File file=new File(filePath);
+        File dir=new File(dirPath);
+        if (!file.exists()|!dir.exists()) {
+            return "File or dir not exist";
+        }
         Analyzer analyzer = new StandardAnalyzer();
         Document document = new Document();
-        String content="";
+        String content=pm.readPdf(filePath);
 
         try {
-            Directory directory = FSDirectory.open(directoryPath);
+            Directory directory = FSDirectory.open(Paths.get(dirPath));
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
-            IndexWriter iwriter = new IndexWriter(directory, config);
+            IndexWriter iw = new IndexWriter(directory, config);
             //index file contents
             Field contentField = new TextField("content",content,Field.Store.NO);
 
             //index file name
-            Field fileNameField = new StringField("fileName",file.getFileName().toString(), Field.Store.YES);
+            Field fileNameField = new StringField("fileName",Paths.get(filePath).getFileName().toString(), Field.Store.YES);
 
             //index file path
-            Field filePathField = new StringField("path", file.toString(), Field.Store.YES);
+            Field filePathField = new StringField("path", Paths.get(filePath).toString(), Field.Store.YES);
             //index file collectionName
             document.add(contentField);
             document.add(fileNameField);
             document.add(filePathField);
-            iwriter.addDocument(document);
-            iwriter.close();
+            iw.addDocument(document);
+            iw.close();
             return "Successfully Indexed";
         }
         catch (Exception e){
@@ -48,4 +57,8 @@ public String indexDirectory(){
         return "";
 }
 
+public String search(){
+
+        return "";
+}
 }

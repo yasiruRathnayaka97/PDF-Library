@@ -25,6 +25,12 @@
         <artifactId>lucene-core</artifactId>
         <version>8.4.1</version>
     </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>8.4.1</version>
+        </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
     <dependency>
@@ -44,6 +50,14 @@
         <version>4.13</version>
         <scope>test</scope>
     </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+
+
 
 </dependencies>
 

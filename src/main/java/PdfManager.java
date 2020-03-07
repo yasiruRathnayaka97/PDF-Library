@@ -55,17 +55,8 @@ catch (Exception e){
         }
 
     }
-    public String pdfToText(String pathPdf){
-        try {
-            PDDocument doc = PDDocument.load(new File(pathPdf));
-            String text = new PDFTextStripper().getText(doc);
-            return text;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return "Error";
-        }
-    }
+
+
 }
 
 

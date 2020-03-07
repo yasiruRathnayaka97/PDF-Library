@@ -32,11 +32,7 @@ public class PdfManagerTest {
         assertEquals("Done", pm.openPdf(path1));
     }
 
-    @Test
-    public void pdfToTextTest() {
-    String path1 = "C:/Users/YJR/Desktop/SamplePdf.pdf";
-    assertNotNull("",pm.pdfToText(path1));
-}
+
 //   @After
 //    public void end(){
 //       System.out.println("Test End");
