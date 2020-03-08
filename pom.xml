@@ -57,8 +57,15 @@
             <version>11.0.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.9</version>
+        </dependency>
 
 
-</dependencies>
+
+    </dependencies>
 
 </project>

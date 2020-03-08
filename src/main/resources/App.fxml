@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App">
+<children>
+    <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXButton buttonType="RAISED" layoutX="527.0" layoutY="30.0" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" " AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="30.0">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/search-13-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXTextField focusColor="#2196f3" layoutX="84.0" layoutY="38.0" prefHeight="26.0" prefWidth="414.0" promptText="Type here" unFocusColor="#b4b4ba" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="101.60000000000002" AnchorPane.topAnchor="38.0" />
+      <JFXButton buttonType="RAISED" layoutY="121.0" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/favorite-2-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="191.0" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/folder-7-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="261.0" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="34.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/history_white_48x48.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="51.0" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/user-2-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+</children>
+</AnchorPane>
