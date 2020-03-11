@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppController">
+<children>
+    <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXButton fx:id="buttonSearch" buttonType="RAISED" layoutX="527.0" layoutY="30.0" onMouseClicked="#clickSearch" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" " AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="30.0">
+         <tooltip>
+            <Tooltip text="Search" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/search-13-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXTextField focusColor="#2196f3" layoutX="131.0" layoutY="38.0" prefHeight="26.0" prefWidth="367.0" promptText="Type here" unFocusColor="#b4b4ba" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="38.0" />
+      <JFXButton buttonType="RAISED" layoutY="121.0" onMouseClicked="#clickFavourite" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Favourite" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/favorite-2-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="191.0" onMouseClicked="#clickFolder" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="Folder" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/folder-7-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="261.0" onMouseClicked="#clickHistory" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="History" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="34.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/history_white_48x48.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutY="51.0" onMouseClicked="#clickUser" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #2196f3;" text=" ">
+         <tooltip>
+            <Tooltip text="User" />
+         </tooltip>
+         <graphic>
+            <ButtonBar>
+               <buttons>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/user-2-64.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </graphic>
+      </JFXButton>
+      <Label fx:id="lblFavourite" layoutX="87.0" layoutY="44.0" onMouseClicked="#addFavourite" prefHeight="26.0" prefWidth="27.0" text="" textFill="#2196f3">
+         <tooltip>
+            <Tooltip text="Add to Favourites">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+         <font>
+            <Font name="HoloLens MDL2 Assets" size="24.0" />
+         </font>
+      </Label>
+</children>
+</AnchorPane>
