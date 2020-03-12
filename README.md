@@ -1,3 +1,3 @@
 # PDF-Library
 
-A application to manage PDF document inside your desktop.
+An application to manage PDF document inside your desktop.
