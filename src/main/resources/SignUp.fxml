@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="356.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="356.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
    <children>
       <Label layoutX="124.0" layoutY="30.0" text="PDF Library" textFill="#2196f3">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="278.0" layoutY="-2.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="-2.0">
+      <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="278.0" layoutY="-2.0" onMouseClicked="#clickClose" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="-2.0">
          <graphic>
             <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" size="2em" />
          </graphic>
