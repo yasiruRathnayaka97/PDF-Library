@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="343.0" style="-fx-background-color: #2196f3;" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="356.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
    <children>
-      <Label layoutX="31.0" layoutY="64.0" text="User Name" textFill="WHITE" />
-      <Label layoutX="35.0" layoutY="123.0" text="Password" textFill="WHITE" />
-      <Label layoutX="35.0" layoutY="181.0" text="Re Enter Password" textFill="WHITE" />
-      <Button fx:id="submit" layoutX="109.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: black;" text="Create Account" textFill="WHITE" />
-      <TextField fx:id="userName" layoutX="31.0" layoutY="81.0" prefHeight="25.0" prefWidth="281.0" style="-fx-background-insets: 0,0 0 1 0;" />
-      <TextField fx:id="password" layoutX="35.0" layoutY="140.0" prefHeight="25.0" prefWidth="281.0" style="-fx-background-insets: 0,0 0 1 0;" />
-      <TextField fx:id="rePassword" layoutX="35.0" layoutY="198.0" prefHeight="25.0" prefWidth="281.0" style="-fx-background-insets: 0,0 0 1 0;" />
-      <Button cancelButton="true" layoutY="-1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: white;" text="X" textFill="#2196f3">
+      <Label layoutX="124.0" layoutY="30.0" text="PDF Library" textFill="#2196f3">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="278.0" layoutY="-2.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="-2.0">
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" size="2em" />
+         </graphic>
+      </JFXButton>
+      <JFXTextField focusColor="#2196f3" labelFloat="true" layoutX="31.0" layoutY="82.0" prefHeight="30.0" prefWidth="314.0" promptText="User Name" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="14.0" />
          </font>
-      </Button>
-      <Label layoutX="119.0" layoutY="29.0" text="PDF Library" textFill="WHITE">
+      </JFXTextField>
+      <JFXPasswordField focusColor="#2196f3" labelFloat="true" layoutX="20.0" layoutY="153.0" prefHeight="26.0" prefWidth="202.0" promptText="Password" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
-      </Label>
+      </JFXPasswordField>
+      <JFXPasswordField focusColor="#2196f3" labelFloat="true" layoutX="20.0" layoutY="223.0" prefHeight="26.0" prefWidth="202.0" promptText="Confirm Password" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton buttonType="RAISED" layoutX="142.0" layoutY="290.0" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #2196f3;" text="Sign Up" textFill="WHITE" AnchorPane.bottomAnchor="27.600000000000023">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

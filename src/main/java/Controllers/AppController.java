@@ -1,3 +1,5 @@
+package Controllers;
+
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +41,7 @@ public class AppController {
     }
 
     public void clickUser(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("User.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../UserSignIn.fxml"));
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
@@ -49,7 +51,7 @@ public class AppController {
     }
 
     public void clickFavourite(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("Favourite.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../Favourite.fxml"));
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
@@ -68,7 +70,7 @@ public class AppController {
     }
 
     public void clickHistory(MouseEvent mouseEvent) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("History.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../History.fxml"));
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
