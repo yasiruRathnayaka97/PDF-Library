@@ -12,7 +12,7 @@ public class IndexAndSearchManagerTest {
     }
     @Before
     public void createIndexTest() {
-        String filePath = "C:/Users/YJR/Desktop/samplePdf.pdf";
+        String filePath = "C:/Users/YJR/Desktop/snmp.pdf";
         String dirPath="index";
         assertEquals("Successfully Indexed", im.createIndex(filePath,dirPath));
 
@@ -21,7 +21,7 @@ public class IndexAndSearchManagerTest {
     @Test
     public  void searchIndexTest(){
         String dirPath="index";
-        System.out.println(sm.search(dirPath,"content","sample "));
+        System.out.println(sm.search(dirPath,"content","snmp supported software foundation"));
 
     }
 

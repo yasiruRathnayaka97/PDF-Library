@@ -10,7 +10,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class IndexManager {
@@ -56,16 +56,14 @@ public class IndexManager {
         }
 
     }
-public String indexDirectory(ArrayList<String> directoyPDFList,String dir){
-        for(int i=0;i<directoyPDFList.size()-1;i++){
-            createIndex(directoyPDFList.get(i),dir);
+public String indexDirectory(List<String> directoryPDFList, String dir){
+        for(int i=0;i<directoryPDFList.size()-1;i++){
+            createIndex(directoryPDFList.get(i),dir);
         }
 
         return "Successfully indexed directory";
 }
 
-public String search(){
-
-        return "";
 }
-}
+//can use lucene ram directory for argument dirPath.
+// TODO select best way.
