@@ -1,5 +1,6 @@
 package Controllers;
-
+import Models.AccountManager;
+import com.mongodb.DBObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ public class SignInController{
 
     @FXML
     protected void handleSignInButtonAction(ActionEvent event) {
+        AccountManager ac= AccountManager.getAccount();
         Window owner = signIn.getScene().getWindow();
         Stage primaryStage=(Stage)owner;
         if (userName.getText().isEmpty()) {
@@ -36,8 +38,23 @@ public class SignInController{
         if (password.getText().isEmpty()) {
             return;
         }
+        DBObject acObj=ac.retrieveOne("userName",userName.getText());
+        if (acObj!=null){
+             if (acObj.get("password")==password.getText()){
+                 System.out.println("signIn");
+                 ac.setPassword(password.getText());
+                 ac.setUserName(userName.getText());
+                 primaryStage.close();
 
-        primaryStage.close();
+             }
+            else {
+                 System.out.println("wrong password");
+             }
+        }
+        else{
+            System.out.println("wrong userName");
+        }
+        return;
 
 
     }
