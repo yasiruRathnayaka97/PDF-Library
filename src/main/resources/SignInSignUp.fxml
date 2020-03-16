@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="340.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignInSignUpController">
+   <children>
+      <AnchorPane fx:id="signInPane" prefHeight="292.0" prefWidth="339.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0">
+         <children>
+            <JFXTextField fx:id="textSignInName" focusColor="#2196f3" labelFloat="true" layoutX="18.0" layoutY="40.0" prefHeight="30.0" prefWidth="314.0" promptText="User Name" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="textSignInPassword" focusColor="#2196f3" labelFloat="true" layoutX="18.0" layoutY="102.0" prefHeight="30.0" prefWidth="303.0" promptText="Password" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnSignIn" buttonType="RAISED" layoutX="134.0" layoutY="230.0" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #2196f3;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="signUpPane" prefHeight="292.0" prefWidth="339.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0">
+         <children>
+            <JFXTextField fx:id="textSignUpName" focusColor="#2196f3" labelFloat="true" layoutX="18.0" layoutY="40.0" prefHeight="30.0" prefWidth="314.0" promptText="User Name" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="textSignUpPassword" focusColor="#2196f3" labelFloat="true" layoutX="18.0" layoutY="102.0" prefHeight="30.0" prefWidth="303.0" promptText="Password" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="textSignUpConfPassword" focusColor="#2196f3" labelFloat="true" layoutX="18.0" layoutY="166.0" prefHeight="26.0" prefWidth="202.0" promptText="Confirm Password" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnSignUp" buttonType="RAISED" layoutX="134.0" layoutY="230.0" onMouseClicked="#handleSignUp" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #2196f3;" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnClose" buttonType="RAISED" onMouseClicked="#clickClose" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="-2.0">
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" size="2em" />
+         </graphic>
+         <tooltip>
+            <Tooltip text="Close" />
+         </tooltip>
+      </JFXButton>
+      <JFXButton fx:id="btnSignUpTab" layoutX="82.0" layoutY="1.0" onMouseClicked="#showSignUp" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: white;" text="Sign Up" textFill="#2196f3" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnSignInTab" layoutX="176.6" onMouseClicked="#showSignIn" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: white;" text="Sign In" textFill="#2196f3" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutY="46.0" prefHeight="100.0" prefWidth="339.0" style="-fx-background-color: #2196f3;">
+         <children>
+            <Label fx:id="lbl" layoutX="105.0" layoutY="30.0" text="PDF Library" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

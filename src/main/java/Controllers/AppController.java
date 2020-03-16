@@ -29,16 +29,18 @@ public class AppController {
     private AnchorPane anchorPane;
     @FXML
     private Label lblFavourite;
+
     private Stage stage;
     private DirectoryChooser dirChooser;
-    private File file;
-    private List<File> files;
     private Scene scene;
     private Parent root;
+
+    private FileChooser fileChooser;
+    private File file;
+    private List<File> files;
+
     private double xOffset = 0;
     private double yOffset = 0;
-    private FileChooser fileChooser;
-
 
     public void clickSearch(MouseEvent mouseEvent) {
         System.out.println("Search");
