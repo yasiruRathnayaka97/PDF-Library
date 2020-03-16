@@ -1,4 +1,3 @@
-
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -14,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SearchManager {
-   IndexManager im;
+    IndexManager im;
     public SearchManager(IndexManager im){
         this.im=im;
     }
