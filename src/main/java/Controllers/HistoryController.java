@@ -1,5 +1,5 @@
 package Controllers;
-
+import Models.AccountManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.InvalidationListener;
@@ -26,8 +26,8 @@ public class HistoryController implements Initializable{
     @FXML
     private JFXButton btnRemove;
 
-
-    private ObservableList history = FXCollections.observableArrayList("RollsRoyce","BMW","Bently");
+    private AccountManager account=AccountManager.getAccount();
+    private ObservableList history = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
