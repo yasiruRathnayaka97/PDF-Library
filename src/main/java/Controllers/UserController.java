@@ -1,84 +1,49 @@
 package Controllers;
 
+import Models.CommonStore;
 import com.jfoenix.controls.JFXButton;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UserController {
+public class UserController implements Initializable {
     @FXML
     private JFXButton btnClose;
     @FXML
-    private JFXButton btnSignUp;
-    @FXML
-    private JFXButton btnSignIn;
-    private Parent root;
-    private Scene scene;
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private Label lbl;
+
     Stage stage;
 
-    public void clickSignUp(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../SignUp.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("User");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.show();
-    }
+    CommonStore commonStore;
 
-    public void clickSignIn(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../SignUp.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("User");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.show();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        commonStore = CommonStore.getInstance();
+
+        //change lable
+        lbl.setText(commonStore.getUsername());
     }
 
     public void clickClose(MouseEvent mouseEvent) {
+        //close user stage
         stage= (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+
+    public void handleSignOut(MouseEvent mouseEvent) throws Exception {
+        //set username to null for sign out
+        commonStore.setUsername(null);
+
+        //close user stage
+        stage= (Stage) btnClose.getScene().getWindow();
+        stage.close();
+
+        //load sign in sign up
+        commonStore.stageLoader("../SignInSignUp.fxml",true,null);
     }
 }

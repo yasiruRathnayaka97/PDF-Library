@@ -1,10 +1,12 @@
 package Controllers;
 
+import Models.CommonStore;
 import com.jfoenix.controls.JFXButton;
 import com.sun.glass.ui.CommonDialogs;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -12,9 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
 import javafx.scene.control.Label;
 import java.io.File;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class AppController {
+public class AppController implements Initializable {
     @FXML
     private JFXButton buttonSearch;
     @FXML
@@ -42,45 +46,29 @@ public class AppController {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    private CommonStore commonStore;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        commonStore = CommonStore.getInstance();
+    }
+
+    //handle search operation
     public void clickSearch(MouseEvent mouseEvent) {
         System.out.println("Search");
     }
 
+    //open user stage
     public void clickUser(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../UserSignOut.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("User");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.show();
+            commonStore.stageLoader("../User.fxml",true,null);
     }
 
+    //load favourite window
     public void clickFavourite(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../Favourite.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Favourite");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        commonStore.stageLoader("../Favourite.fxml",false,"Favourite");
     }
 
+    //load directory chooser
     public void clickFolder(MouseEvent mouseEvent){
         stage = (Stage)anchorPane.getScene().getWindow();
         dirChooser = new DirectoryChooser();
@@ -90,6 +78,7 @@ public class AppController {
         }
     }
 
+    //load file chooser
     public void clickFiles(MouseEvent mouseEvent){
         stage = (Stage)anchorPane.getScene().getWindow();
         fileChooser = new FileChooser();
@@ -102,16 +91,12 @@ public class AppController {
         }
     }
 
+    //load history window
     public void clickHistory(MouseEvent mouseEvent) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("../History.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("History");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        commonStore.stageLoader("../History.fxml",false,"History");
     }
 
+    //add favourite
     public void addFavourite(MouseEvent mouseEvent) {
         if(lblFavourite.getText().equals("\uEB51")){
             lblFavourite.setText("\uEB52");

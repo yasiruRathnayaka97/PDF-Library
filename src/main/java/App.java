@@ -25,7 +25,8 @@ public class App extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root);
         primaryStage.setScene(scene);
-        //set stage move
+
+        //set stage movable
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
