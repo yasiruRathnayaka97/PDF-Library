@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CommonStore;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,18 +12,26 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AlertWindowController{
+public class AlertWindowController implements Initializable{
+    @FXML
+    private JFXButton btnClose;
     @FXML
     private JFXButton btnOk;
     @FXML
     private Label lbl;
     Stage stage;
 
-    public void setMessage(String message) {
-        lbl.setText(message);
+    private CommonStore commonStore;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //get message from common store
+        commonStore = CommonStore.getInstance();
+        lbl.setText(commonStore.getMessage());
     }
 
-    public void handleOk(MouseEvent mouseEvent) {
+    //close alert window
+    public void closeWindow(MouseEvent mouseEvent) {
         stage= (Stage) btnOk.getScene().getWindow();
         stage.close();
     }

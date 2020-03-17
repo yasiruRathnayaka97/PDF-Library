@@ -20,6 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        //load sign in sign up stage
         root = FXMLLoader.load(getClass().getResource("SignInSignUp.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root);

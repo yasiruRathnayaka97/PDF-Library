@@ -18,7 +18,6 @@ public  abstract class DBManager {
         BasicDBObject document = new BasicDBObject();
         for (String key : map.keySet()) {
             document.append(key,map.get(key));
-
         }
         collection.insert(document);
         return "Successful";
