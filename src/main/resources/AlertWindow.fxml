@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="480.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AlertWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="480.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AlertWindowController">
    <children>
       <JFXButton fx:id="btnOk" buttonType="RAISED" layoutX="204.0" layoutY="173.0" onMouseClicked="#handleOk" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #2196f3;" text="OK" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
          <font>
@@ -14,7 +14,7 @@
       </JFXButton>
       <Label fx:id="lbl" alignment="CENTER" layoutX="30.0" layoutY="87.0" prefHeight="119.0" prefWidth="420.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
-            <Font size="16.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </children>
