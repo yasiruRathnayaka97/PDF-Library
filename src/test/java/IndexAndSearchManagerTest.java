@@ -1,4 +1,6 @@
 
+import Models.IndexManager;
+import Models.SearchManager;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

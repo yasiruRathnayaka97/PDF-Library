@@ -1,3 +1,5 @@
+package Models;
+
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -31,7 +33,6 @@ public class SearchManager {
                 int docId = hits[i].doc;
                 Document d = is.doc(docId);
                 matchPdfList.add(d.get("path"));
-
             }
 
             ir.close();

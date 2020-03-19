@@ -1,8 +1,13 @@
 package Controllers;
 
 import Models.CommonStore;
+import Models.IndexManager;
+import Models.SearchManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.sun.glass.ui.CommonDialogs;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +20,7 @@ import javafx.stage.*;
 import javafx.scene.control.Label;
 import java.io.File;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AppController implements Initializable {
     @FXML
@@ -33,6 +37,8 @@ public class AppController implements Initializable {
     private AnchorPane anchorPane;
     @FXML
     private Label lblFavourite;
+    @FXML
+    private JFXComboBox dropDownSearchType;
 
     private Stage stage;
     private DirectoryChooser dirChooser;
@@ -42,20 +48,44 @@ public class AppController implements Initializable {
     private FileChooser fileChooser;
     private File file;
     private List<File> files;
+    private ObservableList<String> searchTypes;
+    private String path;
 
     private double xOffset = 0;
     private double yOffset = 0;
+
+
 
     private CommonStore commonStore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
+
+        //set search types items
+        searchTypes = FXCollections.observableArrayList("content","pdfName","path");
+        dropDownSearchType.setItems(searchTypes);
     }
 
     //handle search operation
     public void clickSearch(MouseEvent mouseEvent) {
-        System.out.println("Search");
+        if(path.equals(null)){
+
+        }
+
+        //create new list
+        List<String> paths = new ArrayList<String>();
+        paths.add("C:\\Users\\DilankaRathnasiri\\Documents\\A");
+
+        //call index manager
+        IndexManager indexManager = new IndexManager();
+        indexManager.indexDirectory(paths,"C:\\Users\\DilankaRathnasiri\\Documents\\A");
+        //call search manager
+        SearchManager searchManager = new SearchManager(indexManager);
+        List<String> abc = searchManager.search("C:\\Users\\DilankaRathnasiri\\Documents\\A","pdfName","n");
+        for(int i=0;i<abc.size();i++){
+            System.out.println(abc.get(i));
+        }
     }
 
     //open user stage
@@ -103,5 +133,8 @@ public class AppController implements Initializable {
         }else{
             lblFavourite.setText("\uEB51");
         }
+    }
+
+    public void openFile(MouseEvent mouseEvent) {
     }
 }

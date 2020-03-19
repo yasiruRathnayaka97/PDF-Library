@@ -1,3 +1,5 @@
+package Models;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -60,7 +62,6 @@ public String indexDirectory(List<String> directoryPDFList, String dir){
         for(int i=0;i<directoryPDFList.size()-1;i++){
             createIndex(directoryPDFList.get(i),dir);
         }
-
         return "Successfully indexed directory";
 }
 
