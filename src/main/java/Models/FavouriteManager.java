@@ -8,10 +8,11 @@ public class FavouriteManager extends DBManager{
         super("Favorites");
     }
 
-public String insertFavourite(String path,String pdfName){
+public String insertFavourite(String path,String keyword,String searchType){
     HashMap<String, String> favDet = new HashMap();
-    favDet.put("pdfName", pdfName);
     favDet.put("path", path);
+    favDet.put("keyword", keyword);
+    favDet.put("searchType", searchType);
     insert(favDet);
     return "Successful";
 }

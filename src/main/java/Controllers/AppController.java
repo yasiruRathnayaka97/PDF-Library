@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +44,8 @@ public class AppController implements Initializable {
     private JFXTextField textSearch;
     @FXML
     private JFXListView listViewResult;
+    @FXML
+    private JFXButton btnaddFavourite;
 
     private Stage stage;
     private DirectoryChooser dirChooser;
@@ -57,6 +60,8 @@ public class AppController implements Initializable {
     private List<String> paths;
     private IndexManager indexManager;
     private List<String> searchResult;
+    private String keyword;
+    private String searchType;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -97,14 +102,16 @@ public class AppController implements Initializable {
 
         //call search manager
         SearchManager searchManager = new SearchManager(indexManager);
-        searchResult = searchManager.search("./Index",dropDownSearchType.getValue().toString(),textSearch.getText());
+        searchType = dropDownSearchType.getValue().toString();
+        keyword = textSearch.getText();
+        searchResult = searchManager.search("./Index",searchType,keyword);
 
         //display search result in list view
         listViewResult.setItems(FXCollections.observableArrayList(searchResult));
 
         //add to history
         HistoryManager historyManager = new HistoryManager();
-        historyManager.insertHistorySearchKeyword(textSearch.getText(),file.getAbsolutePath());
+        historyManager.insertHistorySearchKeyword(keyword,file.getAbsolutePath());
     }
 
     //open user stage
@@ -152,9 +159,13 @@ public class AppController implements Initializable {
 
     //add favourite
     public void addFavourite(MouseEvent mouseEvent) {
-
+        FavouriteManager favouriteManager = new FavouriteManager();
+        favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);
     }
 
+    //open selected file
     public void openFile(MouseEvent mouseEvent) {
+        PdfManager pdfManager = new PdfManager();
+        pdfManager.openPdf((String) listViewResult.getSelectionModel().getSelectedItem());
     }
 }
