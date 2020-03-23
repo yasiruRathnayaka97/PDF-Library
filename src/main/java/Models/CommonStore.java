@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.naming.ldap.PagedResultsControl;
+import java.util.ArrayList;
 
 public class CommonStore {
     private static CommonStore single_instance = null;
@@ -24,16 +25,10 @@ public class CommonStore {
     private String message;
     private String username;
 
-    private CommonStore(){};
-
     public static CommonStore getInstance(){
         if (single_instance == null)
             single_instance = new CommonStore();
         return single_instance;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getMessage() {
@@ -85,5 +80,13 @@ public class CommonStore {
 
         //show stage
         stage.show();
+    }
+
+    public void showAlert(String message) throws Exception{
+        //set message
+        this.message = message;
+
+        //load alert stage
+        stageLoader("../AlertWindow.fxml",true,null);
     }
 }

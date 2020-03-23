@@ -7,11 +7,15 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.DBObject;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class SignInSignUpController{
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SignInSignUpController implements Initializable {
     @FXML
     private JFXButton btnClose;
     @FXML
@@ -44,13 +48,9 @@ public class SignInSignUpController{
     private AccountManager accountManager;
     private CommonStore commonStore;
 
-    public void showAlert(String message) throws Exception{
-        //store message in common store
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
-        commonStore.setMessage(message);
-
-        //load alert
-        commonStore.stageLoader("../AlertWindow.fxml",true,null);
     }
 
     //exit
@@ -72,19 +72,19 @@ public class SignInSignUpController{
     public void handleSignUp(MouseEvent mouseEvent) throws Exception {
         //check for empty fields
         if(textSignUpName.getText().isEmpty() && textSignUpPassword.getText().isEmpty() && textSignUpConfPassword.getText().isEmpty()) {
-            showAlert("Please enter required data");
+            commonStore.showAlert("Please enter required data");
         }
         //check for username has no spaces
         else if(textSignUpName.getText().contains(" ")){
-            showAlert("User name cannot be contained spaces");
+            commonStore.showAlert("User name cannot be contained spaces");
         }
         //check for password and confirm password is equal
         else if(!textSignUpPassword.getText().equals(textSignUpConfPassword.getText())){
-            showAlert("Password and Confirm Password mismatch");
+            commonStore.showAlert("Password and Confirm Password mismatch");
         }
         //check for password length is greater than or equal 7
         else if(textSignUpPassword.getText().length()<7){
-            showAlert("Password is too short");
+            commonStore.showAlert("Password is too short");
         }
         else{
             //data from db
@@ -107,7 +107,7 @@ public class SignInSignUpController{
                 commonStore.stageLoader("../App.fxml",false,"PDF Library");
             }
             else{
-                showAlert("Select another userName");
+                commonStore.showAlert("Select another userName");
             }
         }
     }
@@ -116,7 +116,7 @@ public class SignInSignUpController{
     public void handleSignIn(MouseEvent mouseEvent) throws Exception {
         //check for empty fields
         if(textSignInName.getText().equals("") && textSignInPassword.getText().equals("")) {
-            showAlert("Please enter required data");
+            commonStore.showAlert("Please enter required data");
         }
         else{
             //data from db
@@ -139,11 +139,11 @@ public class SignInSignUpController{
                     commonStore.stageLoader("../App.fxml",false,"PDF Library");
                 }
                 else {
-                    showAlert("Wrong password!");
+                    commonStore.showAlert("Wrong password!");
                 }
             }
             else{
-                showAlert("Wrong userName!");
+                commonStore.showAlert("Wrong userName!");
             }
         }
     }
