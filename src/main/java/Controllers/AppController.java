@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.sun.glass.ui.CommonDialogs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
-import javafx.scene.control.Label;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -52,7 +53,6 @@ public class AppController implements Initializable {
     private Scene scene;
     private Parent root;
 
-    private FileChooser fileChooser;
     private File file;
     private List<String> files;
     private ObservableList<String> searchTypes;
@@ -125,7 +125,7 @@ public class AppController implements Initializable {
     }
 
     //load directory chooser
-    public void clickFolder(MouseEvent mouseEvent){
+    public void clickFolder(MouseEvent mouseEvent) {
         stage = (Stage)anchorPane.getScene().getWindow();
         dirChooser = new DirectoryChooser();
 
@@ -136,20 +136,6 @@ public class AppController implements Initializable {
         //call index manager
         indexManager = new IndexManager();
         indexManager.indexDirectory(files,"./Index");
-    }
-
-    //load file chooser
-    public void clickFiles(MouseEvent mouseEvent){
-        /*
-        stage = (Stage)anchorPane.getScene().getWindow();
-        fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("pdf","*.pdf"));
-        files = fileChooser.showOpenMultipleDialog(stage);
-
-        //get pdf files paths
-        for(int i=0;i<files.size();i++){
-            paths.add(files.get(i).getAbsolutePath());
-        }*/
     }
 
     //load history window

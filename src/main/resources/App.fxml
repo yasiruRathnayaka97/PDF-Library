@@ -37,7 +37,7 @@
             <FontAwesomeIcon fill="WHITE" glyphName="FOLDER" size="2em" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutY="333.0" onMouseClicked="#clickHistory" prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: #2196f3;" text="">
+      <JFXButton buttonType="RAISED" layoutY="261.0" onMouseClicked="#clickHistory" prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: #2196f3;" text="">
          <tooltip>
             <Tooltip text="History" />
          </tooltip>
@@ -51,14 +51,6 @@
          </tooltip>
          <graphic>
             <FontAwesomeIcon fill="WHITE" glyphName="USER" size="2em" />
-         </graphic>
-      </JFXButton>
-      <JFXButton fx:id="btnFiles" buttonType="RAISED" layoutY="263.0" onMouseClicked="#clickFiles" prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: #2196f3;" text="">
-         <tooltip>
-            <Tooltip text="Open Files" />
-         </tooltip>
-         <graphic>
-            <FontAwesomeIcon fill="WHITE" glyphName="FILE" size="2em" />
          </graphic>
       </JFXButton>
       <JFXListView fx:id="listViewResult" layoutX="100.0" layoutY="83.0" prefHeight="382.0" prefWidth="597.0" showTooltip="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0" />
