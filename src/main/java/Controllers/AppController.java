@@ -23,6 +23,7 @@ import javafx.stage.*;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -101,7 +102,7 @@ public class AppController implements Initializable {
         }
 
         //call search manager
-        SearchManager searchManager = new SearchManager(indexManager);
+        SearchManager searchManager = new SearchManager(commonStore.getIndexManager());
         searchType = dropDownSearchType.getValue().toString();
         keyword = textSearch.getText();
         searchResult = searchManager.search("./Index",searchType,keyword);
@@ -125,7 +126,7 @@ public class AppController implements Initializable {
     }
 
     //load directory chooser
-    public void clickFolder(MouseEvent mouseEvent) {
+    public void clickFolder(MouseEvent mouseEvent) throws Exception {
         stage = (Stage)anchorPane.getScene().getWindow();
         dirChooser = new DirectoryChooser();
 
@@ -133,9 +134,11 @@ public class AppController implements Initializable {
         file = dirChooser.showDialog(stage);
         files = fileManager.getAllPDFUnderDir(file.getAbsolutePath());
 
-        //call index manager
-        indexManager = new IndexManager();
-        indexManager.indexDirectory(files,"./Index");
+        //save paths to common store
+        commonStore.setFiles(files);
+
+        //indexing
+        commonStore.stageLoader("../IndexingLoader.fxml",true,null);
     }
 
     //load history window

@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 
 import javax.naming.ldap.PagedResultsControl;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CommonStore {
     private static CommonStore single_instance = null;
@@ -24,11 +25,25 @@ public class CommonStore {
 
     private String message;
     private String username;
+    private List<String> files;
+    private IndexManager indexManager;
+
+    private CommonStore(){
+        indexManager = new IndexManager();
+    };
 
     public static CommonStore getInstance(){
         if (single_instance == null)
             single_instance = new CommonStore();
         return single_instance;
+    }
+
+    public void setFiles(List<String> files) {
+        this.files = files;
+    }
+
+    public List<String> getFiles() {
+        return files;
     }
 
     public String getMessage() {
@@ -88,5 +103,17 @@ public class CommonStore {
 
         //load alert stage
         stageLoader("../AlertWindow.fxml",true,null);
+    }
+
+    public void indexDirectory(List<String> directoryPDFList, String dir){
+        indexManager.indexDirectory(directoryPDFList, dir);
+    }
+
+    public IndexManager getIndexManager() {
+        return indexManager;
+    }
+
+    public void loadingStage(String process) throws Exception {
+        stageLoader("../IndexingLoader.fxml",true,null);
     }
 }
