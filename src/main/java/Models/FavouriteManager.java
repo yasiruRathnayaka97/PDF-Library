@@ -2,9 +2,9 @@ package Models;
 
 import java.util.HashMap;
 
-public class FavouriteManager extends DBManager{
+public class FavouriteManager{
 
-    public FavouriteManager(){
+    /*public FavouriteManager(){
         super("Favorites");
     }
 
@@ -15,6 +15,6 @@ public String insertFavourite(String path,String keyword,String searchType){
     favDet.put("searchType", searchType);
     insert(favDet);
     return "Successful";
-}
+}*/
 
 }

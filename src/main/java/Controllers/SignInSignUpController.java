@@ -1,11 +1,12 @@
 package Controllers;
 
 import Models.AccountManager;
+import Models.AlertManager;
 import Models.CommonStore;
+import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.mongodb.DBObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -47,10 +48,15 @@ public class SignInSignUpController implements Initializable {
 
     private AccountManager accountManager;
     private CommonStore commonStore;
+    private AlertManager alertManager;
+    private WindowManager windowManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
+        accountManager = AccountManager.getInstance();
+        alertManager = AlertManager.getInstance();
+        windowManager = new WindowManager();
     }
 
     //exit
@@ -70,44 +76,29 @@ public class SignInSignUpController implements Initializable {
 
     //sign up data submit
     public void handleSignUp(MouseEvent mouseEvent) throws Exception {
-        //check for empty fields
         if(textSignUpName.getText().isEmpty() && textSignUpPassword.getText().isEmpty() && textSignUpConfPassword.getText().isEmpty()) {
-            commonStore.showAlert("Please enter required data");
+            alertManager.showAlert("Please enter required data");
         }
         //check for username has no spaces
         else if(textSignUpName.getText().contains(" ")){
-            commonStore.showAlert("User name cannot be contained spaces");
+            alertManager.showAlert("User name cannot be contained spaces");
         }
         //check for password and confirm password is equal
         else if(!textSignUpPassword.getText().equals(textSignUpConfPassword.getText())){
-            commonStore.showAlert("Password and Confirm Password mismatch");
+            alertManager.showAlert("Password and Confirm Password mismatch");
         }
         //check for password length is greater than or equal 7
         else if(textSignUpPassword.getText().length()<7){
-            commonStore.showAlert("Password is too short");
+            alertManager.showAlert("Password is too short");
         }
         else{
-            //data from db
-            accountManager= AccountManager.getAccount();
-            DBObject acObj=accountManager.retrieveOne("userName",textSignUpName.getText());
-            if (acObj==null){
-                accountManager.setUserName(textSignUpName.getText());
-                accountManager.setPassword(textSignUpPassword.getText());
-                accountManager.insertAccount();
-
-                //close sign in sign up stage
-                stage = (Stage) btnSignUp.getScene().getWindow();
-                stage.close();
-
-                //store username in common store
-                commonStore = CommonStore.getInstance();
-                commonStore.setUsername(textSignUpName.getText());
-
-                //load app
-                commonStore.stageLoader("../App.fxml",false,"PDF Library");
+            if(accountManager.register(textSignUpName.getText(),textSignUpPassword.getText())=="success"){
+                System.out.println("Successfully Sign Up!");
+                windowManager.stageLoader("../App.fxml",false,"PDF Library");
             }
-            else{
-                commonStore.showAlert("Select another userName");
+            else if(accountManager.register(textSignUpName.getText(),textSignUpPassword.getText())=="This username has been used!"){
+                alertManager.showAlert("This username has been used!");
+                System.out.println("This username has been used!");
             }
         }
     }
@@ -116,34 +107,15 @@ public class SignInSignUpController implements Initializable {
     public void handleSignIn(MouseEvent mouseEvent) throws Exception {
         //check for empty fields
         if(textSignInName.getText().equals("") && textSignInPassword.getText().equals("")) {
-            commonStore.showAlert("Please enter required data");
+            alertManager.showAlert("Please enter required data");
+
         }
         else{
-            //data from db
-            accountManager= AccountManager.getAccount();
-            DBObject acObj=accountManager.retrieveOne("userName",textSignInName.getText());
-            if (acObj!=null){
-                if (acObj.get("password").equals(textSignInPassword.getText())){
-                    accountManager.setPassword(textSignInName.getText());
-                    accountManager.setUserName(textSignInName.getText());
-
-                    //store username in common store
-                    commonStore = CommonStore.getInstance();
-                    commonStore.setUsername(textSignInName.getText());
-
-                    //close sign in sign up stage
-                    stage = (Stage) btnSignIn.getScene().getWindow();
-                    stage.close();
-
-                    //load app
-                    commonStore.stageLoader("../App.fxml",false,"PDF Library");
-                }
-                else {
-                    commonStore.showAlert("Wrong password!");
-                }
+            if(accountManager.login(textSignInName.getText(),textSignInPassword.getText())=="success"){
+                windowManager.stageLoader("../App.fxml",false,"PDF Library");
             }
             else{
-                commonStore.showAlert("Wrong userName!");
+                alertManager.showAlert("Invalid username or password!");
             }
         }
     }

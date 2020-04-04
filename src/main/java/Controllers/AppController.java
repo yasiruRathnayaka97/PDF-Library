@@ -64,10 +64,8 @@ public class AppController implements Initializable {
     private String keyword;
     private String searchType;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
-
     private CommonStore commonStore;
+    private WindowManager windowManager;
 
     FileManager fileManager = new FileManager();
 
@@ -75,6 +73,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
         paths = new ArrayList<String>();
+        windowManager = new WindowManager();
 
         //set search types items
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
@@ -83,7 +82,7 @@ public class AppController implements Initializable {
 
     //handle search operation
     public void clickSearch(MouseEvent mouseEvent) throws Exception {
-        //check for empty search keywords
+        /*//check for empty search keywords
         if(textSearch.getText().equals("")){
             commonStore.showAlert("Enter searching keyword!");
             return;
@@ -112,17 +111,17 @@ public class AppController implements Initializable {
 
         //add to history
         HistoryManager historyManager = new HistoryManager();
-        historyManager.insertHistorySearchKeyword(keyword,file.getAbsolutePath());
+        historyManager.insertHistorySearchKeyword(keyword,file.getAbsolutePath());*/
     }
 
     //open user stage
     public void clickUser(MouseEvent mouseEvent) throws Exception{
-            commonStore.stageLoader("../User.fxml",true,null);
+        windowManager.stageLoader("../User.fxml",true,null);
     }
 
     //load favourite window
     public void clickFavourite(MouseEvent mouseEvent) throws Exception{
-        commonStore.stageLoader("../Favourite.fxml",false,"Favourite");
+        windowManager.stageLoader("../Favourite.fxml",false,"Favourite");
     }
 
     //load directory chooser
@@ -138,18 +137,18 @@ public class AppController implements Initializable {
         commonStore.setFiles(files);
 
         //indexing
-        commonStore.stageLoader("../IndexingLoader.fxml",true,null);
+        windowManager.stageLoader("../IndexingLoader.fxml",true,null);
     }
 
     //load history window
     public void clickHistory(MouseEvent mouseEvent) throws Exception {
-        commonStore.stageLoader("../History.fxml",false,"History");
+        windowManager.stageLoader("../History.fxml",false,"History");
     }
 
     //add favourite
     public void addFavourite(MouseEvent mouseEvent) {
-        FavouriteManager favouriteManager = new FavouriteManager();
-        favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);
+        /*FavouriteManager favouriteManager = new FavouriteManager();
+        favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);*/
     }
 
     //open selected file

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.CommonStore;
+import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,10 +21,12 @@ public class UserController implements Initializable {
     Stage stage;
 
     CommonStore commonStore;
+    private WindowManager windowManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
+        windowManager = new WindowManager();
 
         //change lable
         lbl.setText(commonStore.getUsername());
@@ -44,6 +47,6 @@ public class UserController implements Initializable {
         stage.close();
 
         //load sign in sign up
-        commonStore.stageLoader("../SignInSignUp.fxml",true,null);
+        windowManager.stageLoader("../SignInSignUp.fxml",true,null);
     }
 }

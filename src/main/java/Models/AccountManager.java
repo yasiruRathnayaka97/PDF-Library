@@ -1,49 +1,95 @@
 package Models;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
-public class AccountManager extends DBManager {
-    private String userName;
-    private String password;
-    private static AccountManager ac;
+public class AccountManager{
+    private static AccountManager instance=new AccountManager();
 
     private AccountManager(){
-        super("Account");
+        dbManager = DBManager.getInstance();
+    };
+
+    public static AccountManager getInstance(){
+        return instance;
     }
 
-    public static AccountManager getAccount(){
-        if (ac==null) {
-            ac=new AccountManager();
-            return ac;
+    private DBManager dbManager;
+    private Connection conn;
+    private Statement stmt;
+    private ResultSet resultSet;
+    private String query;
+    private String username;
+    private String password;
+    private boolean hasRegistered;
+
+    public String register(String username, String password){
+        try {
+            this.username = username;
+            this.password = password;
+            hasRegistered = true;
+
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+            query = String.format("SELECT username FROM user WHERE username='%s';",username);
+            resultSet = stmt.executeQuery(query);
+            if(!resultSet.next()){
+                hasRegistered = false;
+            }
+            resultSet.close();
+            stmt.close();
+            conn.close();
+            if(hasRegistered){
+                System.out.println("This username has been used!");
+                return "This username has been used!";
+            }
+
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+            query =  String.format("INSERT INTO user(username, password) VALUES ('%s','%s');",username,password);
+            stmt.executeUpdate(query);
+            stmt.close();
+            conn.close();
+            System.out.println("success");
+            return "success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        else {
-           return ac;
+    }
+
+    public String login(String username, String password){
+        try {
+            this.username = username;
+            hasRegistered = true;
+
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+            query =  String.format("SELECT password FROM user WHERE username= '%s';",username);
+            resultSet = stmt.executeQuery(query);
+            if(resultSet.next()){
+                this.password = resultSet.getString("password");
+                hasRegistered = false;
+            };
+            resultSet.close();
+            stmt.close();
+            conn.close();
+            if(!hasRegistered){
+                if(this.password.equals(password)){
+                    System.out.println("Success!");
+                    return "success";
+                }
+                System.out.println("Invalid Password!");
+                return null;
+            }
+            System.out.println("not success");
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public String insertAccount(){
-        HashMap<String,String> AccDet=new HashMap();
-        AccDet.put("userName",ac.getUserName());
-        AccDet.put("password",ac.getPassword());
-        insert(AccDet);
-        return "Successful";
-    }
-
 }

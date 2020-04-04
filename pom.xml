@@ -61,12 +61,6 @@
             <artifactId>jfoenix</artifactId>
             <version>9.0.9</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-core -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.2</version>
-        </dependency>
 
         <dependency>
             <groupId>de.jensd</groupId>
@@ -79,7 +73,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.200</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

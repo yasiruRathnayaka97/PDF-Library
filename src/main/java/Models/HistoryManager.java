@@ -2,9 +2,9 @@ package Models;
 
 import java.util.HashMap;
 
-public class HistoryManager extends DBManager {
+public class HistoryManager{
 
-    public HistoryManager() {
+    /*public HistoryManager() {
         super("History");
     }
 
@@ -27,5 +27,5 @@ public class HistoryManager extends DBManager {
     */
     //can use relevant method according to need.But can not use both.
     // If search keywords add to the history use insertHistorySearchKeyword().
-    //else Paths of opened file add to the history use insertHistoryOpenedPDF().
+    //else Paths of opened file add to the history use insertHistoryOpenedPDF().*/
 }

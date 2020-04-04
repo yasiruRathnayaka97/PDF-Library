@@ -26,7 +26,7 @@ public class HistoryController implements Initializable{
     @FXML
     private JFXButton btnRemove;
 
-    private AccountManager account=AccountManager.getAccount();
+    private AccountManager account=AccountManager.getInstance();
     private ObservableList history = FXCollections.observableArrayList();
 
     @Override

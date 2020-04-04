@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.AlertManager;
 import Models.CommonStore;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -21,13 +22,13 @@ public class AlertWindowController implements Initializable{
     private Label lbl;
     Stage stage;
 
-    private CommonStore commonStore;
+    private AlertManager alertManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //get message from common store
-        commonStore = CommonStore.getInstance();
-        lbl.setText(commonStore.getMessage());
+        alertManager = AlertManager.getInstance();
+        lbl.setText(alertManager.getMessage());
     }
 
     //close alert window
