@@ -1,44 +1,54 @@
 package Controllers;
 import Models.AccountManager;
+import Models.HistoryItem;
+import Models.HistoryManager;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-
-import java.awt.*;
 import java.net.URL;
 import java.util.*;
 
 public class HistoryController implements Initializable{
     @FXML
-    private JFXListView listView;
+    private TableView<HistoryItem> tableView;
+    @FXML
+    private TableColumn<HistoryItem,String> keyword;
+    @FXML
+    private TableColumn<HistoryItem,String> type;
+    @FXML
+    private TableColumn<HistoryItem,String> path;
     @FXML
     private JFXButton btnOpen;
     @FXML
     private JFXButton btnRemove;
 
-    private AccountManager account=AccountManager.getInstance();
-    private ObservableList history = FXCollections.observableArrayList();
+    private AccountManager account;
+    private HistoryManager historyManager;
+    private ObservableList history;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.setItems(history);
+        account=AccountManager.getInstance();
+        historyManager = HistoryManager.getInstance();
+        history = FXCollections.observableArrayList(historyManager.getHistory());
+        keyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
+        type.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
+        path.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
+        tableView.setItems(history);
     }
 
     public void clickOpen(MouseEvent mouseEvent) {
-        System.out.println(listView.getSelectionModel().getSelectedItem());
+        System.out.println(tableView.getSelectionModel().getSelectedItem().getId());
     }
 
     public void clickRemove(MouseEvent mouseEvent) {
-        history.remove(listView.getSelectionModel().getSelectedIndex());
+        history.remove(tableView.getSelectionModel().getSelectedIndex());
+        historyManager.deleteOne(tableView.getSelectionModel().getSelectedItem().getId(),tableView.getSelectionModel().getSelectedIndex());
     }
 }

@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 
 public class WindowManager {
@@ -24,7 +23,7 @@ public class WindowManager {
     };
 
     //load stage
-    public void stageLoader(String path,boolean boarderless,String title) throws Exception{
+    public void stageLoader(String path,boolean borderless,String title) throws Exception{
         //load stage
         root = FXMLLoader.load(getClass().getResource(path));
         scene = new Scene(root);
@@ -37,9 +36,9 @@ public class WindowManager {
         }
 
         //set modality and boarder style
-        if(boarderless) {
+        if(borderless) {
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
         }
 
         //set stage movable
@@ -60,5 +59,10 @@ public class WindowManager {
 
         //show stage
         stage.show();
+    }
+
+    public void closeWindow(Stage stage){
+        this.stage = stage;
+        stage.close();
     }
 }

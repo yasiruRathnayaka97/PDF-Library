@@ -1,7 +1,6 @@
 package Controllers;
 
-import Models.CommonStore;
-import Models.WindowManager;
+import Models.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,35 +17,40 @@ public class UserController implements Initializable {
     @FXML
     private Label lbl;
 
-    Stage stage;
-
-    CommonStore commonStore;
     private WindowManager windowManager;
+    private AccountManager accountManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        commonStore = CommonStore.getInstance();
         windowManager = new WindowManager();
+        accountManager = AccountManager.getInstance();
 
         //change lable
-        lbl.setText(commonStore.getUsername());
+        lbl.setText(accountManager.getUsername());
     }
 
     public void clickClose(MouseEvent mouseEvent) {
         //close user stage
-        stage= (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        try {
+            windowManager.stageLoader("../App.fxml",false,"PDF Library");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
     }
 
     public void handleSignOut(MouseEvent mouseEvent) throws Exception {
         //set username to null for sign out
-        commonStore.setUsername(null);
+        accountManager.setUsername(null);
+        accountManager.setPassword(null);
 
         //close user stage
-        stage= (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
 
         //load sign in sign up
         windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+
+        //user signout wenakota history favourite delete wenna ona
+
     }
 }

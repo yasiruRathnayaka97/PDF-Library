@@ -3,8 +3,6 @@ package Models;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 
 public class AccountManager{
     private static AccountManager instance=new AccountManager();
@@ -91,5 +89,17 @@ public class AccountManager{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

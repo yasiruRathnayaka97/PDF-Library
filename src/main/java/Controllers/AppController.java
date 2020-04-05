@@ -5,16 +5,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.glass.ui.CommonDialogs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -66,6 +60,8 @@ public class AppController implements Initializable {
 
     private CommonStore commonStore;
     private WindowManager windowManager;
+    private AlertManager alertManager;
+    private HistoryManager historyManager;
 
     FileManager fileManager = new FileManager();
 
@@ -74,6 +70,8 @@ public class AppController implements Initializable {
         commonStore = CommonStore.getInstance();
         paths = new ArrayList<String>();
         windowManager = new WindowManager();
+        alertManager = AlertManager.getInstance();
+        historyManager = HistoryManager.getInstance();
 
         //set search types items
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
@@ -82,21 +80,21 @@ public class AppController implements Initializable {
 
     //handle search operation
     public void clickSearch(MouseEvent mouseEvent) throws Exception {
-        /*//check for empty search keywords
+        //check for empty search keywords
         if(textSearch.getText().equals("")){
-            commonStore.showAlert("Enter searching keyword!");
+            alertManager.showAlert("Enter searching keyword!");
             return;
         }
 
         //check path is choose
         if(paths==null){
-            commonStore.showAlert("Select searching directory!");
+            alertManager.showAlert("Select searching directory!");
             return;
         }
 
         //check for search Type has selected
         if(dropDownSearchType.getValue()==null){
-            commonStore.showAlert("Select search type directory!");
+            alertManager.showAlert("Select search type directory!");
             return;
         }
 
@@ -110,13 +108,13 @@ public class AppController implements Initializable {
         listViewResult.setItems(FXCollections.observableArrayList(searchResult));
 
         //add to history
-        HistoryManager historyManager = new HistoryManager();
-        historyManager.insertHistorySearchKeyword(keyword,file.getAbsolutePath());*/
+        historyManager.addHistory(keyword,searchType,file.getAbsolutePath());
     }
 
     //open user stage
     public void clickUser(MouseEvent mouseEvent) throws Exception{
         windowManager.stageLoader("../User.fxml",true,null);
+        windowManager.closeWindow((Stage) listViewResult.getScene().getWindow());
     }
 
     //load favourite window

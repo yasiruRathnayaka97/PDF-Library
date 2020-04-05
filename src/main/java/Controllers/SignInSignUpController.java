@@ -113,6 +113,7 @@ public class SignInSignUpController implements Initializable {
         else{
             if(accountManager.login(textSignInName.getText(),textSignInPassword.getText())=="success"){
                 windowManager.stageLoader("../App.fxml",false,"PDF Library");
+                windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
             }
             else{
                 alertManager.showAlert("Invalid username or password!");

@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.CommonStore;
 import Models.IndexManager;
+import Models.WindowManager;
 import com.jfoenix.controls.JFXSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -24,10 +25,12 @@ public class IndexingLoaderController implements Initializable {
     private CommonStore commonStore;
     private IndexManager indexManager;
     private List<String> paths;
+    private WindowManager windowManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         commonStore = CommonStore.getInstance();
+        windowManager = new WindowManager();
         runTask();
     }
 
@@ -45,8 +48,7 @@ public class IndexingLoaderController implements Initializable {
         longTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent t) {
-                stage= (Stage) spinner.getScene().getWindow();
-                stage.close();
+                windowManager.closeWindow((Stage) spinner.getScene().getWindow());
             }
         });
         spinner.progressProperty().bind(longTask.progressProperty());

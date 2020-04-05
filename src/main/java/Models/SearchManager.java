@@ -34,7 +34,6 @@ public class SearchManager {
                 Document d = is.doc(docId);
                 matchPdfList.add(d.get("path"));
             }
-
             ir.close();
             dir.close();
         } catch (IOException | ParseException e) {
