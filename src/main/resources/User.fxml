@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="356.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="650.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
    <children>
       <Label fx:id="lbl" alignment="CENTER" layoutX="-1.0" layoutY="151.0" prefHeight="30.0" prefWidth="356.0" text="User Name" textFill="#2196f3" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="278.0" layoutY="-2.0" onMouseClicked="#clickClose" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="-2.0">
-         <graphic>
-            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" size="2em" />
-         </graphic>
-      </JFXButton>
       <JFXButton fx:id="btnSignOut" buttonType="RAISED" layoutX="139.0" layoutY="254.0" onMouseClicked="#handleSignOut" prefHeight="46.0" prefWidth="78.0" style="-fx-background-color: #2196f3;" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="63.60000000000002">
          <font>
             <Font name="System Bold" size="14.0" />

@@ -7,9 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="439.0" style="-fx-background-color: white; -fx-border-color: #2196f3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AlertWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="439.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AlertWindowController">
    <children>
-      <JFXButton fx:id="btnOk" buttonType="RAISED" layoutX="184.0" layoutY="118.6" onMouseClicked="#closeWindow" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #2196f3;" text="OK" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="20.0">
+      <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="380.0" layoutY="25.0" onMouseClicked="#closeWindow" prefHeight="35.0" prefWidth="21.0" ripplerFill="WHITE" style="-fx-background-color: red; -fx-background-radius: 100px;" text="" textAlignment="CENTER" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CLOSE" selectionFill="#ffffff00" size="2em" />
+         </graphic>
+         <tooltip>
+            <Tooltip text="Close" />
+         </tooltip>
+      </JFXButton>
+      <JFXButton fx:id="btnOk" buttonType="RAISED" layoutX="184.0" layoutY="118.6" onMouseClicked="#closeWindow" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px;" text="OK" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="20.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -19,13 +27,5 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="372.0" onMouseClicked="#closeWindow" ripplerFill="WHITE" style="-fx-background-color: red;" text="" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="-2.0">
-         <graphic>
-            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE"  size="2em" />
-         </graphic>
-         <tooltip>
-            <Tooltip text="Close" />
-         </tooltip>
-      </JFXButton>
    </children>
 </AnchorPane>

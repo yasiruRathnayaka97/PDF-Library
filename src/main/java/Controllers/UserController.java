@@ -13,8 +13,6 @@ import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
     @FXML
-    private JFXButton btnClose;
-    @FXML
     private Label lbl;
 
     private WindowManager windowManager;
@@ -29,23 +27,13 @@ public class UserController implements Initializable {
         lbl.setText(accountManager.getUsername());
     }
 
-    public void clickClose(MouseEvent mouseEvent) {
-        //close user stage
-        try {
-            windowManager.stageLoader("../App.fxml",false,"PDF Library");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
-    }
-
     public void handleSignOut(MouseEvent mouseEvent) throws Exception {
         //set username to null for sign out
         accountManager.setUsername(null);
         accountManager.setPassword(null);
 
         //close user stage
-        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+        windowManager.closeWindow((Stage) lbl.getScene().getWindow());
 
         //load sign in sign up
         windowManager.stageLoader("../SignInSignUp.fxml",true,null);

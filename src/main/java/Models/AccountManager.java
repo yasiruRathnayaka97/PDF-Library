@@ -9,6 +9,7 @@ public class AccountManager{
 
     private AccountManager(){
         dbManager = DBManager.getInstance();
+        alertManager = AlertManager.getInstance();
     };
 
     public static AccountManager getInstance(){
@@ -23,9 +24,30 @@ public class AccountManager{
     private String username;
     private String password;
     private boolean hasRegistered;
+    private AlertManager alertManager;
 
-    public String register(String username, String password){
+    public String register(String username, String password,String confPassword){
         try {
+            if(username.isEmpty() && password.isEmpty() && confPassword.isEmpty()) {
+                alertManager.showAlert("Please enter required data");
+                return null;
+            }
+            //check for username has no spaces
+            if(username.contains(" ")){
+                alertManager.showAlert("User name cannot be contained spaces");
+                return null;
+            }
+            //check for password and confirm password is equal
+            if(!password.equals(confPassword)){
+                alertManager.showAlert("Password and Confirm Password mismatch");
+                return null;
+            }
+            //check for password length is greater than or equal 7
+            if(password.length()<7){
+                alertManager.showAlert("Password is too short");
+                return null;
+            }
+
             this.username = username;
             this.password = password;
             hasRegistered = true;
@@ -41,8 +63,8 @@ public class AccountManager{
             stmt.close();
             conn.close();
             if(hasRegistered){
-                System.out.println("This username has been used!");
-                return "This username has been used!";
+                alertManager.showAlert("This username has been used!");
+                return null;
             }
 
             conn=dbManager.connect();
@@ -61,6 +83,12 @@ public class AccountManager{
 
     public String login(String username, String password){
         try {
+            //check for empty fields
+            if(username.isEmpty() && username.isEmpty()) {
+                alertManager.showAlert("Please enter required data");
+                return null;
+            }
+
             this.username = username;
             hasRegistered = true;
 
@@ -80,10 +108,12 @@ public class AccountManager{
                     System.out.println("Success!");
                     return "success";
                 }
-                System.out.println("Invalid Password!");
+                System.out.println("Invalid username or password!");
+                alertManager.showAlert("Invalid username or password!");
                 return null;
             }
-            System.out.println("not success");
+            System.out.println("Invalid username or password!");
+            alertManager.showAlert("Invalid username or password!");
             return null;
         } catch (Exception e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@ try {
             return text;
         }
         else{
-            return "Not a pdf";
+            return "Not AppController pdf";
         }
     }
    else{
