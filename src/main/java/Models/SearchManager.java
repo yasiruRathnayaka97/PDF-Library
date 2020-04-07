@@ -10,28 +10,29 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.store.FSDirectory;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SearchManager {
-    IndexManager im;
+    private IndexManager indexManager;
+    private HistoryManager historyManager;
 
 
-    public SearchManager(IndexManager im){
-        this.im=im;
+    public SearchManager(){
+        indexManager = IndexManager.getInstance();
+        historyManager = HistoryManager.getInstance();
     }
 
-    public ArrayList search(String dirPath, String fieldName, String  text) {
-
-
+    public ArrayList search(String dirPath, String searchType, String  keyword) {
         ArrayList<String> matchPdfList=new ArrayList<String>();
         try {
             Directory dir = FSDirectory.open(Paths.get(dirPath));
             DirectoryReader ir = DirectoryReader.open(dir);
             IndexSearcher is = new IndexSearcher(ir);
-            QueryParser parser = new QueryParser(fieldName, im.analyzer);
-            Query query = parser.parse(text);
+            QueryParser parser = new QueryParser(searchType, indexManager.analyzer);
+            Query query = parser.parse(keyword);
             ScoreDoc[] hits = is.search(query, 10).scoreDocs;
             for(int i=0;i<hits.length;++i) {
                 int docId = hits[i].doc;
@@ -40,6 +41,9 @@ public class SearchManager {
             }
             ir.close();
             dir.close();
+
+            //add to history
+            historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

@@ -78,6 +78,8 @@
             </JFXButton>
          </children>
       </VBox>
+      <AnchorPane fx:id="paneFavourite" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <AnchorPane fx:id="paneHistory" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
       <AnchorPane layoutX="170.0" prefHeight="40.0" prefWidth="650.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXButton fx:id="btnResize" layoutX="573.0" layoutY="7.0" onMouseClicked="#handleResize" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 100px;" text="" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="7.0">
@@ -157,7 +159,7 @@
                   <FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="571.0" layoutY="253.0" onMouseClicked="#openFile" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="save" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0">
+            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="571.0" layoutY="253.0" onMouseClicked="#saveSearch" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="save" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <tooltip>
                   <Tooltip text="open selected file" />
                </tooltip>
@@ -167,7 +169,5 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneFavourite" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-      <AnchorPane fx:id="paneHistory" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

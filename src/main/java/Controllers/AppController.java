@@ -69,6 +69,7 @@ public class AppController implements Initializable {
         fileManager = new FileManager();
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
         dropDownSearchType.setItems(searchTypes);
+        pdfManager = new PdfManager();
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------
@@ -134,24 +135,27 @@ public class AppController implements Initializable {
             }
 
             //call search manager
-            SearchManager searchManager = new SearchManager(IndexManager.getInstance());
+            SearchManager searchManager = new SearchManager();
             searchType = dropDownSearchType.getValue().toString();
             keyword = textSearch.getText();
             searchResult = searchManager.search("./Index", searchType, keyword);
 
             //display search result in list view
             listViewResult.setItems(FXCollections.observableArrayList(searchResult));
-
-            //add to history
-            historyManager.addHistory(keyword, searchType, indexManager.getDirPath());
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     public void openFile(MouseEvent mouseEvent) {
+        pdfManager.openPdf(listViewResult.getSelectionModel().getSelectedItem().toString());
     }
 
     public void addFavourite(MouseEvent mouseEvent) {
+
+    }
+
+    public void saveSearch(MouseEvent mouseEvent) {
+
     }
 }

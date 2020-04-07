@@ -89,16 +89,13 @@ public class SearchWindowController implements Initializable {
         }
 
         //call search manager
-        SearchManager searchManager = new SearchManager(IndexManager.getInstance());
+        //SearchManager searchManager = new SearchManager(IndexManager.getInstance());
         searchType = dropDownSearchType.getValue().toString();
         keyword = textSearch.getText();
-        searchResult = searchManager.search("./Index",searchType,keyword);
+        //searchResult = searchManager.search("./Index",searchType,keyword);
 
         //display search result in list view
         listViewResult.setItems(FXCollections.observableArrayList(searchResult));
-
-        //add to history
-        historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
     }
 
     public void openFile(MouseEvent mouseEvent) {
