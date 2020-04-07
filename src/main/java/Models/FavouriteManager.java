@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class FavouriteManager{
 
-    private static FavouriteManager instance=new FavouriteManager();
+    private static FavouriteManager instance;
 
     private FavouriteManager(){
         dbManager = DBManager.getInstance();
@@ -14,6 +14,8 @@ public class FavouriteManager{
     };
 
     public static FavouriteManager getInstance(){
+        if (instance == null)
+            instance = new FavouriteManager();
         return instance;
     }
 

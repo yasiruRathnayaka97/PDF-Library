@@ -9,19 +9,6 @@ public class DBManager {
     //create an object of SingleObject
     private static DBManager instance;
 
-    static {
-        try {
-            instance = new DBManager();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Connection conn;
-    private Statement stmt;
-    private String query;
-    private File file;
-
     //make the constructor private so that this class cannot be instantiated
     private DBManager() throws Exception{
         file=new File("pdfLibraryDB.mv.db");
@@ -40,8 +27,20 @@ public class DBManager {
 
     //Get the only object available
     public static DBManager getInstance(){
+        if (instance == null) {
+            try {
+                instance = new DBManager();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return instance;
     };
+
+    private Connection conn;
+    private Statement stmt;
+    private String query;
+    private File file;
 
     public Connection connect(){
         try {

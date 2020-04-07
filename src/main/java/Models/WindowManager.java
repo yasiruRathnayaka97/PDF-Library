@@ -20,17 +20,15 @@ public class WindowManager {
     private Stage stage;
     private double xOffset;
     private double yOffset;
-    //private DirectoryChooser dirChooser;
-    //private File file;
-    //private List<String> files;
-    //private FileManager fileManager;
-    //private CommonStore commonStore;
+    private DirectoryChooser dirChooser;
+    private IndexManager indexManager;
+    private FileManager fileManager;
 
     public WindowManager(){
         xOffset = 0;
         yOffset = 0;
-        //fileManager = new FileManager();
-        //commonStore = CommonStore.getInstance();
+        indexManager = IndexManager.getInstance();
+        fileManager = new FileManager();
     };
 
     //load stage
@@ -87,22 +85,20 @@ public class WindowManager {
         stage.close();
     }
 
-    /*public void dirWindow(){
-        this.stage = new Stage();
+    public void dirWindow(){
+        //stage = (Stage)anchorPane.getScene().getWindow();
+        stage = new Stage();
         dirChooser = new DirectoryChooser();
 
         //get selected directory to file
-        file = dirChooser.showDialog(stage);
-        files = fileManager.getAllPDFUnderDir(file.getAbsolutePath());
-
-        //save paths to common store
-        commonStore.setFiles(files);
+        indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
 
         //indexing
         try {
             stageLoader("../IndexingLoader.fxml",true,null);
         } catch (Exception e) {
             e.printStackTrace();
+            return;
         }
-    }*/
+    }
 }

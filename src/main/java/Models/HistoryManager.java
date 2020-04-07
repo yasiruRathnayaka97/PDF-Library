@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class HistoryManager{
-    private static HistoryManager instance=new HistoryManager();
+    private static HistoryManager instance;
 
     private HistoryManager(){
         dbManager = DBManager.getInstance();
@@ -16,6 +16,8 @@ public class HistoryManager{
     };
 
     public static HistoryManager getInstance(){
+        if (instance == null)
+            instance = new HistoryManager();
         return instance;
     }
 
@@ -37,6 +39,7 @@ public class HistoryManager{
             stmt.executeUpdate(query);
             stmt.close();
             conn.close();
+            System.out.println("Added to history");
         } catch (Exception e) {
             e.printStackTrace();
         }

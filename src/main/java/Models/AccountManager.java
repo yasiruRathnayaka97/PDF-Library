@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AccountManager{
-    private static AccountManager instance=new AccountManager();
+    private static AccountManager instance;
 
     private AccountManager(){
         dbManager = DBManager.getInstance();
@@ -13,6 +13,8 @@ public class AccountManager{
     };
 
     public static AccountManager getInstance(){
+        if(instance == null)
+            instance = new AccountManager();
         return instance;
     }
 

@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="434.0" prefWidth="648.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="434.0" prefWidth="648.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchWindowController">
 <children>
-      <JFXButton fx:id="buttonSearch" buttonType="RAISED" layoutX="719.0" layoutY="23.0" onMouseClicked="#clickSearch" prefHeight="42.0" prefWidth="58.0" style="-fx-background-color: #1A33D5;" text=" " textAlignment="CENTER" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="23.0">
+      <JFXButton fx:id="buttonSearch" buttonType="RAISED" layoutX="719.0" layoutY="23.0" onMouseClicked="#clickSearch" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 200PX;" text=" " textAlignment="CENTER" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="23.0">
          <tooltip>
             <Tooltip text="Search" />
          </tooltip>
@@ -19,18 +19,18 @@
             <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" size="2em" textAlignment="RIGHT" wrappingWidth="29.542881965637207" />
          </graphic>
       </JFXButton>
-      <JFXTextField fx:id="textSearch" focusColor="#2196f3" layoutX="35.0" layoutY="34.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" unFocusColor="#b4b4ba" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="33.0" />
-      <JFXListView fx:id="listViewResult" layoutX="38.0" layoutY="83.0" prefHeight="316.0" prefWidth="506.0" showTooltip="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0" />
-      <JFXComboBox fx:id="dropDownSearchType" focusColor="#2196f3" labelFloat="true" layoutX="562.0" layoutY="33.0" prefHeight="26.0" prefWidth="134.0" promptText="Search type" unFocusColor="#b4b4ba" visibleRowCount="3" AnchorPane.rightAnchor="103.60000000000002" AnchorPane.topAnchor="32.0" />
-      <JFXButton fx:id="btnOpen" buttonType="RAISED" layoutX="718.0" layoutY="93.0" onMouseClicked="#openFile" prefHeight="55.0" prefWidth="58.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="23.600000000000023" AnchorPane.topAnchor="93.0">
+      <JFXTextField fx:id="textSearch" focusColor="#1a33d5" layoutX="35.0" layoutY="34.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="33.0" />
+      <JFXListView fx:id="listViewResult" layoutX="38.0" layoutY="83.0" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@css/ListView.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0" />
+      <JFXComboBox fx:id="dropDownSearchType" focusColor="#1a33d5" labelFloat="true" layoutX="562.0" layoutY="33.0" prefHeight="26.0" prefWidth="134.0" promptText="Search type" style="-fx-focus-traversable: blue;" styleClass="combo-box" stylesheets="@css/ComboBox.css" visibleRowCount="3" AnchorPane.rightAnchor="103.60000000000002" AnchorPane.topAnchor="32.0" />
+      <JFXButton fx:id="btnOpen" buttonType="RAISED" layoutX="568.0" layoutY="124.0" onMouseClicked="#openFile" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="124.0">
          <tooltip>
             <Tooltip text="open selected file" />
          </tooltip>
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnaddFavourite" buttonType="RAISED" layoutX="718.0" layoutY="177.0" onMouseClicked="#addFavourite" prefHeight="55.0" prefWidth="58.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="23.600000000000023" AnchorPane.topAnchor="177.0">
+      <JFXButton fx:id="btnaddFavourite" buttonType="RAISED" layoutX="569.0" layoutY="208.0" onMouseClicked="#addFavourite" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.600000000000023" AnchorPane.topAnchor="208.0">
          <tooltip>
             <Tooltip text="add to favourite" />
          </tooltip>

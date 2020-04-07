@@ -42,40 +42,25 @@ public class SearchWindowController implements Initializable {
     private JFXTextField textSearch;
     @FXML
     private JFXListView listViewResult;
-    @FXML
-    private JFXButton btnaddFavourite;
-    @FXML
-    private SubScene subScene;
 
-    private Stage stage;
-    private DirectoryChooser dirChooser;
-    private Scene scene;
-    private Parent root;
 
-    private File file;
-    private List<String> files;
     private ObservableList<String> searchTypes;
-    private String path;
-    private List<String> paths;
     private IndexManager indexManager;
     private List<String> searchResult;
     private String keyword;
     private String searchType;
 
-    private CommonStore commonStore;
-    private WindowManager windowManager;
     private AlertManager alertManager;
     private HistoryManager historyManager;
-
-    FileManager fileManager = new FileManager();
+    private FileManager fileManager;
+    private PdfManager pdfManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        commonStore = CommonStore.getInstance();
-        paths = new ArrayList<String>();
-        windowManager = new WindowManager();
         alertManager = AlertManager.getInstance();
         historyManager = HistoryManager.getInstance();
+        fileManager = new FileManager();
+
 
         //set search types items
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
@@ -84,14 +69,15 @@ public class SearchWindowController implements Initializable {
 
     //handle search operation
     public void clickSearch(MouseEvent mouseEvent) throws Exception {
+        indexManager = IndexManager.getInstance();
         //check for empty search keywords
-        /*if(textSearch.getText().equals("")){
+        if(textSearch.getText().equals("")){
             alertManager.showAlert("Enter searching keyword!");
             return;
         }
 
         //check path is choose
-        if(paths==null){
+        if(indexManager.getPaths() == null){
             alertManager.showAlert("Select searching directory!");
             return;
         }
@@ -103,7 +89,7 @@ public class SearchWindowController implements Initializable {
         }
 
         //call search manager
-        SearchManager searchManager = new SearchManager(commonStore.getIndexManager());
+        SearchManager searchManager = new SearchManager(IndexManager.getInstance());
         searchType = dropDownSearchType.getValue().toString();
         keyword = textSearch.getText();
         searchResult = searchManager.search("./Index",searchType,keyword);
@@ -112,40 +98,22 @@ public class SearchWindowController implements Initializable {
         listViewResult.setItems(FXCollections.observableArrayList(searchResult));
 
         //add to history
-        historyManager.addHistory(keyword,searchType,file.getAbsolutePath());*/
+        historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
     }
 
-    /*//open user stage
-    public void clickUser(MouseEvent mouseEvent) throws Exception{
-        windowManager.stageLoader("../User.fxml",true,null);
-        windowManager.closeWindow((Stage) listViewResult.getScene().getWindow());
+    public void openFile(MouseEvent mouseEvent) {
+        System.out.println("pdf trying to opening");
+        System.out.println(listViewResult.getSelectionModel().getSelectedItem().toString());
+        pdfManager.openPdf(listViewResult.getSelectionModel().getSelectedItem().toString());
     }
 
+    public void addFavourite(MouseEvent mouseEvent) {
 
-    //load directory chooser
-    public void clickFolder(MouseEvent mouseEvent) throws Exception {
-        stage = (Stage)anchorPane.getScene().getWindow();
-        dirChooser = new DirectoryChooser();
-
-        //get selected directory to file
-        file = dirChooser.showDialog(stage);
-        files = fileManager.getAllPDFUnderDir(file.getAbsolutePath());
-
-        //save paths to common store
-        commonStore.setFiles(files);
-
-        //indexing
-        windowManager.stageLoader("../IndexingLoader.fxml",true,null);
-    }
-
-    //load history window
-    public void clickHistory(MouseEvent mouseEvent) throws Exception {
-        windowManager.stageLoader("../History.fxml",false,"History");
     }
 
     //add favourite
-    public void addFavourite(MouseEvent mouseEvent) {
-        /*FavouriteManager favouriteManager = new FavouriteManager();
-        favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);*/
-    //}
+    /*public void addFavourite(MouseEvent mouseEvent) {
+        FavouriteManager favouriteManager = new FavouriteManager();
+        favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);
+    }*/
 }

@@ -1,13 +1,15 @@
 package Models;
 
 public class AlertManager {
-    private static AlertManager instance=new AlertManager();
+    private static AlertManager instance;
 
     private AlertManager(){
         windowManager = new WindowManager();
-    };
+    }
 
     public static AlertManager getInstance(){
+        if (instance == null)
+            instance = new AlertManager();
         return instance;
     }
 

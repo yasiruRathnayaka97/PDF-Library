@@ -16,11 +16,15 @@ import java.util.ArrayList;
 
 public class SearchManager {
     IndexManager im;
+
+
     public SearchManager(IndexManager im){
         this.im=im;
     }
 
     public ArrayList search(String dirPath, String fieldName, String  text) {
+
+
         ArrayList<String> matchPdfList=new ArrayList<String>();
         try {
             Directory dir = FSDirectory.open(Paths.get(dirPath));

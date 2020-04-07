@@ -34,10 +34,12 @@ public class FileManager {
             return "Dir almost exist";
         }
     }
+
     public String createCollection(String userName,String collectionName){
        createDir(userName+"/collections/"+collectionName);
        return "Collection created successfully";
     }
+
     public String copySrcToDest(String src,String dest) {
         try{
             Files.copy(Paths.get(src),Paths.get(dest));
@@ -48,6 +50,7 @@ public class FileManager {
             return "Error";
         }
     }
+
     public List<String> getAllPDFUnderDir(String dir){
         try {
             Stream<Path> walk = Files.walk(Paths.get(dir));
@@ -61,6 +64,7 @@ public class FileManager {
         }
 
     }
+
     public  String deleteFile(String path){
     File f=new File(path);
     f.delete();

@@ -1,8 +1,6 @@
 package Controllers;
 
 import Models.AccountManager;
-import Models.AlertManager;
-import Models.CommonStore;
 import Models.WindowManager;
 import animatefx.animation.*;
 import com.jfoenix.controls.JFXButton;

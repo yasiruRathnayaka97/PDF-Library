@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.CommonStore;
 import Models.IndexManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXSpinner;
@@ -10,9 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
-
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -21,15 +18,12 @@ public class IndexingLoaderController implements Initializable {
     private JFXSpinner spinner;
 
     private Stage stage;
-
-    private CommonStore commonStore;
     private IndexManager indexManager;
-    private List<String> paths;
     private WindowManager windowManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        commonStore = CommonStore.getInstance();
+        indexManager = IndexManager.getInstance();
         windowManager = new WindowManager();
         runTask();
     }
@@ -40,7 +34,7 @@ public class IndexingLoaderController implements Initializable {
             @Override
             protected Void call() throws Exception {
                 //start indexing
-                commonStore.indexDirectory(commonStore.getFiles(),"./Index");
+                indexManager.indexDirectory();
                 return null;
             }
         };
