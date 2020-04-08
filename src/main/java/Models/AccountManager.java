@@ -2,6 +2,7 @@ package Models;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AccountManager{
@@ -27,10 +28,11 @@ public class AccountManager{
     private String password;
     private boolean hasRegistered;
     private AlertManager alertManager;
+    private boolean changeUsername;
 
     public String register(String username, String password,String confPassword){
         try {
-            if(username.isEmpty() && password.isEmpty() && confPassword.isEmpty()) {
+            if(username.isEmpty() || password.isEmpty() || confPassword.isEmpty()) {
                 alertManager.showAlert("Please enter required data");
                 return null;
             }
@@ -86,7 +88,7 @@ public class AccountManager{
     public String login(String username, String password){
         try {
             //check for empty fields
-            if(username.isEmpty() && username.isEmpty()) {
+            if(username.isEmpty() || username.isEmpty()) {
                 alertManager.showAlert("Please enter required data");
                 return null;
             }
@@ -114,7 +116,7 @@ public class AccountManager{
                 alertManager.showAlert("Invalid username or password!");
                 return null;
             }
-            System.out.println("Invalid username or password!");
+            System.out.println("No user");
             alertManager.showAlert("Invalid username or password!");
             return null;
         } catch (Exception e) {
@@ -133,5 +135,132 @@ public class AccountManager{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean changeUsername(String username,String password,String newUsername){
+        try {
+            if(username.isEmpty() || password.isEmpty() || newUsername.isEmpty()){
+                System.out.println("Please enter required data");
+                alertManager.showAlert("Please enter required data");
+                return false;
+            }
+            if(newUsername.contains(" ")){
+                System.out.println("User name cannot be contained spaces");
+                alertManager.showAlert("User name cannot be contained spaces");
+                return false;
+            }
+
+            if(login(username,password)=="success") {
+                hasRegistered = true;
+                conn=dbManager.connect();
+                stmt = conn.createStatement();
+                query = String.format("SELECT username FROM user WHERE username='%s';",newUsername);
+                System.out.println(query);
+                resultSet = stmt.executeQuery(query);
+                if(!resultSet.next()){
+                    hasRegistered = false;
+                }
+                resultSet.close();
+                stmt.close();
+                conn.close();
+                if(hasRegistered){
+                    alertManager.showAlert("This username has been used!");
+                    return false;
+                }
+
+                conn = dbManager.connect();
+                stmt = conn.createStatement();
+                query = String.format("UPDATE user SET username='%s' WHERE username='%s' ;", newUsername, username);
+                System.out.println(query);
+                stmt.executeUpdate(query);
+                stmt.close();
+                conn.close();
+                System.out.println("username is changed!");
+                return true;
+            }
+            System.out.println("Invalid username or password!");
+            alertManager.showAlert("Invalid username or password!");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean changePassword(String username,String password, String newPassword){
+        try {
+            if(username.isEmpty() || password.isEmpty() || newPassword.isEmpty()){
+                System.out.println("Please enter required data");
+                alertManager.showAlert("Please enter required data");
+                return false;
+            }
+            if(newPassword.length()<7){
+                alertManager.showAlert("Password is too short");
+                return false;
+            }
+
+            if(login(username,password)=="success") {
+                hasRegistered = true;
+                conn=dbManager.connect();
+                stmt = conn.createStatement();
+                query = String.format("SELECT username FROM user WHERE username='%s';",newPassword);
+                System.out.println(query);
+                resultSet = stmt.executeQuery(query);
+                if(!resultSet.next()){
+                    hasRegistered = false;
+                }
+                resultSet.close();
+                stmt.close();
+                conn.close();
+                if(hasRegistered){
+                    alertManager.showAlert("This username has been used!");
+                    return false;
+                }
+
+                conn = dbManager.connect();
+                stmt = conn.createStatement();
+                query =  String.format("UPDATE user SET password='%s' WHERE username='%s' ;",newPassword,username);
+                System.out.println(query);
+                stmt.executeUpdate(query);
+                stmt.close();
+                conn.close();
+                System.out.println("password is changed!");
+                return true;
+            }
+            System.out.println("Invalid username or password!");
+            alertManager.showAlert("Invalid username or password!");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void setChangeUsername(boolean changeUsername) {
+        this.changeUsername = changeUsername;
+    }
+
+    public boolean isChangeUsername() {
+        return changeUsername;
+    }
+
+    public void deleteAccount(){
+        try {
+            conn = dbManager.connect();
+            stmt = conn.createStatement();
+            query =  String.format("DELETE FROM user WHERE username = '%s';",username);
+            System.out.println(query);
+            stmt.executeUpdate(query);
+            stmt.close();
+            conn.close();
+            signOut();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void signOut(){
+        username = null;
+        password = null;
     }
 }

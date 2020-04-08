@@ -8,17 +8,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.SubScene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -133,6 +129,47 @@ public class AppController implements Initializable {
         windowManager.minimizeWindow((Stage) btnClose.getScene().getWindow());
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+    //user pane
+
+    public void changeUsername(MouseEvent mouseEvent){
+        accountManager.setChangeUsername(true);
+        changeUsernamePassword();
+    }
+
+    public void changePassword(MouseEvent mouseEvent){
+        accountManager.setChangeUsername(false);
+        changeUsernamePassword();
+    }
+
+    public void changeUsernamePassword(){
+        try {
+            windowManager.stageLoader("../ChangeWindow.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAccount(MouseEvent mouseEvent){
+        accountManager.deleteAccount();
+        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+        try {
+            windowManager.stageLoader("SignInSignUp.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void signOut(MouseEvent mouseEvent){
+        accountManager.signOut();
+        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+        try {
+            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------
     //Home Pane
 
@@ -190,7 +227,6 @@ public class AppController implements Initializable {
         historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
         historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
     }
-
 
     public void clearHisoryFile(MouseEvent mouseEvent) {
         historyManager.deleteAll();

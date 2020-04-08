@@ -87,7 +87,7 @@ public class HistoryManager{
         try{
             conn = dbManager.connect();
             stmt = conn.createStatement();
-            query= "DELETE FROM history;";
+            query= String.format("DELETE FROM history WHERE username='%s';",accountManager.getUsername());
             System.out.println(query);
             stmt.executeUpdate(query);
             stmt.close();
