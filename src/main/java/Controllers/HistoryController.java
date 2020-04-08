@@ -49,6 +49,6 @@ public class HistoryController implements Initializable{
 
     public void clickRemove(MouseEvent mouseEvent) {
         history.remove(tableView.getSelectionModel().getSelectedIndex());
-        historyManager.deleteOne(tableView.getSelectionModel().getSelectedItem().getId(),tableView.getSelectionModel().getSelectedIndex());
+        //historyManager.deleteOne(tableView.getSelectionModel().getSelectedItem().getId(),tableView.getSelectionModel().getSelectedIndex());
     }
 }

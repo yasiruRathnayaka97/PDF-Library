@@ -69,7 +69,7 @@ public class HistoryManager{
     }
 
     //delete history one record from arraylist index
-    public void deleteOne(String id,Integer index){
+    public void deleteOne(String id){
         try{
             conn = dbManager.connect();
             stmt = conn.createStatement();
@@ -78,7 +78,6 @@ public class HistoryManager{
             stmt.executeUpdate(query);
             stmt.close();
             conn.close();
-            history.remove(index);
         } catch (Exception e){
             e.printStackTrace();
         }

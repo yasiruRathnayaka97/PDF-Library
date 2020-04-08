@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.SubScene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -56,6 +59,16 @@ public class AppController implements Initializable {
     private FileManager fileManager;
     private PdfManager pdfManager;
 
+    //History pane
+    @FXML
+    private TableView<HistoryItem> historyTable;
+    @FXML
+    private TableColumn<HistoryItem,String> colKeyword;
+    @FXML
+    private TableColumn<HistoryItem,String> colType;
+    @FXML
+    private TableColumn<HistoryItem,String> colDirectory;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
@@ -70,6 +83,16 @@ public class AppController implements Initializable {
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
         dropDownSearchType.setItems(searchTypes);
         pdfManager = new PdfManager();
+
+        //history pane
+        colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
+        colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
+        colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+        colKeyword.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.3));
+        colType.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
+        colDirectory.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.5));
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------
@@ -142,6 +165,8 @@ public class AppController implements Initializable {
 
             //display search result in list view
             listViewResult.setItems(FXCollections.observableArrayList(searchResult));
+
+            historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -157,5 +182,18 @@ public class AppController implements Initializable {
 
     public void saveSearch(MouseEvent mouseEvent) {
 
+    }
+
+    //-------------------------------------------------------------------------------
+    //History pane
+    public void deleteHisoryFile(MouseEvent mouseEvent) {
+        historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+    }
+
+
+    public void clearHisoryFile(MouseEvent mouseEvent) {
+        historyManager.deleteAll();
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
     }
 }

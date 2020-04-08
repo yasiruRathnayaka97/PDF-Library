@@ -2,15 +2,11 @@ package Controllers;
 
 import Models.AccountManager;
 import Models.WindowManager;
-import animatefx.animation.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -62,7 +58,6 @@ public class SignInSignUpController implements Initializable {
     //show sign up form
     public void showSignUp(MouseEvent mouseEvent) {
         signUpPane.toFront();
-        new FadeIn(signUpPane).play();
         btnSignUpTab.setDisable(true);
         btnSignInTab.setDisable(false);
     }
@@ -70,7 +65,6 @@ public class SignInSignUpController implements Initializable {
     //show sign in form
     public void showSignIn(MouseEvent mouseEvent) {
         signInPane.toFront();
-        new FadeIn(signInPane).play();
         btnSignInTab.setDisable(true);
         btnSignUpTab.setDisable(false);
     }
