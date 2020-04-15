@@ -57,7 +57,7 @@
                   <Insets left="20.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="btnFavourite" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleFavourite" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="Favourite" textFill="WHITE">
+            <JFXButton fx:id="btnFavourite" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleFav" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="Favourite" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="HEART" size="1.5em" />
                </graphic>
@@ -120,7 +120,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnaddFavourite" buttonType="RAISED" layoutX="572.0" layoutY="106.0" onMouseClicked="#addFavourite" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="106.0">
+            <JFXButton fx:id="btnaddFavourite" buttonType="RAISED" layoutX="572.0" layoutY="106.0" onMouseClicked="#addFav" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="106.0">
                <tooltip>
                   <Tooltip text="add to favourite" />
                </tooltip>
@@ -141,7 +141,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneFavourite" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
       <AnchorPane fx:id="paneHistory" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
             <TableView fx:id="historyTable" layoutX="26.0" layoutY="14.0" stylesheets="@StyleSheet.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="20.0">
@@ -174,8 +173,7 @@
                </font>
             </JFXButton>
          </children></AnchorPane>
-      <AnchorPane fx:id="paneUser" layoutX="150.0" layoutY="61.0" prefHeight="439.0" prefWidth="650.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-      <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="354.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
             <Pane prefHeight="35.0" prefWidth="650.0" />
             <FontAwesomeIcon fx:id="iconUser" fill="#1a33d5" glyphName="USER" size="4em" />
@@ -210,5 +208,50 @@
             </JFXButton>
          </children>
       </VBox>
+      <AnchorPane fx:id="paneFav" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <TableView fx:id="tableFav" layoutX="74.0" layoutY="82.0" prefHeight="348.0" prefWidth="511.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
+              <columns>
+                <TableColumn fx:id="colFavPath" prefWidth="75.0" text="path" />
+                <TableColumn fx:id="colFavKeyword" prefWidth="75.0" text="keyword" />
+                  <TableColumn fx:id="colFavSearchType" prefWidth="75.0" text="Search type" />
+              </columns>
+            </TableView>
+            <Label layoutX="35.0" layoutY="28.0" text="category" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="comboFavCategory" layoutX="130.0" layoutY="25.0" prefHeight="26.0" prefWidth="182.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="25.0" />
+            <JFXButton fx:id="btnFavDeleteCategory" layoutX="363.0" layoutY="17.0" onMouseClicked="#deleteAccount" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete category" textFill="RED" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="17.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnFavDelete" buttonType="RAISED" layoutX="561.0" layoutY="325.0" onMouseClicked="#deleteHisoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="delete" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="170.0">
+               <tooltip>
+                  <Tooltip text="open selected file" />
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnFavClear" buttonType="RAISED" layoutX="567.0" layoutY="382.0" onMouseClicked="#deleteHisoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="230.0">
+               <tooltip>
+                  <Tooltip text="open selected file" />
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnFavOpen" buttonType="RAISED" layoutX="561.0" layoutY="106.0" onMouseClicked="#deleteHisoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
+               <tooltip>
+                  <Tooltip text="open selected file" />
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

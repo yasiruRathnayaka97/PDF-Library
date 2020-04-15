@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.List;
@@ -29,7 +30,7 @@ public class AppController implements Initializable {
     @FXML
     private AnchorPane paneHome;
     @FXML
-    private AnchorPane paneFavourite;
+    private AnchorPane paneFav;
     @FXML
     private AnchorPane paneHistory;
 
@@ -54,6 +55,10 @@ public class AppController implements Initializable {
     private HistoryManager historyManager;
     private FileManager fileManager;
     private PdfManager pdfManager;
+
+    //favorite vertical box
+    @FXML
+    private VBox vBoxUser;
 
     //History pane
     @FXML
@@ -94,7 +99,7 @@ public class AppController implements Initializable {
     //----------------------------------------------------------------------------------------------------------------------------------
     //vertical box
     public void handleUser(MouseEvent mouseEvent) {
-        paneUser.toFront();
+        vBoxUser.toFront();
     }
 
     public void handleHome(MouseEvent mouseEvent) {
@@ -105,8 +110,8 @@ public class AppController implements Initializable {
         windowManager.dirWindow();
     }
 
-    public void handleFavourite(MouseEvent mouseEvent) {
-        paneFavourite.toFront();
+    public void handleFav(MouseEvent mouseEvent) {
+        paneFav.toFront();
     }
 
     public void handleHistory(MouseEvent mouseEvent) {
@@ -213,7 +218,7 @@ public class AppController implements Initializable {
         pdfManager.openPdf(listViewResult.getSelectionModel().getSelectedItem().toString());
     }
 
-    public void addFavourite(MouseEvent mouseEvent) {
+    public void addFav(MouseEvent mouseEvent) {
 
     }
 

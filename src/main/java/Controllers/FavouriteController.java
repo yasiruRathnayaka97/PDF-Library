@@ -20,17 +20,17 @@ public class FavouriteController implements Initializable {
     private JFXButton btnRemove;
 
 
-    private ObservableList favourite = FXCollections.observableArrayList("RollsRoyce","BMW","Bently");
+    private ObservableList fav = FXCollections.observableArrayList("RollsRoyce","BMW","Bently");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.setItems(favourite);
+        listView.setItems(fav);
     }
     public void clickOpen(MouseEvent mouseEvent) {
         System.out.println(listView.getSelectionModel().getSelectedItem());
     }
 
     public void clickRemove(MouseEvent mouseEvent) {
-        favourite.remove(listView.getSelectionModel().getSelectedIndex());
+        fav.remove(listView.getSelectionModel().getSelectedIndex());
     }
 }

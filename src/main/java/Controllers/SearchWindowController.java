@@ -29,7 +29,7 @@ public class SearchWindowController implements Initializable {
     @FXML
     private JFXButton buttonUser;
     @FXML
-    private JFXButton buttonFavourite;
+    private JFXButton buttonFav;
     @FXML
     private JFXButton buttonFolder;
     @FXML
@@ -104,7 +104,7 @@ public class SearchWindowController implements Initializable {
         pdfManager.openPdf(listViewResult.getSelectionModel().getSelectedItem().toString());
     }
 
-    public void addFavourite(MouseEvent mouseEvent) {
+    public void addFav(MouseEvent mouseEvent) {
 
     }
 
