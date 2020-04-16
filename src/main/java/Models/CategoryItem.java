@@ -1,40 +1,33 @@
 package Models;
 
-import javafx.beans.property.SimpleStringProperty;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CategoryItem {
-    /*private final String id;
     private final String name;
-    private ArrayList<FavouriteItem> favourites;
+    private HashMap<String,FavoriteItem> favorites;
 
-    public CategoryItem(String id, String name) {
-        this.id = id;
+    public CategoryItem(String name) {
         this.name = name;
-        favourites = new ArrayList<FavouriteItem>();
+        favorites = new HashMap<String, FavoriteItem>();
     }
 
-    public void addFavourite(FavouriteItem favouriteItem){
-        favourites.add(favouriteItem);
+    public void addFavourite(String id, FavoriteItem favoriteItem){
+        favorites.put(id, favoriteItem);
     }
 
-    public void deleteFavourite(FavouriteItem favouriteItem){
-        favourites.remove(favouriteItem);
+    public void deleteFavourite(String id){
+        favorites.remove(id);
     }
 
     public void clearFavorites(){
-        favourites.clear();
-    }
-
-    public String getId() {
-        return id;
+        favorites.clear();
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<FavouriteItem> getFavourites() {
-        return favourites;
-    }*/
+    public HashMap<String, FavoriteItem> getFavorites() {
+        return favorites;
+    }
 }

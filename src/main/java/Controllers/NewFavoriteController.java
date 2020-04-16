@@ -1,7 +1,7 @@
 package Controllers;
 
 import Models.CategoryItem;
-//import Models.FavouriteManager;
+//import Models.FavoriteManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -25,13 +25,13 @@ public class NewFavoriteController {
     private JFXTextField textNew;
 
     private WindowManager windowManager;
-    //private FavouriteManager favouriteManager;
+    //private FavoriteManager favouriteManager;
     private ObservableList<String> categories;
 
     //@Override
     //public void initialize(URL url, ResourceBundle resourceBundle) {
         /*windowManager = new WindowManager();
-        favouriteManager = FavouriteManager.getInstance();
+        favouriteManager = FavoriteManager.getInstance();
         categories = favouriteManager.getCategoryName();
         categories.add("Add category");
         comboCategory.setItems(categories);

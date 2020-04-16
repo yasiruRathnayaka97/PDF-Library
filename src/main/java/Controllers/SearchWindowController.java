@@ -110,7 +110,7 @@ public class SearchWindowController implements Initializable {
 
     //add favourite
     /*public void addFavourite(MouseEvent mouseEvent) {
-        FavouriteManager favouriteManager = new FavouriteManager();
+        FavoriteManager favouriteManager = new FavoriteManager();
         favouriteManager.insertFavourite((String) listViewResult.getSelectionModel().getSelectedItem(),keyword,searchType);
     }*/
 }

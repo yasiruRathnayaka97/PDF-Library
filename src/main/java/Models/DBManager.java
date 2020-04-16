@@ -16,7 +16,8 @@ public class DBManager {
             conn = connect();
             stmt = conn.createStatement();
             query = "CREATE TABLE user(username VARCHAR(30) PRIMARY KEY, password VARCHAR(30));" +
-                    "CREATE TABLE favourites(id VARCHAR(30) PRIMARY KEY, path VARCHAR(500), username VARCHAR(30), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE ON DELETE CASCADE);" +
+                    "CREATE TABLE category(id VARCHAR(30) PRIMARY KEY, name VARCHAR(30), username VARCHAR(30), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE ON DELETE CASCADE);"+
+                    "CREATE TABLE favorites(id VARCHAR(30) PRIMARY KEY, path VARCHAR(500), keyword VARCHAR(200), searchType VARCHAR(10), category VARCHAR(30),username VARCHAR(30), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY(category) REFERENCES category(id) ON UPDATE CASCADE ON DELETE CASCADE);" +
                     "CREATE TABLE history(id VARCHAR(30) PRIMARY KEY, keyword VARCHAR(200), type VARCHAR(10), directory VARCHAR(500), username VARCHAR(30), FOREIGN KEY(username) REFERENCES user(username) ON UPDATE CASCADE ON DELETE CASCADE);";
             stmt.executeUpdate(query);
             stmt.close();
