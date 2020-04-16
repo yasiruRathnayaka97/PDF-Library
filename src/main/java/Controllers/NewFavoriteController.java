@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.CategoryItem;
 //import Models.FavoriteManager;
+import Models.FavoriteManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class NewFavoriteController {
+public class NewFavoriteController implements Initializable{
     @FXML
     private JFXButton btnAdd;
     @FXML
@@ -25,14 +26,14 @@ public class NewFavoriteController {
     private JFXTextField textNew;
 
     private WindowManager windowManager;
-    //private FavoriteManager favouriteManager;
+    private FavoriteManager favouriteManager;
     private ObservableList<String> categories;
 
-    //@Override
-    //public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*windowManager = new WindowManager();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        windowManager = new WindowManager();
         favouriteManager = FavoriteManager.getInstance();
-        categories = favouriteManager.getCategoryName();
+        categories = favouriteManager.getCategoryNames();
         categories.add("Add category");
         comboCategory.setItems(categories);
         textNew.setVisible(false);
@@ -60,5 +61,5 @@ public class NewFavoriteController {
 
     public void cancel(MouseEvent mouseEvent) {
         windowManager.closeWindow((Stage) btnAdd.getScene().getWindow());
-    }*/
+    }
 }

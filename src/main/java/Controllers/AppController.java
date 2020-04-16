@@ -56,9 +56,12 @@ public class AppController implements Initializable {
     private FileManager fileManager;
     private PdfManager pdfManager;
 
-    //favorite vertical box
+    //user vertical box
     @FXML
     private VBox vBoxUser;
+
+    //favorite pane
+    private FavoriteManager favoriteManager;
 
     //History pane
     @FXML
@@ -84,6 +87,9 @@ public class AppController implements Initializable {
         searchTypes = FXCollections.observableArrayList("content","pdfName","path");
         dropDownSearchType.setItems(searchTypes);
         pdfManager = new PdfManager();
+
+        //favorite pane
+        favoriteManager = FavoriteManager.getInstance();
 
         //history pane
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
@@ -219,6 +225,14 @@ public class AppController implements Initializable {
     }
 
     public void addFav(MouseEvent mouseEvent) {
+        try {
+            favoriteManager.setPath(listViewResult.getSelectionModel().getSelectedItem().toString());
+            favoriteManager.setKeyword(textSearch.getText());
+            favoriteManager.setSearchType(dropDownSearchType.getSelectionModel().getSelectedItem().toString());
+            windowManager.stageLoader("../NewFavorite.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
