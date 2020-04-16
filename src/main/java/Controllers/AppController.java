@@ -62,6 +62,16 @@ public class AppController implements Initializable {
 
     //favorite pane
     private FavoriteManager favoriteManager;
+    @FXML
+    private JFXComboBox<String> comboFavCategory;
+    @FXML
+    private TableView<FavoriteItem> tableFav;
+    @FXML
+    private TableColumn<FavoriteItem,String> colFavPath;
+    @FXML
+    private TableColumn<FavoriteItem,String> colFavKeyword;
+    @FXML
+    private TableColumn<FavoriteItem,String> colFavSearchType;
 
     //History pane
     @FXML
@@ -90,6 +100,17 @@ public class AppController implements Initializable {
 
         //favorite pane
         favoriteManager = FavoriteManager.getInstance();
+        comboFavCategory.setItems(favoriteManager.getCategoryNames());
+
+        colFavPath.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("path"));
+        colFavKeyword.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("keyword"));
+        colFavSearchType.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("searchType"));
+        //add listener
+        comboFavCategory.getSelectionModel().selectedItemProperty().addListener((v,oldValue,newValue)->{
+            tableFav.setItems(favoriteManager.getFavorites(newValue));
+        });
+
+
 
         //history pane
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
@@ -239,6 +260,10 @@ public class AppController implements Initializable {
     public void saveSearch(MouseEvent mouseEvent) {
 
     }
+
+    //--------------------------------------------------------------------------------------------
+    //favorite pane
+
 
     //-------------------------------------------------------------------------------
     //History pane

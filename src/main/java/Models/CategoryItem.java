@@ -1,22 +1,25 @@
 package Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.HashMap;
 
 public class CategoryItem {
     private final String name;
-    private HashMap<String,FavoriteItem> favorites;
+    private ObservableList<FavoriteItem> favorites;
 
     public CategoryItem(String name) {
         this.name = name;
-        favorites = new HashMap<String, FavoriteItem>();
+        favorites = FXCollections.observableArrayList();
     }
 
-    public void addFavourite(String id, FavoriteItem favoriteItem){
-        favorites.put(id, favoriteItem);
+    public void addFavourite(FavoriteItem favoriteItem){
+        favorites.add(favoriteItem);
     }
 
-    public void deleteFavourite(String id){
-        favorites.remove(id);
+    public void deleteFavourite(FavoriteItem favoriteItem){
+        favorites.remove(favoriteItem);
     }
 
     public void clearFavorites(){
@@ -27,7 +30,7 @@ public class CategoryItem {
         return name;
     }
 
-    public HashMap<String, FavoriteItem> getFavorites() {
+    public ObservableList<FavoriteItem> getFavorites() {
         return favorites;
     }
 }

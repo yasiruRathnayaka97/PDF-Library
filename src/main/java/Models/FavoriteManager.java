@@ -70,7 +70,7 @@ public class FavoriteManager {
                 System.out.println(query);
                 resultSet = stmt.executeQuery(query);
                 while(resultSet.next()){
-                    categories.get(id).addFavourite(resultSet.getString("id"),new FavoriteItem(resultSet.getString("path"), resultSet.getString("keyword"), resultSet.getString("searchType")));
+                    categories.get(id).addFavourite(new FavoriteItem(resultSet.getString("id"), resultSet.getString("path"), resultSet.getString("keyword"), resultSet.getString("searchType")));
                 }
             }
 
@@ -106,7 +106,7 @@ public class FavoriteManager {
                 stmt.executeUpdate(query);
 
                 CategoryItem categoryItem = new CategoryItem(categoryName);
-                categoryItem.addFavourite(favoriteID,new FavoriteItem(path,keyword,searchType));
+                categoryItem.addFavourite(new FavoriteItem(favoriteID,path,keyword,searchType));
                 categories.put(categoryID,categoryItem);
             }
             else{
@@ -116,7 +116,7 @@ public class FavoriteManager {
                         String favoriteID = LocalDateTime.now().toString();
                         query = String.format("INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES ('%s','%s','%s','%s','%s','%s');",favoriteID,path,keyword,searchType,id,accountManager.getUsername());
                         System.out.println(query);
-                        categories.get(id).addFavourite(favoriteID,new FavoriteItem(path,keyword,searchType));
+                        categories.get(id).addFavourite(new FavoriteItem(favoriteID,path,keyword,searchType));
                     }
                 }
             }
@@ -128,11 +128,13 @@ public class FavoriteManager {
         }
     }
 
-
-
-    public HashMap<String, CategoryItem> getCategories() {
-        return categories;
+    public ObservableList<FavoriteItem> getFavorites(String categoryName){
+        ObservableList<FavoriteItem> favorites = FXCollections.observableArrayList();
+        for(String id:categories.keySet()){
+            if(categories.get(id).getName().equals(categoryName)){
+                return categories.get(id).getFavorites();
+            }
+        }
+        return null;
     }
-
-
 }
