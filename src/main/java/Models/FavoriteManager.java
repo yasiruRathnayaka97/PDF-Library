@@ -71,6 +71,7 @@ public class FavoriteManager {
                 resultSet = stmt.executeQuery(query);
                 while(resultSet.next()){
                     categories.get(id).addFavourite(new FavoriteItem(resultSet.getString("id"), resultSet.getString("path"), resultSet.getString("keyword"), resultSet.getString("searchType")));
+                    System.out.println("categery favorite size: "+categories.get(id).getFavorites().size());
                 }
             }
 
@@ -116,6 +117,8 @@ public class FavoriteManager {
                         String favoriteID = LocalDateTime.now().toString();
                         query = String.format("INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES ('%s','%s','%s','%s','%s','%s');",favoriteID,path,keyword,searchType,id,accountManager.getUsername());
                         System.out.println(query);
+                        stmt.executeUpdate(query);
+
                         categories.get(id).addFavourite(new FavoriteItem(favoriteID,path,keyword,searchType));
                     }
                 }
