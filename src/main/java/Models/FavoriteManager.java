@@ -140,4 +140,76 @@ public class FavoriteManager {
         }
         return null;
     }
+
+    public void deleteFav(FavoriteItem favoriteItem, String categoryName){
+        try {
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+
+            query = String.format("DELETE FROM favorite WHERE id='%s';",favoriteItem.getId());
+            System.out.println(query);
+            stmt.executeUpdate(query);
+
+            stmt.close();
+            conn.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        for(String id:categories.keySet()){
+            if(categories.get(id).getName().equals(categoryName)){
+                categories.get(id).deleteFavourite(favoriteItem);
+            }
+        }
+    }
+
+    public void clearFav(String categoryName){
+        String categoryID = getCategoryID(categoryName);
+
+        try {
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+
+            query = String.format("DELETE FROM favorite WHERE category='%s';",categoryID);
+            System.out.println(query);
+            stmt.executeUpdate(query);
+
+            stmt.close();
+            conn.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        categories.get(categoryID).clearFavorites();
+    }
+
+    public void deleteCategory(String categoryName){
+        String categoryID = getCategoryID(categoryName);
+        clearFav(categoryName);
+
+        try {
+            conn=dbManager.connect();
+            stmt = conn.createStatement();
+
+            query = String.format("DELETE FROM category WHERE id='%s';",categoryID);
+            System.out.println(query);
+            stmt.executeUpdate(query);
+
+            stmt.close();
+            conn.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        categories.remove(categoryID);
+    }
+
+    public String getCategoryID(String categoryName){
+        for(String id:categories.keySet()){
+            if(categories.get(id).getName().equals(categoryName)){
+                return id;
+            }
+        }
+        return null;
+    }
 }

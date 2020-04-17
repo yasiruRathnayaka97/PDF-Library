@@ -264,6 +264,22 @@ public class AppController implements Initializable {
     //--------------------------------------------------------------------------------------------
     //favorite pane
 
+    public void deleteCategory(MouseEvent mouseEvent) {
+        favoriteManager.deleteCategory(comboFavCategory.getSelectionModel().getSelectedItem());
+        comboFavCategory.setItems(favoriteManager.getCategoryNames());
+    }
+
+    public void deleteFav(MouseEvent mouseEvent) {
+        favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(),comboFavCategory.getSelectionModel().getSelectedItem());
+    }
+
+    public void clearFav(MouseEvent mouseEvent) {
+        favoriteManager.clearFav(comboFavCategory.getSelectionModel().getSelectedItem());
+    }
+
+    public void openFav(MouseEvent mouseEvent) {
+        pdfManager.openPdf(tableFav.getSelectionModel().getSelectedItem().getPath());
+    }
 
     //-------------------------------------------------------------------------------
     //History pane
