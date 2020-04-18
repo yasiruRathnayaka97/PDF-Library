@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -12,10 +13,14 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <JFXSpinner fx:id="spinner" layoutX="95.0" layoutY="72.0" prefHeight="110.0" prefWidth="110.0" stylesheets="@StyleSheet.css" AnchorPane.topAnchor="72.0">
+      <JFXSpinner fx:id="spinner" layoutX="95.0" layoutY="72.0" prefHeight="110.0" prefWidth="110.0" AnchorPane.topAnchor="72.0">
          <styleClass>
             <String fx:value="materialDesign" />
             <String fx:value="arc" />
-         </styleClass></JFXSpinner>
+         </styleClass>
+         <stylesheets>
+            <URL value="@StyleSheet.css" />
+            <URL value="@Stylesheets/Spinner.css" />
+         </stylesheets></JFXSpinner>
    </children>
 </AnchorPane>

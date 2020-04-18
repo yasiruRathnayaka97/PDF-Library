@@ -37,15 +37,3 @@
 .corner {
     -fx-background-color: transparent;
 }
-
-.combo-box{
-    -fx-selection-bar: #1A33D5 ;
-}
-
-.list-view {
-    -fx-selection-bar: #1A33D5 ;
-}
-
-.materialDesign .arc{
-    -fx-stroke-width: 10;
-}

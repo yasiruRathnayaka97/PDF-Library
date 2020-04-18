@@ -1,5 +1,8 @@
 package Models;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class AccountManager{
@@ -25,6 +28,33 @@ public class AccountManager{
     private boolean hasRegistered;
     private AlertManager alertManager;
     private boolean changeUsername;
+
+    public String getMd5(String input) {
+        try {
+
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest
+            //  of an input digest() return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public String register(String username, String password,String confPassword){
         try {
@@ -70,7 +100,7 @@ public class AccountManager{
             conn=dbManager.connect();
             stmt = conn.prepareStatement("INSERT INTO user(username, password) VALUES (?,?)");
             stmt.setString(1,username);
-            stmt.setString(2,password);
+            stmt.setString(2,getMd5(password));
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -105,7 +135,7 @@ public class AccountManager{
             stmt.close();
             conn.close();
             if(!hasRegistered){
-                if(this.password.equals(password)){
+                if(this.password.equals(getMd5(password))){
                     System.out.println("Success!");
                     return "success";
                 }
@@ -122,16 +152,8 @@ public class AccountManager{
         }
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean changeUsername(String username,String password,String newUsername){
@@ -214,7 +236,7 @@ public class AccountManager{
 
                 conn = dbManager.connect();
                 stmt = conn.prepareStatement("UPDATE user SET password=? WHERE username=?");
-                stmt.setString(1,newPassword);
+                stmt.setString(1,getMd5(newPassword));
                 stmt.setString(2,username);
                 stmt.executeUpdate();
                 stmt.close();
