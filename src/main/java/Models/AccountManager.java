@@ -1,9 +1,6 @@
 package Models;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class AccountManager{
     private static AccountManager instance;
@@ -21,9 +18,8 @@ public class AccountManager{
 
     private DBManager dbManager;
     private Connection conn;
-    private Statement stmt;
+    private PreparedStatement stmt;
     private ResultSet resultSet;
-    private String query;
     private String username;
     private String password;
     private boolean hasRegistered;
@@ -57,14 +53,14 @@ public class AccountManager{
             hasRegistered = true;
 
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-            query = String.format("SELECT username FROM user WHERE username='%s';",username);
-            resultSet = stmt.executeQuery(query);
+            stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
+            stmt.setString(1,username);
+            resultSet = stmt.executeQuery();
             if(!resultSet.next()){
                 hasRegistered = false;
             }
-            resultSet.close();
             stmt.close();
+            resultSet.close();
             conn.close();
             if(hasRegistered){
                 alertManager.showAlert("This username has been used!");
@@ -72,9 +68,10 @@ public class AccountManager{
             }
 
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-            query =  String.format("INSERT INTO user(username, password) VALUES ('%s','%s');",username,password);
-            stmt.executeUpdate(query);
+            stmt = conn.prepareStatement("INSERT INTO user(username, password) VALUES (?,?)");
+            stmt.setString(1,username);
+            stmt.setString(2,password);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
             System.out.println("success");
@@ -97,9 +94,9 @@ public class AccountManager{
             hasRegistered = true;
 
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-            query =  String.format("SELECT password FROM user WHERE username= '%s';",username);
-            resultSet = stmt.executeQuery(query);
+            stmt = conn.prepareStatement("SELECT password FROM user WHERE username= ?");
+            stmt.setString(1,username);
+            resultSet = stmt.executeQuery();
             if(resultSet.next()){
                 this.password = resultSet.getString("password");
                 hasRegistered = false;
@@ -153,10 +150,9 @@ public class AccountManager{
             if(login(username,password)=="success") {
                 hasRegistered = true;
                 conn=dbManager.connect();
-                stmt = conn.createStatement();
-                query = String.format("SELECT username FROM user WHERE username='%s';",newUsername);
-                System.out.println(query);
-                resultSet = stmt.executeQuery(query);
+                stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
+                stmt.setString(1,newUsername);
+                resultSet = stmt.executeQuery();
                 if(!resultSet.next()){
                     hasRegistered = false;
                 }
@@ -169,10 +165,10 @@ public class AccountManager{
                 }
 
                 conn = dbManager.connect();
-                stmt = conn.createStatement();
-                query = String.format("UPDATE user SET username='%s' WHERE username='%s' ;", newUsername, username);
-                System.out.println(query);
-                stmt.executeUpdate(query);
+                stmt = conn.prepareStatement("UPDATE user SET username=? WHERE username=?");
+                stmt.setString(1,newUsername);
+                stmt.setString(2,username);
+                stmt.executeUpdate();
                 stmt.close();
                 conn.close();
                 System.out.println("username is changed!");
@@ -202,10 +198,9 @@ public class AccountManager{
             if(login(username,password)=="success") {
                 hasRegistered = true;
                 conn=dbManager.connect();
-                stmt = conn.createStatement();
-                query = String.format("SELECT username FROM user WHERE username='%s';",newPassword);
-                System.out.println(query);
-                resultSet = stmt.executeQuery(query);
+                stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
+                stmt.setString(1,newPassword);
+                resultSet = stmt.executeQuery();
                 if(!resultSet.next()){
                     hasRegistered = false;
                 }
@@ -218,10 +213,10 @@ public class AccountManager{
                 }
 
                 conn = dbManager.connect();
-                stmt = conn.createStatement();
-                query =  String.format("UPDATE user SET password='%s' WHERE username='%s' ;",newPassword,username);
-                System.out.println(query);
-                stmt.executeUpdate(query);
+                stmt = conn.prepareStatement("UPDATE user SET password=? WHERE username=?");
+                stmt.setString(1,newPassword);
+                stmt.setString(2,username);
+                stmt.executeUpdate();
                 stmt.close();
                 conn.close();
                 System.out.println("password is changed!");
@@ -247,10 +242,9 @@ public class AccountManager{
     public void deleteAccount(){
         try {
             conn = dbManager.connect();
-            stmt = conn.createStatement();
-            query =  String.format("DELETE FROM user WHERE username = '%s';",username);
-            System.out.println(query);
-            stmt.executeUpdate(query);
+            stmt = conn.prepareStatement("DELETE FROM user WHERE username = ?");
+            stmt.setString(1,username);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
             signOut();

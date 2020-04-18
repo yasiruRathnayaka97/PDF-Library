@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,6 +60,8 @@ public class AppController implements Initializable {
     //user vertical box
     @FXML
     private VBox vBoxUser;
+    @FXML
+    private Label lblUserUsername;
 
     //favorite pane
     private FavoriteManager favoriteManager;
@@ -89,6 +92,9 @@ public class AppController implements Initializable {
         accountManager = AccountManager.getInstance();
         maximized = false;
         btnUser.setText(accountManager.getUsername());
+
+        //user vBox
+        lblUserUsername.setText(accountManager.getUsername());
 
         //home pane
         alertManager = AlertManager.getInstance();
@@ -193,11 +199,11 @@ public class AppController implements Initializable {
     public void deleteAccount(MouseEvent mouseEvent){
         accountManager.deleteAccount();
         windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
-        try {
+        /*try {
             windowManager.stageLoader("SignInSignUp.fxml",true,null);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void signOut(MouseEvent mouseEvent){

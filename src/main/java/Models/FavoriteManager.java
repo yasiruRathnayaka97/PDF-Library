@@ -3,10 +3,7 @@ package Models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -31,8 +28,7 @@ public class FavoriteManager {
     private AccountManager accountManager;
     private HashMap<String,CategoryItem> categories;
     private Connection conn;
-    private Statement stmt;
-    private String query;
+    private PreparedStatement stmt;
     private ResultSet resultSet;
     private String path;
     private String keyword;
@@ -60,25 +56,24 @@ public class FavoriteManager {
     public void getCategoryFromDB(){
         try {
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-
-            query = String.format("SELECT id,name FROM Category WHERE username='%s'",accountManager.getUsername());
-            System.out.println(query);
-            resultSet = stmt.executeQuery(query);
+            stmt = conn.prepareStatement("SELECT id,name FROM Category WHERE username=?");
+            stmt.setString(1,accountManager.getUsername());
+            resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 categories.put(resultSet.getString("id"),new CategoryItem(resultSet.getString("name")));
             };
+            stmt.close();
 
             for (String id : categories.keySet()) {
-                query = String.format("SELECT id,path,keyword,searchType FROM favorite WHERE username='%s' AND category='%s'",accountManager.getUsername(),id);
-                System.out.println(query);
-                resultSet = stmt.executeQuery(query);
+                stmt = conn.prepareStatement("SELECT id,path,keyword,searchType FROM favorite WHERE username=? AND category=?");
+                stmt.setString(1,accountManager.getUsername());
+                stmt.setString(2,id);
+                resultSet = stmt.executeQuery();
                 while(resultSet.next()){
                     categories.get(id).addFavourite(new FavoriteItem(resultSet.getString("id"), resultSet.getString("path"), resultSet.getString("keyword"), resultSet.getString("searchType")));
-                    System.out.println("categery favorite size: "+categories.get(id).getFavorites().size());
+                    System.out.println("category favorite size: "+categories.get(id).getFavorites().size());
                 }
             }
-
             resultSet.close();
             stmt.close();
             conn.close();
@@ -98,17 +93,27 @@ public class FavoriteManager {
     public void addFavorite(boolean newCategory,String categoryName){
         try {
             conn=dbManager.connect();
-            stmt = conn.createStatement();
 
             if(newCategory){
                 String categoryID = LocalDateTime.now().toString();
                 String favoriteID = categoryID;
-                query= String.format("INSERT INTO category(id,name,username) VALUES ('%s','%s','%s');" +
-                            "INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES ('%s','%s','%s','%s','%s','%s');",
-                        categoryID,categoryName,accountManager.getUsername(),
-                        favoriteID,path,keyword,searchType,categoryID,accountManager.getUsername());
-                System.out.println(query);
-                stmt.executeUpdate(query);
+
+                stmt = conn.prepareStatement("INSERT INTO category(id,name,username) VALUES (?,?,?)");
+                stmt.setString(1,categoryID);
+                stmt.setString(2,categoryName);
+                stmt.setString(3,accountManager.getUsername());
+                stmt.executeUpdate();
+                stmt.close();
+
+                stmt = conn.prepareStatement("INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES (?,?,?,?,?,?)");
+                stmt.setString(1,favoriteID);
+                stmt.setString(2,path);
+                stmt.setString(3,keyword);
+                stmt.setString(4,searchType);
+                stmt.setString(5,categoryID);
+                stmt.setString(6,accountManager.getUsername());
+                stmt.executeUpdate();
+                stmt.close();
 
                 CategoryItem categoryItem = new CategoryItem(categoryName);
                 categoryItem.addFavourite(new FavoriteItem(favoriteID,path,keyword,searchType));
@@ -119,16 +124,21 @@ public class FavoriteManager {
                 for (String id :categories.keySet()){
                     if(categories.get(id).getName()==categoryName){
                         String favoriteID = LocalDateTime.now().toString();
-                        query = String.format("INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES ('%s','%s','%s','%s','%s','%s');",favoriteID,path,keyword,searchType,id,accountManager.getUsername());
-                        System.out.println(query);
-                        stmt.executeUpdate(query);
+
+                        stmt = conn.prepareStatement("INSERT INTO favorite(id,path,keyword,searchType,category,username) VALUES (?,?,?,?,?,?)");
+                        stmt.setString(1,favoriteID);
+                        stmt.setString(2,path);
+                        stmt.setString(3,keyword);
+                        stmt.setString(4,searchType);
+                        stmt.setString(5,id);
+                        stmt.setString(6,accountManager.getUsername());
+                        stmt.executeUpdate();
+                        stmt.close();
 
                         categories.get(id).addFavourite(new FavoriteItem(favoriteID,path,keyword,searchType));
                     }
                 }
             }
-
-            stmt.close();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,12 +158,9 @@ public class FavoriteManager {
     public void deleteFav(FavoriteItem favoriteItem, String categoryName){
         try {
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-
-            query = String.format("DELETE FROM favorite WHERE id='%s';",favoriteItem.getId());
-            System.out.println(query);
-            stmt.executeUpdate(query);
-
+            stmt = conn.prepareStatement("DELETE FROM favorite WHERE id=?");
+            stmt.setString(1,favoriteItem.getId());
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
         }catch (Exception e){
@@ -172,12 +179,9 @@ public class FavoriteManager {
 
         try {
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-
-            query = String.format("DELETE FROM favorite WHERE category='%s';",categoryID);
-            System.out.println(query);
-            stmt.executeUpdate(query);
-
+            stmt = conn.prepareStatement("DELETE FROM favorite WHERE category=?");
+            stmt.setString(1,categoryID);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
         }catch (Exception e){
@@ -193,12 +197,9 @@ public class FavoriteManager {
 
         try {
             conn=dbManager.connect();
-            stmt = conn.createStatement();
-
-            query = String.format("DELETE FROM category WHERE id='%s';",categoryID);
-            System.out.println(query);
-            stmt.executeUpdate(query);
-
+            stmt = conn.prepareStatement("DELETE FROM category WHERE id=?");
+            stmt.setString(1,categoryID);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
         }catch (Exception e){

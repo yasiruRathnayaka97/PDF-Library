@@ -1,6 +1,7 @@
 package Models;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDateTime;
@@ -23,8 +24,7 @@ public class HistoryManager{
 
     private DBManager dbManager;
     private Connection conn;
-    private Statement stmt;
-    private String query;
+    private PreparedStatement stmt;
     private AccountManager accountManager;
     private ArrayList<HistoryItem> history;
     private ResultSet resultSet;
@@ -33,10 +33,13 @@ public class HistoryManager{
     public void addHistory(String keyword, String type, String directory){
         try {
             conn = dbManager.connect();
-            stmt = conn.createStatement();
-            query = String.format("INSERT INTO history(id,keyword,type,directory,username) VALUES ('%s','%s','%s','%s','%s');", LocalDateTime.now().toString(),keyword,type,directory,accountManager.getUsername());
-            System.out.println(query);
-            stmt.executeUpdate(query);
+            stmt = conn.prepareStatement("INSERT INTO history(id,keyword,type,directory,username) VALUES (?,?,?,?,?)");
+            stmt.setString(1,LocalDateTime.now().toString());
+            stmt.setString(2,keyword);
+            stmt.setString(3,type);
+            stmt.setString(4,directory);
+            stmt.setString(5,accountManager.getUsername());
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
             System.out.println("Added to history");
@@ -50,10 +53,9 @@ public class HistoryManager{
         history.clear();
         try{
            conn = dbManager.connect();
-           stmt = conn.createStatement();
-           query= String.format("SELECT id,keyword,type,directory FROM history WHERE username='%s';",accountManager.getUsername());
-           System.out.println(query);
-           resultSet = stmt.executeQuery(query);
+           stmt = conn.prepareStatement("SELECT id,keyword,type,directory FROM history WHERE username=?");
+           stmt.setString(1,accountManager.getUsername());
+           resultSet = stmt.executeQuery();
            while (resultSet.next()){
                historyItem = new HistoryItem(resultSet.getString("id"), resultSet.getString("keyword"),resultSet.getString("type"),resultSet.getString("directory"));
                history.add(historyItem);
@@ -72,10 +74,9 @@ public class HistoryManager{
     public void deleteOne(String id){
         try{
             conn = dbManager.connect();
-            stmt = conn.createStatement();
-            query= String.format("DELETE FROM history WHERE id = '%s';",id);
-            System.out.println(query);
-            stmt.executeUpdate(query);
+            stmt = conn.prepareStatement("DELETE FROM history WHERE id = ?");
+            stmt.setString(1,id);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
         } catch (Exception e){
@@ -86,10 +87,9 @@ public class HistoryManager{
     public void deleteAll(){
         try{
             conn = dbManager.connect();
-            stmt = conn.createStatement();
-            query= String.format("DELETE FROM history WHERE username='%s';",accountManager.getUsername());
-            System.out.println(query);
-            stmt.executeUpdate(query);
+            stmt = conn.prepareStatement("DELETE FROM history WHERE username=?");
+            stmt.setString(1,accountManager.getUsername());
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
             history.clear();
