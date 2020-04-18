@@ -210,12 +210,17 @@
       </VBox>
       <AnchorPane fx:id="paneFav" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
-            <TableView fx:id="tableFav" layoutX="74.0" layoutY="82.0" prefHeight="348.0" prefWidth="511.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
+            <TableView fx:id="tableFav" layoutX="74.0" layoutY="82.0" prefHeight="348.0" prefWidth="511.0" stylesheets="@StyleSheet.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
               <columns>
                 <TableColumn fx:id="colFavPath" prefWidth="75.0" text="path" />
                 <TableColumn fx:id="colFavKeyword" prefWidth="75.0" text="keyword" />
                   <TableColumn fx:id="colFavSearchType" prefWidth="75.0" text="Search type" />
               </columns>
+               <styleClass>
+                  <String fx:value="column-header" />
+                  <String fx:value="column-header-background" />
+                  <String fx:value="label" />
+               </styleClass>
             </TableView>
             <Label layoutX="35.0" layoutY="28.0" text="category" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="28.0">
                <font>

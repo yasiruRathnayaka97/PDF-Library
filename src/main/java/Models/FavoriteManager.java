@@ -53,6 +53,10 @@ public class FavoriteManager {
         this.searchType = searchType;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     public void getCategoryFromDB(){
         try {
             conn=dbManager.connect();

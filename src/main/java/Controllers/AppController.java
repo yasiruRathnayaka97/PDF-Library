@@ -102,6 +102,10 @@ public class AppController implements Initializable {
         favoriteManager = FavoriteManager.getInstance();
         comboFavCategory.setItems(favoriteManager.getCategoryNames());
 
+        colFavKeyword.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.3));
+        colFavSearchType.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.2));
+        colFavPath.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.5));
+
         colFavPath.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("path"));
         colFavKeyword.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("keyword"));
         colFavSearchType.setCellValueFactory(new PropertyValueFactory<FavoriteItem,String>("searchType"));
@@ -116,7 +120,9 @@ public class AppController implements Initializable {
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
         colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
         colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
+
         historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+
         colKeyword.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.3));
         colType.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
         colDirectory.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.5));
@@ -134,11 +140,12 @@ public class AppController implements Initializable {
     }
 
     public void handleDirectory(MouseEvent mouseEvent) {
-        windowManager.dirWindow();
+        windowManager.dirWindow();//methana error ekak enawa
     }
 
     public void handleFav(MouseEvent mouseEvent) {
         paneFav.toFront();
+        comboFavCategory.setItems(favoriteManager.getCategoryNames());
     }
 
     public void handleHistory(MouseEvent mouseEvent) {
@@ -162,6 +169,7 @@ public class AppController implements Initializable {
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------
+
     //user pane
 
     public void changeUsername(MouseEvent mouseEvent){
@@ -266,7 +274,7 @@ public class AppController implements Initializable {
 
     public void deleteCategory(MouseEvent mouseEvent) {
         favoriteManager.deleteCategory(comboFavCategory.getSelectionModel().getSelectedItem());
-        comboFavCategory.setItems(favoriteManager.getCategoryNames());
+        comboFavCategory.setItems(favoriteManager.getCategoryNames());//methana error ekak enawa
     }
 
     public void deleteFav(MouseEvent mouseEvent) {
