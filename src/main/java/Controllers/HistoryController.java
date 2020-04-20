@@ -1,3 +1,4 @@
+package Controllers;
 import Models.AccountManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
@@ -25,13 +26,11 @@ public class HistoryController implements Initializable{
     @FXML
     private JFXButton btnRemove;
 
-    private  AccountManager account=AccountManager.getAccount();
-
+    private AccountManager account=AccountManager.getAccount();
     private ObservableList history = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         listView.setItems(history);
     }
 
