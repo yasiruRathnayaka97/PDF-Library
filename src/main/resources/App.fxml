@@ -5,11 +5,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -20,7 +16,7 @@
    <children>
       <VBox layoutY="34.0" prefHeight="466.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="112.0" prefWidth="150.0" />
+            <Pane prefHeight="76.0" prefWidth="150.0" />
             <JFXButton fx:id="btnUser" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleUser" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="User" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em" />
@@ -81,143 +77,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane layoutX="170.0" prefHeight="40.0" prefWidth="650.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <JFXButton fx:id="btnResize" layoutX="573.0" layoutY="7.0" onMouseClicked="#handleResize" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 100px;" text="" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="7.0">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="SQUARE_ALT" stroke="WHITE" textAlignment="CENTER" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btnClose" layoutX="604.0" layoutY="7.0" onMouseClicked="#handleClose" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-background-radius: 100px;" text="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="7.0">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CLOSE" selectionFill="#ffffff00" size="1.1em" text="" textAlignment="CENTER" />
-               </graphic></JFXButton>
-            <JFXButton fx:id="btnMinimize" layoutX="535.0" layoutY="9.0" onMouseClicked="#handleMinimize" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 100px;" text="" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="7.0">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="MINUS" stroke="WHITE" textAlignment="CENTER" />
-               </graphic>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneHistory" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <TableView fx:id="historyTable" layoutX="26.0" layoutY="14.0" stylesheets="@Stylesheets/Table.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="20.0">
-              <columns>
-                <TableColumn fx:id="colKeyword" text="Keyword" />
-                <TableColumn fx:id="colType" text="Type" />
-                  <TableColumn fx:id="colDirectory" text="Directory" />
-              </columns>
-               <styleClass>
-                  <String fx:value="column-header" />
-                  <String fx:value="column-header-background" />
-                  <String fx:value="label" />
-                  <String fx:value="table-row-cell" />
-               </styleClass>
-            </TableView>
-            <JFXButton fx:id="btnHistoryOpen" buttonType="RAISED" onMouseClicked="#deleteHisoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="delete" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="60.0">
-               <tooltip>
-                  <Tooltip text="open selected file" />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnHistoryClear" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onMouseClicked="#clearHisoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="140.0">
-               <tooltip>
-                  <Tooltip text="open selected file" />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
-         </children></AnchorPane>
-      <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="354.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <Pane prefHeight="35.0" prefWidth="650.0" />
-            <FontAwesomeIcon fx:id="iconUser" fill="#1a33d5" glyphName="USER" size="4em" />
-            <Label fx:id="lblUserUsername" text="username" textFill="#1a33d5">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-            <Pane prefHeight="35.0" prefWidth="650.0" />
-            <JFXButton fx:id="btnUserChangeUser" onMouseClicked="#changeUsername" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Change username" textFill="#1a33d5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-            <Pane prefHeight="17.0" prefWidth="650.0" />
-            <JFXButton fx:id="btnUserChangePassword" onMouseClicked="#changePassword" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Change password" textFill="#1a33d5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-            <Pane prefHeight="17.0" prefWidth="650.0" />
-            <JFXButton fx:id="btnUserDeleteUser" onMouseClicked="#deleteAccount" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete account" textFill="RED">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-            <Pane prefHeight="35.0" prefWidth="650.0" />
-            <JFXButton fx:id="btnUserSignOut" onMouseClicked="#signOut" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Sign out" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </VBox>
-      <AnchorPane fx:id="paneFav" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <TableView fx:id="tableFav" layoutX="74.0" layoutY="82.0" prefHeight="348.0" prefWidth="511.0" stylesheets="@Stylesheets/Table.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
-              <columns>
-                <TableColumn fx:id="colFavPath" prefWidth="75.0" text="path" />
-                <TableColumn fx:id="colFavKeyword" prefWidth="75.0" text="keyword" />
-                  <TableColumn fx:id="colFavSearchType" prefWidth="75.0" text="Search type" />
-              </columns>
-               <styleClass>
-                  <String fx:value="column-header" />
-                  <String fx:value="column-header-background" />
-                  <String fx:value="corner" />
-                  <String fx:value="label" />
-               </styleClass>
-            </TableView>
-            <Label layoutX="35.0" layoutY="28.0" text="category" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="28.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="comboFavCategory" layoutX="130.0" layoutY="25.0" prefHeight="26.0" prefWidth="182.0" styleClass="combo-box" stylesheets="@Stylesheets/ComboBox.css" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="25.0" />
-            <JFXButton fx:id="btnFavDeleteCategory" layoutX="363.0" layoutY="17.0" onMouseClicked="#deleteCategory" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete category" textFill="RED" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="17.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnFavDelete" buttonType="RAISED" layoutX="561.0" layoutY="325.0" onMouseClicked="#deleteFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="delete" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="170.0">
-               <tooltip>
-                  <Tooltip text="open selected file" />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnFavClear" buttonType="RAISED" layoutX="567.0" layoutY="382.0" onMouseClicked="#clearFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="230.0">
-               <tooltip>
-                  <Tooltip text="open selected file" />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnFavOpen" buttonType="RAISED" layoutX="561.0" layoutY="106.0" onMouseClicked="#openFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
-               <tooltip>
-                  <Tooltip text="open selected file" />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
-         </children></AnchorPane>
-      <AnchorPane fx:id="paneHome" layoutX="160.0" layoutY="71.0" prefHeight="439.0" prefWidth="650.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <AnchorPane fx:id="paneHome" layoutX="160.0" layoutY="71.0" prefHeight="439.0" prefWidth="650.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXButton fx:id="buttonSearch" buttonType="RAISED" layoutX="571.0" layoutY="31.0" onMouseClicked="#clickSearch" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 200PX;" text=" " textAlignment="CENTER" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="23.0">
                <tooltip>

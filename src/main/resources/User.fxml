@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
+
+    <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="354.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Pane prefHeight="35.0" prefWidth="650.0" />
+            <FontAwesomeIcon fx:id="iconUser" fill="#1a33d5" glyphName="USER" size="4em" />
+            <Label fx:id="lblUserUsername" text="username" textFill="#1a33d5">
+                <font>
+                    <Font name="System Bold" size="36.0" />
+                </font>
+            </Label>
+            <Pane prefHeight="35.0" prefWidth="650.0" />
+            <JFXButton fx:id="btnUserChangeUser" onMouseClicked="#changeUsername" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Change username" textFill="#1a33d5">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </JFXButton>
+            <Pane prefHeight="17.0" prefWidth="650.0" />
+            <JFXButton fx:id="btnUserChangePassword" onMouseClicked="#changePassword" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Change password" textFill="#1a33d5">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </JFXButton>
+            <Pane prefHeight="17.0" prefWidth="650.0" />
+            <JFXButton fx:id="btnUserDeleteUser" onMouseClicked="#deleteAccount" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete account" textFill="RED">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </JFXButton>
+            <Pane prefHeight="35.0" prefWidth="650.0" />
+            <JFXButton fx:id="btnUserSignOut" onMouseClicked="#signOut" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Sign out" textFill="WHITE">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </JFXButton>
+         <Pane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="650.0" />
+        </children>
+    </VBox>
+
+</AnchorPane>

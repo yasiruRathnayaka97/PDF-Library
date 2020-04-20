@@ -73,7 +73,7 @@ public class SignInSignUpController implements Initializable {
     public void handleSignUp(MouseEvent mouseEvent) throws Exception {
         if(accountManager.register(textSignUpName.getText(),textSignUpPassword.getText(),textSignUpConfPassword.getText())=="success"){
             System.out.println("Successfully Sign Up!");
-            windowManager.stageLoader("../App.fxml",true,null);
+            windowManager.stageLoader("../App.fxml",false,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
         }
     }
@@ -82,7 +82,7 @@ public class SignInSignUpController implements Initializable {
     public void handleSignIn(MouseEvent mouseEvent) throws Exception {
         if(accountManager.login(textSignInName.getText(),textSignInPassword.getText())=="success"){
             System.out.println("Successfully login!");
-            windowManager.stageLoader("../App.fxml",true,null);
+            windowManager.stageLoader("../App.fxml",false,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
         }
     }
