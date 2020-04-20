@@ -1,84 +1,68 @@
 package Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.event.EventHandler;
+import Models.AccountManager;
+import Models.WindowManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UserController {
+public class UserController implements Initializable {
     @FXML
-    private JFXButton btnClose;
+    private VBox vBoxUser;
     @FXML
-    private JFXButton btnSignUp;
-    @FXML
-    private JFXButton btnSignIn;
-    private Parent root;
-    private Scene scene;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    Stage stage;
+    private Label lblUserUsername;
 
-    public void clickSignUp(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../SignUp.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("User");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.show();
+    private AccountManager accountManager;
+    private WindowManager windowManager;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        accountManager = AccountManager.getInstance();
+        windowManager = new WindowManager();
+        lblUserUsername.setText(accountManager.getUsername());
     }
 
-    public void clickSignIn(MouseEvent mouseEvent) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("../SignUp.fxml"));
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("User");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.show();
+    public void changeUsername(MouseEvent mouseEvent){
+        accountManager.setChangeUsername(true);
+        changeUsernamePassword();
     }
 
-    public void clickClose(MouseEvent mouseEvent) {
-        stage= (Stage) btnClose.getScene().getWindow();
-        stage.close();
+    public void changePassword(MouseEvent mouseEvent){
+        accountManager.setChangeUsername(false);
+        changeUsernamePassword();
+    }
+
+    public void changeUsernamePassword(){
+        try {
+            windowManager.stageLoader("../ChangeWindow.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAccount(MouseEvent mouseEvent){
+        accountManager.deleteAccount();
+        windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
+        /*try {
+            windowManager.stageLoader("SignInSignUp.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+    }
+
+    public void signOut(MouseEvent mouseEvent){
+        accountManager.signOut();
+        windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
+        try {
+            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

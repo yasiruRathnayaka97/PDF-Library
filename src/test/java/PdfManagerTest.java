@@ -1,5 +1,4 @@
-import org.junit.After;
-import org.junit.Before;
+import Models.PdfManager;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,7 +22,7 @@ public class PdfManagerTest {
         String path3 = "C:/Users/YJR/Desktop/SamplePdf.txt";
         assertNotNull(pm.readPdf(path1));
         assertEquals("File path is invalid", pm.readPdf(path2));
-        assertEquals("Not a pdf", pm.readPdf(path3));
+        assertEquals("Not AppController pdf", pm.readPdf(path3));
     }
 
     @Test

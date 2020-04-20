@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.IndexingLoaderController">
+   <children>
+      <Label layoutX="95.0" layoutY="218.0" prefHeight="30.0" prefWidth="113.0" text="Please Wait!" AnchorPane.bottomAnchor="51.599999999999994" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="94.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <JFXSpinner fx:id="spinner" layoutX="95.0" layoutY="72.0" prefHeight="110.0" prefWidth="110.0" AnchorPane.topAnchor="72.0">
+         <styleClass>
+            <String fx:value="materialDesign" />
+            <String fx:value="arc" />
+         </styleClass>
+         <stylesheets>
+            <URL value="@StyleSheet.css" />
+            <URL value="@Stylesheets/Spinner.css" />
+         </stylesheets></JFXSpinner>
+   </children>
+</AnchorPane>

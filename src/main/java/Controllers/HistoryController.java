@@ -1,44 +1,52 @@
 package Controllers;
-import Models.AccountManager;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import javafx.beans.InvalidationListener;
+
+import Models.HistoryItem;
+import Models.HistoryManager;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
-import java.awt.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
-public class HistoryController implements Initializable{
+public class HistoryController implements Initializable {
     @FXML
-    private JFXListView listView;
+    private TableView<HistoryItem> historyTable;
     @FXML
-    private JFXButton btnOpen;
+    private TableColumn<HistoryItem,String> colKeyword;
     @FXML
-    private JFXButton btnRemove;
+    private TableColumn<HistoryItem,String> colType;
+    @FXML
+    private TableColumn<HistoryItem,String> colDirectory;
 
-    private AccountManager account=AccountManager.getAccount();
-    private ObservableList history = FXCollections.observableArrayList();
+    private HistoryManager historyManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.setItems(history);
+        historyManager = HistoryManager.getInstance();
+
+        colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
+        colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
+        colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
+
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+
+        colKeyword.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.3));
+        colType.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
+        colDirectory.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.5));
     }
 
-    public void clickOpen(MouseEvent mouseEvent) {
-        System.out.println(listView.getSelectionModel().getSelectedItem());
+    public void deleteHistoryFile(MouseEvent mouseEvent) {
+        historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
     }
 
-    public void clickRemove(MouseEvent mouseEvent) {
-        history.remove(listView.getSelectionModel().getSelectedIndex());
+    public void clearHistoryFile(MouseEvent mouseEvent) {
+        historyManager.deleteAll();
+        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
     }
 }

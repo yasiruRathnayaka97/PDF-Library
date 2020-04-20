@@ -1,8 +1,11 @@
+package Models;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,10 +34,12 @@ public class FileManager {
             return "Dir almost exist";
         }
     }
+
     public String createCollection(String userName,String collectionName){
        createDir(userName+"/collections/"+collectionName);
        return "Collection created successfully";
     }
+
     public String copySrcToDest(String src,String dest) {
         try{
             Files.copy(Paths.get(src),Paths.get(dest));
@@ -45,8 +50,8 @@ public class FileManager {
             return "Error";
         }
     }
-    public List<String> getAllPDFUnderDir(String dir){
 
+    public List<String> getAllPDFUnderDir(String dir){
         try {
             Stream<Path> walk = Files.walk(Paths.get(dir));
             List<String> result= walk.map(x -> x.toString())
@@ -59,6 +64,7 @@ public class FileManager {
         }
 
     }
+
     public  String deleteFile(String path){
     File f=new File(path);
     f.delete();

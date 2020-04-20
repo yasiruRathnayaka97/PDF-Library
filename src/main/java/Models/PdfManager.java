@@ -1,3 +1,5 @@
+package Models;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import java.awt.Desktop;
@@ -19,7 +21,7 @@ try {
             return text;
         }
         else{
-            return "Not a pdf";
+            return "Not AppController pdf";
         }
     }
    else{

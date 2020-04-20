@@ -1,10 +1,12 @@
 
+import Models.IndexManager;
+import Models.SearchManager;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class IndexAndSearchManagerTest {
-    IndexManager im;
+    /*IndexManager im;
     SearchManager sm;
     public IndexAndSearchManagerTest(){
         im=new IndexManager();
@@ -23,7 +25,7 @@ public class IndexAndSearchManagerTest {
         String dirPath="index";
         System.out.println(sm.search(dirPath,"content","snmp supported software foundation"));
 
-    }
+    }*/
 
 }
 

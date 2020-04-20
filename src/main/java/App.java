@@ -1,24 +1,22 @@
+import Models.WindowManager;
 import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
+
 
 public class App extends Application {
-    private Parent root;
-    private Scene scene;
+    private WindowManager windowManager;
 
     public static void main(String[] args) {
         launch();
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("App.fxml"));
-        scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("PDF-Library");
-        primaryStage.show();
+    public void start(final Stage primaryStage) throws Exception {
+        windowManager = new WindowManager();
+
+        //load sign in sign up stage
+        windowManager.stageLoader("../SignInSignUp.fxml",true,null);
     }
 }
 
