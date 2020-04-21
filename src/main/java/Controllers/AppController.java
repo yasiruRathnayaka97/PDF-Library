@@ -152,7 +152,8 @@ public class AppController implements Initializable {
 
     public void addFav(MouseEvent mouseEvent) {
         try {
-            favoriteManager.setPath(listViewResult.getSelectionModel().getSelectedItem().toString());
+            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
+            favoriteManager.setPath(arr[arr.length-1].trim());
             favoriteManager.setKeyword(textSearch.getText());
             favoriteManager.setSearchType(dropDownSearchType.getSelectionModel().getSelectedItem().toString());
             windowManager.stageLoader("../NewFavorite.fxml",true,null);
