@@ -4,35 +4,56 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import java.awt.Desktop;
 import java.io.File;
+import java.util.ArrayList;
 
 public class PdfManager {
 
-    public String readPdf(String pathPdf){
+    public String readPdfPage(PDDocument pdf,PDFTextStripper pdfStripper,int pageNumber){
 try {
-    File file = new File(pathPdf);
-    if(file.exists()) {
-          String[] pathSplit = pathPdf.split("/");
-          String extension =pathSplit[pathSplit.length-1].split("\\.")[1];
-        if(extension.equals("pdf")){
-            PDDocument pdf = PDDocument.load(file);
-            PDFTextStripper pdfStripper = new PDFTextStripper();
+    pdfStripper.setStartPage(pageNumber);
+    pdfStripper.setEndPage(pageNumber);
+
             String text = pdfStripper.getText(pdf);
-            pdf.close();
             return text;
-        }
-        else{
-            return "Not AppController pdf";
-        }
-    }
-   else{
-       return "File path is invalid";
-    }
 
 }
 catch (Exception e){
     e.printStackTrace();
     return "Error";
 }
+    }
+
+    public ArrayList<String> readPdf(String pathPdf) {
+        ArrayList<String> contentArrayList=new ArrayList<String>();
+    try{
+        File file = new File(pathPdf);
+        if (file.exists()) {
+            String[] pathSplit = pathPdf.split("/");
+            String extension = pathSplit[pathSplit.length - 1].split("\\.")[1];
+            if (extension.equals("pdf")) {
+                PDDocument pdf = PDDocument.load(file);
+                PDFTextStripper pdfStripper = new PDFTextStripper();
+                for(int pageNumber=1;pageNumber<=pdf.getNumberOfPages();pageNumber++){
+                    String pageContent=readPdfPage(pdf,pdfStripper, pageNumber);
+                    contentArrayList.add(pageContent);
+                }
+                pdf.close();
+                return contentArrayList;
+            } else {
+                System.out.println("Not a PDF");
+                return null;
+
+            }
+        } else {
+            System.out.println("File path is invalid");
+            return null;
+        }
+
+    }
+catch (Exception e){
+            e.printStackTrace();
+        return  null;
+        }
     }
     public String openPdf(String pathPdf){
         try {
@@ -57,7 +78,6 @@ catch (Exception e){
         }
 
     }
-
 
 }
 

@@ -1,13 +1,18 @@
+
+import Models.FileManager;
 import Models.WindowManager;
 import javafx.application.Application;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 
 
 public class App extends Application {
     private WindowManager windowManager;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        FileManager fm=new FileManager();
+        fm.createDir("./index");
         launch();
     }
 

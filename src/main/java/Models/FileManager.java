@@ -1,11 +1,13 @@
 package Models;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -64,12 +66,19 @@ public class FileManager {
         }
 
     }
+    //can use for delete directory.
+    public  String clearDir(String path) {
+        try {
+            FileUtils.cleanDirectory(new File(path));
+        }
 
-    public  String deleteFile(String path){
-    File f=new File(path);
-    f.delete();
+    catch(IOException e)
+
+    {
+        e.printStackTrace();
+    }
     return  "deleted";
     }
-//can use for delete directory.
+
     }
 

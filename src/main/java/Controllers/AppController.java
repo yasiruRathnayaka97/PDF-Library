@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -55,7 +56,7 @@ public class AppController implements Initializable {
         alertManager = AlertManager.getInstance();
         historyManager = HistoryManager.getInstance();
         fileManager = new FileManager();
-        searchTypes = FXCollections.observableArrayList("content","pdfName","path");
+        searchTypes = FXCollections.observableArrayList("content","pdfName");
         dropDownSearchType.setItems(searchTypes);
         pdfManager = new PdfManager();
         favoriteManager = FavoriteManager.getInstance();
@@ -125,10 +126,18 @@ public class AppController implements Initializable {
             SearchManager searchManager = new SearchManager();
             searchType = dropDownSearchType.getValue().toString();
             keyword = textSearch.getText();
-            searchResult = searchManager.search("./Index", searchType, keyword);
+            searchResult = searchManager.search( searchType, keyword);
 
             //display search result in list view
-            listViewResult.setItems(FXCollections.observableArrayList(searchResult));
+            if (!searchResult.isEmpty()){
+                listViewResult.setItems(FXCollections.observableArrayList(searchResult));
+            }
+            else{
+                ArrayList<String> out=new ArrayList<String>();
+                out.add(keyword+" not match for any "+searchType);
+                listViewResult.setItems(FXCollections.observableArrayList(out));
+            }
+
 
             //historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
         }catch (Exception e){
@@ -137,7 +146,8 @@ public class AppController implements Initializable {
     }
 
     public void openFile(MouseEvent mouseEvent) {
-        pdfManager.openPdf(listViewResult.getSelectionModel().getSelectedItem().toString());
+        String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
+        pdfManager.openPdf(arr[arr.length-1].trim());
     }
 
     public void addFav(MouseEvent mouseEvent) {

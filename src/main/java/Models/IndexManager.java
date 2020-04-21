@@ -12,16 +12,24 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class IndexManager {
+    PdfManager pm;
+    Analyzer analyzer;
+    private List<String> paths;
+    private String dirPath;
+    private FileManager fm;
     private static IndexManager instance;
+    private PdfCrawler pc;
 
     private IndexManager() {
         this.analyzer= new StandardAnalyzer();
         this.pm = new PdfManager();
-        fileManager = new FileManager();
+        this.fm = new FileManager();
+        this.pc= new PdfCrawler();
     }
 
     public static IndexManager getInstance(){
@@ -30,52 +38,56 @@ public class IndexManager {
         return instance;
     }
 
-    PdfManager pm;
-    Analyzer analyzer;
-    private List<String> paths;
-    private String dirPath;
-    private FileManager fileManager;
 
-    public String createIndex(String filePath,String  dirPath) {
-        File file=new File(filePath);
-        File dir=new File(dirPath);
-        if (!file.exists()|!dir.exists()) {
+
+    public String createIndex(String filePath,String  indexDirPath) {
+        File file = new File(filePath);
+        File dir = new File(indexDirPath);
+        if (!file.exists() | !dir.exists()) {
             return "File or dir not exist";
         }
-        Document document = new Document();
-        String content=pm.readPdf(filePath);
+        //index file name
+        String f = Paths.get(filePath).getFileName().toString();
+        String pdfName = f.substring(0, f.length() - 4);
+        Field fileNameField = new TextField("pdfName", pdfName, Field.Store.YES);
 
-        try {
-            Directory directory = FSDirectory.open(Paths.get(dirPath));
-            IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
-            IndexWriter iw = new IndexWriter(directory, config);
-            //index file contents
-            Field contentField = new TextField("content",content,Field.Store.NO);
-            String f=Paths.get(filePath).getFileName().toString();
-            //index file name
-            String pdfName=f.substring(0,f.length()-4);
-            Field fileNameField = new TextField("pdfName",pdfName, Field.Store.YES);
+        //index file path
+        Field filePathField = new StringField("path", Paths.get(filePath).toString(), Field.Store.YES);
+        ArrayList<String> contentArrayList = pm.readPdf(filePath);
+        ArrayList<String[]> docArr = pc.getCrawlData(contentArrayList);
+            try {
+                Directory directory = FSDirectory.open(Paths.get(indexDirPath));
+                IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
+                IndexWriter iw = new IndexWriter(directory, config);
+                for (String[] doc:docArr) {
+                    Document document = new Document();
+                    String content=doc[1];
+                    String pageNumber=doc[0];
+                    //index file contents
+                     Field contentField = new TextField("content", content, Field.Store.YES);
+                    //index file pageNumber
+                    Field pageNumberField = new TextField("pageNum",pageNumber, Field.Store.YES);
+                    document.add(contentField);
+                    document.add(fileNameField);
+                    document.add(filePathField);
+                    document.add(pageNumberField);
+                    iw.addDocument(document);
 
-            //index file path
-            Field filePathField = new StringField("path", Paths.get(filePath).toString(), Field.Store.YES);
-            document.add(contentField);
-            document.add(fileNameField);
-            document.add(filePathField);
+                }
+                iw.close();
+                return "Successfully Indexed";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "Error";
+            }
 
-            iw.addDocument(document);
-            iw.close();
-            return "Successfully Indexed";
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return "Error" ;
-        }
 
     }
 
     public String indexDirectory(){
-        for(int i=0;i<paths.size()-1;i++){
-            createIndex(paths.get(i),"./Index");
+        this.fm.clearDir("./Index");
+        for(int i=0;i<this.paths.size();i++){
+            this.createIndex(this.paths.get(i),"./Index");
         }
         return "Successfully indexed directory";
     }
@@ -86,7 +98,7 @@ public class IndexManager {
 
     public void setDirPath(String dirPath) {
         this.dirPath = dirPath;
-        paths = fileManager.getAllPDFUnderDir(dirPath);
+        this.paths = fm.getAllPDFUnderDir(dirPath);
         System.out.println("Paths updated");
     }
 
