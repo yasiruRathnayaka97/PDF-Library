@@ -1,5 +1,6 @@
 .table-view{
     -fx-background-color: transparent;
+    -fx-border-color: #1A33D5;
 }
 
 .table-view .column-header {
@@ -25,13 +26,8 @@
     -fx-text-fill: white;
 }
 
-.table-view > .virtual-flow > .scroll-bar:vertical,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
-.table-view > .virtual-flow > .scroll-bar:horizontal,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
-    -fx-background-color: transparent;
+.table-row-cell:empty {
+    -fx-background-color:white;
 }
 
 .corner {

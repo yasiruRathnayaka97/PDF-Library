@@ -25,7 +25,6 @@ public class AppController implements Initializable {
 
     private WindowManager windowManager;
     private AccountManager accountManager;
-    private boolean maximized;
 
     //home pane
     @FXML
@@ -49,7 +48,6 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
         accountManager = AccountManager.getInstance();
-        maximized = false;
         btnUser.setText(accountManager.getUsername());
 
         //home pane
@@ -74,12 +72,13 @@ public class AppController implements Initializable {
         }
     }
 
-    public void handleHome(MouseEvent mouseEvent) {
-        paneHome.toFront();
-    }
-
     public void handleDirectory(MouseEvent mouseEvent) {
-        windowManager.dirWindow();//methana error ekak enawa
+        try{
+            windowManager.dirWindow();
+        }catch(Exception e){
+
+        }
+
     }
 
     public void handleFav(MouseEvent mouseEvent) {

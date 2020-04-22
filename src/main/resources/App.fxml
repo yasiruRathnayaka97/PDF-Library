@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,17 +28,6 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="btnHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleHome" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="Home" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
-               </graphic>
-               <font>
-                  <Font size="16.0" />
-               </font>
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -89,7 +79,13 @@
             </JFXButton>
             <JFXTextField fx:id="textSearch" focusColor="#1a33d5" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="32.0" />
             <JFXListView fx:id="listViewResult" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@Stylesheets/ListView.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0" />
-            <JFXComboBox fx:id="dropDownSearchType" focusColor="#1a33d5" labelFloat="true" prefHeight="26.0" prefWidth="134.0" promptText="Search type" style="-fx-focus-traversable: blue;" styleClass="combo-box" stylesheets="@Stylesheets/ComboBox.css" visibleRowCount="3" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="32.0" />
+            <JFXComboBox fx:id="dropDownSearchType" focusColor="#1a33d5" labelFloat="true" prefHeight="26.0" prefWidth="134.0" promptText="Search type" stylesheets="@Stylesheets/ComboBox.css" visibleRowCount="3" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="32.0">
+               <styleClass>
+                  <String fx:value="combo-box" />
+                  <String fx:value="combo-box-popup" />
+                  <String fx:value="list-cell" />
+                  <String fx:value="list-view" />
+               </styleClass></JFXComboBox>
             <JFXButton fx:id="btnOpen" buttonType="RAISED" layoutX="571.0" layoutY="184.0" onMouseClicked="#openFile" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <tooltip>
                   <Tooltip text="open selected file" />
