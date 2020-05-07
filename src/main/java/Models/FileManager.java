@@ -1,9 +1,12 @@
 package Models;
 
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,13 +16,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileManager {
+    public void saveFile(String content){
 
-    public String createDirUser(String userName){
-        createDir(userName);
-        createDir(userName+"/collections");
-        createDir(userName+"index");
-        return "User created Successfully";
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Search");
+        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(txtFilter);
+        File file = fileChooser.showSaveDialog(new Stage());
+
+        if (file != null) {
+            try {
+                PrintWriter writer;
+                writer = new PrintWriter(file);
+                writer.println(content);
+                writer.close();
+            } catch (IOException ex) {
+
+            }
         }
+    }
 
     public String createDir(String path){
         File file4= new File(path);
@@ -34,22 +49,6 @@ public class FileManager {
         }
         else {
             return "Dir almost exist";
-        }
-    }
-
-    public String createCollection(String userName,String collectionName){
-       createDir(userName+"/collections/"+collectionName);
-       return "Collection created successfully";
-    }
-
-    public String copySrcToDest(String src,String dest) {
-        try{
-            Files.copy(Paths.get(src),Paths.get(dest));
-            return "Successfully copied";
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            return "Error";
         }
     }
 

@@ -4,14 +4,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.File;
-import java.util.List;
 
 
 public class WindowManager {
@@ -41,43 +39,39 @@ public class WindowManager {
 
         //set title
         if(title!=null){
+            stage.getIcons().add(new Image("Icon.png"));
             stage.setTitle(title);
+        }
+
+        if(title=="PDF Library"){
+            stage.initModality(Modality.WINDOW_MODAL);
+        }else{
+            stage.initModality(Modality.APPLICATION_MODAL);
         }
 
         //set modality and boarder style
         if(borderless) {
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
-        }
 
-        //set stage movable
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
+            //set stage movable
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                }
+            });
+        }
 
         //show stage
         stage.show();
-    }
-
-    public void minimizeWindow(Stage stage){
-        this.stage = stage;
-        stage.setIconified(true);
-    }
-
-    public void maximizedWindow(Stage stage, boolean maximized){
-        this.stage = stage;
-        stage.setMaximized(maximized);
     }
 
     public void closeWindow(Stage stage){
@@ -88,7 +82,7 @@ public class WindowManager {
     public void dirWindow(){
         //stage = (Stage)anchorPane.getScene().getWindow();
         stage = new Stage();
-        dirChooser = new DirectoryChooser();
+        dirChooser = new DirectoryChooser();//metana application mode ekata modality set karanna ona
 
         //get selected directory to file
         indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
@@ -100,5 +94,10 @@ public class WindowManager {
             e.printStackTrace();
             return;
         }
+    }
+
+    public void minimize(Stage stage){
+        this.stage = stage;
+        stage.setIconified(true);
     }
 }

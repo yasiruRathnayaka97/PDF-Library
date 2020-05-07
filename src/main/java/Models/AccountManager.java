@@ -31,29 +31,37 @@ public class AccountManager{
 
     public String getMd5(String input) {
         try {
-
-            // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-
-            // digest() method is called to calculate message digest
-            //  of an input digest() return array of byte
             byte[] messageDigest = md.digest(input.getBytes());
-
-            // Convert byte array into signum representation
             BigInteger no = new BigInteger(1, messageDigest);
-
-            // Convert message digest into hex value
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
             return hashtext;
         }
-
-        // For specifying wrong message digest algorithms
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean isHasRegistered(String username){
+        hasRegistered = true;
+        try {
+            conn=dbManager.connect();
+            stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
+            stmt.setString(1,username);
+            resultSet = stmt.executeQuery();
+            if(!resultSet.next()){
+                hasRegistered = false;
+            }
+            stmt.close();
+            resultSet.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return hasRegistered;
     }
 
     public String register(String username, String password,String confPassword){
@@ -80,19 +88,8 @@ public class AccountManager{
 
             this.username = username;
             this.password = password;
-            hasRegistered = true;
 
-            conn=dbManager.connect();
-            stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
-            stmt.setString(1,username);
-            resultSet = stmt.executeQuery();
-            if(!resultSet.next()){
-                hasRegistered = false;
-            }
-            stmt.close();
-            resultSet.close();
-            conn.close();
-            if(hasRegistered){
+            if (isHasRegistered(username)){
                 alertManager.showAlert("This username has been used!");
                 return null;
             }
@@ -170,18 +167,7 @@ public class AccountManager{
             }
 
             if(login(username,password)=="success") {
-                hasRegistered = true;
-                conn=dbManager.connect();
-                stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
-                stmt.setString(1,newUsername);
-                resultSet = stmt.executeQuery();
-                if(!resultSet.next()){
-                    hasRegistered = false;
-                }
-                resultSet.close();
-                stmt.close();
-                conn.close();
-                if(hasRegistered){
+                if (isHasRegistered(username)){
                     alertManager.showAlert("This username has been used!");
                     return false;
                 }
@@ -218,18 +204,7 @@ public class AccountManager{
             }
 
             if(login(username,password)=="success") {
-                hasRegistered = true;
-                conn=dbManager.connect();
-                stmt = conn.prepareStatement("SELECT username FROM user WHERE username=?");
-                stmt.setString(1,newPassword);
-                resultSet = stmt.executeQuery();
-                if(!resultSet.next()){
-                    hasRegistered = false;
-                }
-                resultSet.close();
-                stmt.close();
-                conn.close();
-                if(hasRegistered){
+                if (isHasRegistered(username)){
                     alertManager.showAlert("This username has been used!");
                     return false;
                 }
@@ -274,6 +249,19 @@ public class AccountManager{
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void signOut(){
         username = null;

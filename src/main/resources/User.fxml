@@ -3,16 +3,46 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
+<AnchorPane prefHeight="438.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
 
-    <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="354.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="439.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
-            <Pane prefHeight="35.0" prefWidth="650.0" />
+            <Pane prefHeight="71.0" prefWidth="599.0">
+            <children>
+               <JFXButton fx:id="btnBack" graphicTextGap="0.0" layoutX="18.0" layoutY="14.0" onMouseClicked="#back" prefHeight="37.0" prefWidth="37.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 100px;" text="" textFill="WHITE" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <graphic>
+                     <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="HOME" selectionEnd="0" selectionStart="0" size="1.25em" />
+                  </graphic>
+                  <tooltip>
+                     <Tooltip text="Back To Home" />
+                  </tooltip>
+               </JFXButton>
+               <JFXButton fx:id="btnClose" graphicTextGap="0.0" layoutX="547.0" layoutY="14.0" onMouseClicked="#back" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: red; -fx-background-radius: 30px;" text="" textFill="WHITE" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <graphic>
+                     <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CLOSE" size="1.25em" />
+                  </graphic>
+               </JFXButton>
+               <JFXButton fx:id="btnMin" graphicTextGap="0.0" layoutX="502.0" layoutY="14.0" onMouseClicked="#minimize" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px;" text="" textFill="WHITE" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <graphic>
+                     <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="MINUS" size="1.25em" />
+                  </graphic>
+               </JFXButton>
+            </children></Pane>
             <FontAwesomeIcon fx:id="iconUser" fill="#1a33d5" glyphName="USER" size="4em" />
             <Label fx:id="lblUserUsername" text="username" textFill="#1a33d5">
                 <font>
@@ -43,7 +73,7 @@
                     <Font size="18.0" />
                 </font>
             </JFXButton>
-         <Pane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="650.0" />
+         <Pane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="599.0" />
         </children>
     </VBox>
 

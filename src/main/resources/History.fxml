@@ -32,7 +32,7 @@
             </TableView>
             <JFXButton fx:id="btnHistoryOpen" buttonType="RAISED" onMouseClicked="#deleteHistoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="delete" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="60.0">
                 <tooltip>
-                    <Tooltip text="open selected file" />
+                    <Tooltip text="Delete Selected item" />
                 </tooltip>
                 <font>
                     <Font name="System Bold" size="14.0" />
@@ -40,7 +40,7 @@
             </JFXButton>
             <JFXButton fx:id="btnHistoryClear" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onMouseClicked="#clearHistoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="140.0">
                 <tooltip>
-                    <Tooltip text="open selected file" />
+                    <Tooltip text="Clear History" />
                 </tooltip>
                 <font>
                     <Font name="System Bold" size="14.0" />

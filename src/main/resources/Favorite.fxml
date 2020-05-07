@@ -43,14 +43,17 @@
                <String fx:value="list-cell" />
                <String fx:value="list-view" />
             </styleClass></JFXComboBox>
-            <JFXButton fx:id="btnFavDeleteCategory" layoutX="363.0" layoutY="17.0" onMouseClicked="#deleteCategory" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete category" textFill="RED" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="17.0">
+            <JFXButton fx:id="btnFavDeleteCategory" layoutX="363.0" layoutY="17.0" onMouseClicked="#deleteCategory" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Delete Category" textFill="RED" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="17.0">
                 <font>
                     <Font size="18.0" />
                 </font>
+            <tooltip>
+               <Tooltip text="Delete Selected Category" />
+            </tooltip>
             </JFXButton>
             <JFXButton fx:id="btnFavDelete" buttonType="RAISED" layoutX="561.0" layoutY="325.0" onMouseClicked="#deleteFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="delete" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="170.0">
                 <tooltip>
-                    <Tooltip text="open selected file" />
+                    <Tooltip text="Delete Selected Item" />
                 </tooltip>
                 <font>
                     <Font name="System Bold" size="14.0" />
@@ -58,7 +61,7 @@
             </JFXButton>
             <JFXButton fx:id="btnFavClear" buttonType="RAISED" layoutX="567.0" layoutY="382.0" onMouseClicked="#clearFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0">
                 <tooltip>
-                    <Tooltip text="open selected file" />
+                    <Tooltip text="Clear Favorites in the Category" />
                 </tooltip>
                 <font>
                     <Font name="System Bold" size="14.0" />
@@ -66,7 +69,7 @@
             </JFXButton>
             <JFXButton fx:id="btnFavOpen" buttonType="RAISED" layoutX="561.0" layoutY="106.0" onMouseClicked="#openFav" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
                 <tooltip>
-                    <Tooltip text="open selected file" />
+                    <Tooltip text="Open Selected Item" />
                 </tooltip>
                 <font>
                     <Font name="System Bold" size="14.0" />

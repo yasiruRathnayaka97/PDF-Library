@@ -21,11 +21,21 @@ public class SearchManager {
     private IndexManager indexManager;
     private HistoryManager historyManager;
 
+    /*private ArrayList<String> searchResult;
+    private String searchType;
+    private String keyword;*/
 
     public SearchManager(){
         indexManager = IndexManager.getInstance();
         historyManager = HistoryManager.getInstance();
     }
+
+    /*public void setSearchResult(ArrayList<String> searchResult) {
+        search(searchType,keyword);
+
+        //add to history
+        historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
+    }*/
 
     public ArrayList<String> search( String searchType, String  keyword) {
         String dirPath="./Index";

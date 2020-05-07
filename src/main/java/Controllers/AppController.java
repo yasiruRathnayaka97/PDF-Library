@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -65,7 +66,7 @@ public class AppController implements Initializable {
     //vertical box
     public void handleUser(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../User.fxml",false,"Favorite");
+            windowManager.stageLoader("../User.fxml",true,null);
             windowManager.closeWindow((Stage) btnUser.getScene().getWindow());
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,7 +163,8 @@ public class AppController implements Initializable {
     }
 
     public void saveSearch(MouseEvent mouseEvent) {
-
+        String content = "username: "+accountManager.getUsername()+"\n"+"Search Keyword: "+textSearch.getText()+"\n"+"Search Type: "+dropDownSearchType.getSelectionModel().getSelectedItem().toString()+"\n";
+        fileManager.saveFile(content);
     }
 
 }
