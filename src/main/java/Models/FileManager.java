@@ -4,22 +4,46 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
+import java.awt.image.PackedColorModel;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileManager {
-    public void saveFile(String content){
-
+    public void saveFile(String path){
+        AccountManager accountManager = AccountManager.getInstance();
         SearchManager searchManager = SearchManager.getInstance();
-        System.out.println(searchManager);
+        String resultout="";
+
+        ArrayList<String> results = searchManager.getSearchResult();
+
+        for (int i=0;i<results.size();i++){
+            resultout+=results.get(i)+"\n\n";
+        }
+
+        String content = "username: "+accountManager.getUsername()
+                +"\nkeyword: "+ searchManager.getSearchKeyword()
+                + "\nsearch type: "+ searchManager.getSearchType()
+                + "\nsearch results: \n"+ resultout;
+        System.out.println(content);
+
+        try {
+            FileWriter fileWriter=new FileWriter(path);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ;
 
         /*FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Search");

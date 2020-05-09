@@ -6,10 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
+
+import java.io.File;
 
 
 public class WindowManager {
@@ -99,5 +98,14 @@ public class WindowManager {
     public void minimize(Stage stage){
         this.stage = stage;
         stage.setIconified(true);
+    }
+
+    public void openSaveDialog(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Search");
+        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(txtFilter);
+        File file = fileChooser.showSaveDialog(new Stage());
+        fileManager.saveFile(file.getAbsolutePath());
     }
 }

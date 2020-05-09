@@ -139,9 +139,6 @@ public class AppController implements Initializable {
                 out.add(keyword+" not match for any "+searchType);
                 listViewResult.setItems(FXCollections.observableArrayList(out));
             }
-
-
-            //historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -165,8 +162,7 @@ public class AppController implements Initializable {
     }
 
     public void saveSearch(MouseEvent mouseEvent) {
-        String content = "username: "+accountManager.getUsername()+"\n"+"Search Keyword: "+textSearch.getText()+"\n"+"Search Type: "+dropDownSearchType.getSelectionModel().getSelectedItem().toString()+"\n";
-        fileManager.saveFile(content);
+        windowManager.openSaveDialog();
     }
 
 }
