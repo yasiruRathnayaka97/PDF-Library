@@ -18,26 +18,49 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchManager {
+
+    private static SearchManager instance;
+
+    private SearchManager(){
+        indexManager = IndexManager.getInstance();
+        historyManager = HistoryManager.getInstance();
+    };
+
+    public static SearchManager getInstance(){
+        if(instance == null)
+            instance = new SearchManager();
+        return instance;
+    }
+
     private IndexManager indexManager;
     private HistoryManager historyManager;
 
-    /*private ArrayList<String> searchResult;
+    private ArrayList<String> searchResult;
     private String searchType;
-    private String keyword;*/
+    private String searchKeyword;
 
-    public SearchManager(){
-        indexManager = IndexManager.getInstance();
-        historyManager = HistoryManager.getInstance();
-    }
-
-    /*public void setSearchResult(ArrayList<String> searchResult) {
-        search(searchType,keyword);
+    public void setSearchResult(String searchKeyword, String searchType) {
+        searchResult = search(searchType,searchKeyword);
+        this.searchType = searchType;
+        this.searchKeyword = searchKeyword;
 
         //add to history
-        historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
-    }*/
+        historyManager.addHistory(searchKeyword,searchType,indexManager.getDirPath());
+    }
 
-    public ArrayList<String> search( String searchType, String  keyword) {
+    public ArrayList<String> getSearchResult() {
+        return searchResult;
+    }
+
+    public String getSearchKeyword() {
+        return searchKeyword;
+    }
+
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public ArrayList<String> search(String searchType, String  keyword) {
         String dirPath="./Index";
         ArrayList<String> matchPdfList=new ArrayList<String>();
         try {
@@ -74,9 +97,6 @@ public class SearchManager {
             }
             ir.close();
             dir.close();
-
-            //add to history
-            historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

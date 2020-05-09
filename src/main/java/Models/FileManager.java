@@ -18,7 +18,10 @@ import java.util.stream.Stream;
 public class FileManager {
     public void saveFile(String content){
 
-        FileChooser fileChooser = new FileChooser();
+        SearchManager searchManager = SearchManager.getInstance();
+        System.out.println(searchManager);
+
+        /*FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Search");
         FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
@@ -33,7 +36,7 @@ public class FileManager {
             } catch (IOException ex) {
 
             }
-        }
+        }*/
     }
 
     public String createDir(String path){

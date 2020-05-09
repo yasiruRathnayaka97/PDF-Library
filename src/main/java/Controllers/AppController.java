@@ -44,6 +44,7 @@ public class AppController implements Initializable {
     private FileManager fileManager;
     private FavoriteManager favoriteManager;
     private PdfManager pdfManager;
+    private SearchManager searchManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,6 +60,7 @@ public class AppController implements Initializable {
         dropDownSearchType.setItems(searchTypes);
         pdfManager = new PdfManager();
         favoriteManager = FavoriteManager.getInstance();
+        searchManager = SearchManager.getInstance();
 
     }
 
@@ -123,10 +125,10 @@ public class AppController implements Initializable {
             }
 
             //call search manager
-            SearchManager searchManager = new SearchManager();
             searchType = dropDownSearchType.getValue().toString();
             keyword = textSearch.getText();
-            searchResult = searchManager.search( searchType, keyword);
+            searchManager.setSearchResult(keyword,searchType);
+            searchResult = searchManager.getSearchResult();
 
             //display search result in list view
             if (!searchResult.isEmpty()){
