@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -145,8 +147,17 @@ public class AppController implements Initializable {
     }
 
     public void openFile(MouseEvent mouseEvent) {
-        String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
-        pdfManager.openPdf(arr[arr.length-1].trim());
+        try {
+            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
+            pdfManager.openPdf(arr[arr.length-1].trim());
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 
     public void addFav(MouseEvent mouseEvent) {
@@ -157,12 +168,23 @@ public class AppController implements Initializable {
             favoriteManager.setSearchType(dropDownSearchType.getSelectionModel().getSelectedItem().toString());
             windowManager.stageLoader("../NewFavorite.fxml",true,null);
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     public void saveSearch(MouseEvent mouseEvent) {
+        if(listViewResult.getItems().isEmpty()){
+            try {
+                alertManager.showAlert("No search results!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
         windowManager.openSaveDialog();
     }
-
 }

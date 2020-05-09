@@ -101,11 +101,15 @@ public class WindowManager {
     }
 
     public void openSaveDialog(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Search");
-        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
-        fileChooser.getExtensionFilters().add(txtFilter);
-        File file = fileChooser.showSaveDialog(new Stage());
-        fileManager.saveFile(file.getAbsolutePath());
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Search");
+            FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
+            fileChooser.getExtensionFilters().add(txtFilter);
+            File file = fileChooser.showSaveDialog(new Stage());
+            fileManager.saveFile(file.getAbsolutePath());
+        }catch (Exception e){
+
+        }
     }
 }

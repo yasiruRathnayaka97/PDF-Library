@@ -43,24 +43,7 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ;
 
-        /*FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Search");
-        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
-        fileChooser.getExtensionFilters().add(txtFilter);
-        File file = fileChooser.showSaveDialog(new Stage());
-
-        if (file != null) {
-            try {
-                PrintWriter writer;
-                writer = new PrintWriter(file);
-                writer.println(content);
-                writer.close();
-            } catch (IOException ex) {
-
-            }
-        }*/
     }
 
     public String createDir(String path){

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.AlertManager;
 import Models.HistoryItem;
 import Models.HistoryManager;
 import javafx.collections.FXCollections;
@@ -24,10 +25,12 @@ public class HistoryController implements Initializable {
     private TableColumn<HistoryItem,String> colDirectory;
 
     private HistoryManager historyManager;
+    private AlertManager alertManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         historyManager = HistoryManager.getInstance();
+        alertManager = AlertManager.getInstance();
 
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
         colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
@@ -41,8 +44,17 @@ public class HistoryController implements Initializable {
     }
 
     public void deleteHistoryFile(MouseEvent mouseEvent) {
-        historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
-        historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+        try {
+            historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
+            historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 
     public void clearHistoryFile(MouseEvent mouseEvent) {

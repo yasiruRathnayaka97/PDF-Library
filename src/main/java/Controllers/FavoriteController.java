@@ -1,9 +1,6 @@
 package Controllers;
 
-import Models.FavoriteItem;
-import Models.FavoriteManager;
-import Models.FileManager;
-import Models.PdfManager;
+import Models.*;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,11 +26,13 @@ public class FavoriteController implements Initializable {
     private TableColumn<FavoriteItem,String> colFavSearchType;
 
     private PdfManager pdfManager;
+    private AlertManager alertManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         favoriteManager = FavoriteManager.getInstance();
         pdfManager = new PdfManager();
+        alertManager = AlertManager.getInstance();
         comboFavCategory.setItems(favoriteManager.getCategoryNames());
 
         colFavKeyword.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.3));
@@ -50,19 +49,51 @@ public class FavoriteController implements Initializable {
     }
 
     public void deleteCategory(MouseEvent mouseEvent) {
-        favoriteManager.deleteCategory(comboFavCategory.getSelectionModel().getSelectedItem());
-        comboFavCategory.setItems(favoriteManager.getCategoryNames());
+        try {
+            favoriteManager.deleteCategory(comboFavCategory.getSelectionModel().getSelectedItem());
+            comboFavCategory.setItems(favoriteManager.getCategoryNames());
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No category has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
-    public void deleteFav(MouseEvent mouseEvent) {
-        favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(),comboFavCategory.getSelectionModel().getSelectedItem());
+    public void deleteFav(MouseEvent mouseEvent) {//meke error ekak enawa handle karanna wenawa
+        try {
+            favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(),comboFavCategory.getSelectionModel().getSelectedItem());
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception ex) {
+
+            }
+        }
     }
 
     public void clearFav(MouseEvent mouseEvent) {
-        favoriteManager.clearFav(comboFavCategory.getSelectionModel().getSelectedItem());
+        try {
+            favoriteManager.clearFav(comboFavCategory.getSelectionModel().getSelectedItem());
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No category has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     public void openFav(MouseEvent mouseEvent) {
-        pdfManager.openPdf(tableFav.getSelectionModel().getSelectedItem().getPath());
+        try {
+            pdfManager.openPdf(tableFav.getSelectionModel().getSelectedItem().getPath());
+        }catch (Exception e){
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
