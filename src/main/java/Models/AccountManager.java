@@ -108,9 +108,8 @@ public class AccountManager{
     public String login(String username, String password){
         try {
             //check for empty fields
-            if(username.isEmpty() || username.isEmpty()) {
-                alertManager.showAlert("Please enter required data");
-                return null;
+            if(username.isEmpty() || password.isEmpty()) {
+                return "Please enter required data";
             }
 
             this.username = username;
@@ -133,12 +132,10 @@ public class AccountManager{
                     return "success";
                 }
                 System.out.println("Invalid username or password!");
-                alertManager.showAlert("Invalid username or password!");
-                return null;
+                return "Invalid username or password!";
             }
             System.out.println("No user");
-            alertManager.showAlert("Invalid username or password!");
-            return null;
+            return "Invalid username or password!";
         } catch (Exception e) {
             e.printStackTrace();
             return null;

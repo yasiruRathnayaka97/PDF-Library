@@ -83,6 +83,46 @@ public class AccountManagerTest {
         assertEquals("This username has been used!",accountManager.register("dilanka","dilanka","dilanka"));
     }
 
+    @Test
+    public void loginTest1(){//need to signup dilanka
+        AccountManager accountManager = AccountManager.getInstance();
 
+        assertEquals("success",accountManager.login("dilanka","dilanka"));
+    }
+
+    @Test
+    public void loginTest2(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.login("",""));
+    }
+
+    @Test
+    public void loginTest3(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.login("dilanka",""));
+    }
+
+    @Test
+    public void loginTest4(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.login("","dilanka"));
+    }
+
+    @Test
+    public void loginTest5(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Invalid username or password!",accountManager.login("dilanka","dil"));
+    }
+
+    @Test
+    public void loginTest6(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Invalid username or password!",accountManager.login("dil","dilanka"));
+    }
 
 }

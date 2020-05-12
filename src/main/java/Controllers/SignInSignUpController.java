@@ -99,10 +99,17 @@ public class SignInSignUpController implements Initializable {
 
     //sign in data submit
     public void handleSignIn(MouseEvent mouseEvent) throws Exception {
-        if(accountManager.login(textSignInName.getText(),textSignInPassword.getText())=="success"){
+        String res = accountManager.login(textSignInName.getText(),textSignInPassword.getText());
+        if(res.equals("success")){
             System.out.println("Successfully login!");
             windowManager.stageLoader("../App.fxml",false,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+        }
+        else if(res.equals("Please enter required data")){
+            alertManager.showAlert("Please enter required data");
+        }
+        else if(res.equals("Invalid username or password!")){
+            alertManager.showAlert("Invalid username or password!");
         }
     }
 }
