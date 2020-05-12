@@ -146,23 +146,20 @@ public class AccountManager{
         return username;
     }
 
-    public boolean changeUsername(String username,String password,String newUsername){
+    public String changeUsername(String username,String password,String newUsername){
         try {
             if(username.isEmpty() || password.isEmpty() || newUsername.isEmpty()){
                 System.out.println("Please enter required data");
-                alertManager.showAlert("Please enter required data");
-                return false;
+                return "Please enter required data";
             }
             if(newUsername.contains(" ")){
                 System.out.println("User name cannot be contained spaces");
-                alertManager.showAlert("User name cannot be contained spaces");
-                return false;
+                return "User name cannot be contained spaces";
             }
 
             if(login(username,password)=="success") {
                 if (isHasRegistered(username)){
-                    alertManager.showAlert("This username has been used!");
-                    return false;
+                    return "This username has been used!";
                 }
 
                 conn = dbManager.connect();
@@ -173,14 +170,13 @@ public class AccountManager{
                 stmt.close();
                 conn.close();
                 System.out.println("username is changed!");
-                return true;
+                return "success";
             }
             System.out.println("Invalid username or password!");
-            alertManager.showAlert("Invalid username or password!");
-            return false;
+            return "Invalid username or password!";
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
@@ -197,10 +193,6 @@ public class AccountManager{
             }
 
             if(login(username,password)=="success") {
-                if (isHasRegistered(username)){
-                    alertManager.showAlert("This username has been used!");
-                    return false;
-                }
 
                 conn = dbManager.connect();
                 stmt = conn.prepareStatement("UPDATE user SET password=? WHERE username=?");

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.AccountManager;
+import Models.AlertManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -27,6 +28,7 @@ public class ChangeWindowController implements Initializable {
 
     private WindowManager windowManager;
     private AccountManager accountManager;
+    private AlertManager alertManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,10 +49,26 @@ public class ChangeWindowController implements Initializable {
     }
 
 
-    public void handleChange(MouseEvent mouseEvent) {
+    public void handleChange(MouseEvent mouseEvent) throws Exception {
         if(accountManager.isChangeUsername()) {
-            accountManager.changeUsername(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewUsername.getText());
-            windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+            String res = accountManager.changeUsername(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewUsername.getText());;
+
+            if(res.equals("success")){
+                alertManager.showAlert("username is changed!");
+                windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+            }
+            else if(res.equals("Please enter required data")){
+                alertManager.showAlert("Please enter required data");
+            }
+            else if(res.equals("User name cannot be contained spaces")){
+                alertManager.showAlert("User name cannot be contained spaces");
+            }
+            else if(res.equals("This username has been used!")){
+                alertManager.showAlert("This username has been used!");
+            }
+            else if(res.equals("Invalid username or password!")){
+                alertManager.showAlert("Invalid username or password!");
+            }
         }
         else {
             accountManager.changePassword(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewPassword.getText());
