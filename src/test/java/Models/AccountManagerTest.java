@@ -125,4 +125,109 @@ public class AccountManagerTest {
         assertEquals("Invalid username or password!",accountManager.login("dil","dilanka"));
     }
 
+    @Test
+    public void changeUsernameTest1(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changeUsername("","",""));
+    }
+
+    @Test
+    public void changeUsernameTest2(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changeUsername("","dilanka","dilankar"));
+    }
+
+    @Test
+    public void changeUsernameTest3(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changeUsername("dilanka","","dilankar"));
+    }
+
+    @Test
+    public void changeUsernameTest4(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changeUsername("dilanka","dilanka",""));
+    }
+
+    @Test
+    public void changeUsernameTest5(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("User name cannot be contained spaces",accountManager.changeUsername("dilanka","dilanka","dilanka r"));
+    }
+
+    @Test
+    public void changeUsernameTest6(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("This username has been used!",accountManager.changeUsername("dilanka","dilanka","anuradha"));
+    }
+
+    @Test
+    public void changeUsernameTest7(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("This username has been used!",accountManager.changeUsername("dilanka","dilanka","anuradha"));
+    }
+
+    @Test
+    public void changeUsernameTest8(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Invalid username or password!",accountManager.changeUsername("dil","dilanka","dilankar"));
+    }
+
+    @Test
+    public void changeUsernameTest9(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Invalid username or password!",accountManager.changeUsername("dilanka","dil","dilankar"));
+    }
+
+    @Test
+    public void changePasswordTest1(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changePassword("","",""));
+    }
+
+    @Test
+    public void changePasswordTest2(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changePassword("","dilanka","dilankar"));
+    }
+
+    @Test
+    public void changePasswordTest3(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka",""));
+    }
+
+    @Test
+    public void changePasswordTest4(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","","dilankar"));
+    }
+
+    @Test
+    public void changePasswordTest5(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka",""));
+    }
+
+    @Test
+    public void changePasswordTest6(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("Password is too short",accountManager.changePassword("dilanka","dilanka","dil"));
+    }
+
 }
