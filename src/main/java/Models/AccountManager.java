@@ -180,16 +180,13 @@ public class AccountManager{
         }
     }
 
-    public boolean changePassword(String username,String password, String newPassword){
+    public String changePassword(String username,String password, String newPassword){
         try {
             if(username.isEmpty() || password.isEmpty() || newPassword.isEmpty()){
-                System.out.println("Please enter required data");
-                alertManager.showAlert("Please enter required data");
-                return false;
+                return "Please enter required data";
             }
             if(newPassword.length()<7){
-                alertManager.showAlert("Password is too short");
-                return false;
+                return "Password is too short";
             }
 
             if(login(username,password)=="success") {
@@ -202,14 +199,13 @@ public class AccountManager{
                 stmt.close();
                 conn.close();
                 System.out.println("password is changed!");
-                return true;
+                return "password is changed!";
             }
             System.out.println("Invalid username or password!");
-            alertManager.showAlert("Invalid username or password!");
-            return false;
+            return "Invalid username or password!";
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
@@ -234,19 +230,6 @@ public class AccountManager{
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void signOut(){
         username = null;

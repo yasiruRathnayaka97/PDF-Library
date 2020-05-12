@@ -229,5 +229,4 @@ public class AccountManagerTest {
 
         assertEquals("Password is too short",accountManager.changePassword("dilanka","dilanka","dil"));
     }
-
 }

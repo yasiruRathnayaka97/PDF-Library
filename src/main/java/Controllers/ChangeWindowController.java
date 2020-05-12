@@ -71,8 +71,15 @@ public class ChangeWindowController implements Initializable {
             }
         }
         else {
-            accountManager.changePassword(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewPassword.getText());
-            windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+            String res = accountManager.changePassword(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewPassword.getText());;
+
+            if(res.equals("success")){
+                alertManager.showAlert("password is changed!");
+                windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+            }
+            else{
+                alertManager.showAlert(res);
+            }
         }
     }
 }
