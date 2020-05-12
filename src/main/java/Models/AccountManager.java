@@ -67,31 +67,27 @@ public class AccountManager{
     public String register(String username, String password,String confPassword){
         try {
             if(username.isEmpty() || password.isEmpty() || confPassword.isEmpty()) {
-                alertManager.showAlert("Please enter required data");
-                return null;
+
+                return "Please enter required data";
             }
             //check for username has no spaces
             if(username.contains(" ")){
-                alertManager.showAlert("User name cannot be contained spaces");
-                return null;
+                return "User name cannot be contained spaces";
             }
             //check for password and confirm password is equal
             if(!password.equals(confPassword)){
-                alertManager.showAlert("Password and Confirm Password mismatch");
-                return null;
+                return "Password and Confirm Password mismatch";
             }
             //check for password length is greater than or equal 7
             if(password.length()<7){
-                alertManager.showAlert("Password is too short");
-                return null;
+                return "Password is too short";
             }
 
             this.username = username;
             this.password = password;
 
             if (isHasRegistered(username)){
-                alertManager.showAlert("This username has been used!");
-                return null;
+                return "This username has been used!";
             }
 
             conn=dbManager.connect();

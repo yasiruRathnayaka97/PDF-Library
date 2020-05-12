@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.AccountManager;
+import Models.AlertManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -42,11 +43,13 @@ public class SignInSignUpController implements Initializable {
 
     private AccountManager accountManager;
     private WindowManager windowManager;
+    private AlertManager alertManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         accountManager = AccountManager.getInstance();
         windowManager = new WindowManager();
+        alertManager = AlertManager.getInstance();
         btnSignUpTab.setDisable(true);
     }
 
@@ -71,10 +74,26 @@ public class SignInSignUpController implements Initializable {
 
     //sign up data submit
     public void handleSignUp(MouseEvent mouseEvent) throws Exception {
-        if(accountManager.register(textSignUpName.getText(),textSignUpPassword.getText(),textSignUpConfPassword.getText())=="success"){
+        String res = accountManager.register(textSignUpName.getText(),textSignUpPassword.getText(),textSignUpConfPassword.getText());
+        if(res.equals("success")){
             System.out.println("Successfully Sign Up!");
             windowManager.stageLoader("../App.fxml",false,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+        }
+        else if(res.equals("Please enter required data")){
+            alertManager.showAlert("Please enter required data");
+        }
+        else if(res.equals("User name cannot be contained spaces")){
+            alertManager.showAlert("User name cannot be contained spaces");
+        }
+        else if(res.equals("Password and Confirm Password mismatch")){
+            alertManager.showAlert("Password and Confirm Password mismatch");
+        }
+        else if(res.equals("Password is too short")){
+            alertManager.showAlert("Password is too short");
+        }
+        else if(res.equals("This username has been used!")){
+            alertManager.showAlert("This username has been used!");
         }
     }
 
