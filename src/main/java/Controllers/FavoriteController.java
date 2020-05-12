@@ -61,15 +61,11 @@ public class FavoriteController implements Initializable {
         }
     }
 
-    public void deleteFav(MouseEvent mouseEvent) {//meke error ekak enawa handle karanna wenawa
+    public void deleteFav(MouseEvent mouseEvent) {
         try {
-            favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(),comboFavCategory.getSelectionModel().getSelectedItem());
+            favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(), comboFavCategory.getSelectionModel().getSelectedItem());
         }catch (Exception e){
-            try {
-                alertManager.showAlert("No item has been selected!");
-            } catch (Exception ex) {
 
-            }
         }
     }
 
