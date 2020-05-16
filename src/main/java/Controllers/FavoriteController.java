@@ -68,10 +68,13 @@ public class FavoriteController implements Initializable {
     }
 
     public void deleteFav(MouseEvent mouseEvent) {
-        try {
-            favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(), comboFavCategory.getSelectionModel().getSelectedItem());
-        }catch (Exception e){
-
+        boolean res = favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(), comboFavCategory.getSelectionModel().getSelectedItem());
+        if(!res){
+            try {
+                alertManager.showAlert("No item has been selected!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

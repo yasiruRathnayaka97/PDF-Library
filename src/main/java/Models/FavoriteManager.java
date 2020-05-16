@@ -95,6 +95,9 @@ public class FavoriteManager {
             conn=dbManager.connect();
 
             if(newCategory){
+                if(categoryName.isEmpty()){
+                    return false;
+                }
                 String categoryID = LocalDateTime.now().toString();
                 String favoriteID = categoryID;
 
@@ -157,7 +160,7 @@ public class FavoriteManager {
         return null;
     }
 
-    public void deleteFav(FavoriteItem favoriteItem, String categoryName){
+    public boolean deleteFav(FavoriteItem favoriteItem, String categoryName){
         try {
             conn=dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM favorite WHERE id=?");
@@ -166,7 +169,7 @@ public class FavoriteManager {
             stmt.close();
             conn.close();
         }catch (Exception e){
-            e.printStackTrace();
+            return false;
         }
 
         for(String id:categories.keySet()){
@@ -174,6 +177,7 @@ public class FavoriteManager {
                 categories.get(id).deleteFavourite(favoriteItem);
             }
         }
+        return true;
     }
 
     public void clearFav(String categoryName){
