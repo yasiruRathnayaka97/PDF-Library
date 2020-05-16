@@ -53,7 +53,7 @@ public class NewFavoriteController implements Initializable{
     }
 
     public void addFavourite(MouseEvent mouseEvent) throws Exception {
-        boolean res;
+        String res;
         if(comboCategory.getSelectionModel().getSelectedItem().equals("Add category")){
             res = favouriteManager.addFavorite(true,textNew.getText());
         }
@@ -61,8 +61,12 @@ public class NewFavoriteController implements Initializable{
             res = favouriteManager.addFavorite(false,comboCategory.getSelectionModel().getSelectedItem().toString());
 
         }
-        if(!res){
+        if(res.equals("Enter new category name!")){
             alertManager.showAlert("Enter new category name!");
+            return;
+        }
+        if(res.equals("Category is already existed!")){
+            alertManager.showAlert("Category is already existed!");
             return;
         }
         alertManager.showAlert("Successfully added to favorites!");

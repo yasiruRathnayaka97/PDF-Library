@@ -90,14 +90,19 @@ public class FavoriteManager {
         return categoryNames;
     }
 
-    public boolean addFavorite(boolean newCategory,String categoryName){
+    public String addFavorite(boolean newCategory,String categoryName){
         try {
             conn=dbManager.connect();
 
             if(newCategory){
                 if(categoryName.isEmpty()){
-                    return false;
+                    return "Enter new category name!";
                 }
+
+                if (getCategoryID(categoryName)!=null){
+                    return "Category is already existed!";
+                }
+
                 String categoryID = LocalDateTime.now().toString();
                 String favoriteID = categoryID;
 
@@ -143,10 +148,10 @@ public class FavoriteManager {
                 }
             }
             conn.close();
-            return true;
+            return "success";
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return "error";
         }
     }
 
