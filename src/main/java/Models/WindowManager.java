@@ -35,10 +35,10 @@ public class WindowManager {
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
+        stage.getIcons().add(new Image("Icon.png"));
 
         //set title
         if(title!=null){
-            stage.getIcons().add(new Image("Icon.png"));
             stage.setTitle(title);
         }
 

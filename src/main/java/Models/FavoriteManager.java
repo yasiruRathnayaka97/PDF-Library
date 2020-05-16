@@ -57,7 +57,7 @@ public class FavoriteManager {
         try {
             conn=dbManager.connect();
             stmt = conn.prepareStatement("SELECT id,name FROM Category WHERE username=?");
-            stmt.setString(1,accountManager.getUsername());
+            stmt.setString(1,accountManager.getUsername().getValue());
             resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 categories.put(resultSet.getString("id"),new CategoryItem(resultSet.getString("name")));
@@ -66,7 +66,7 @@ public class FavoriteManager {
 
             for (String id : categories.keySet()) {
                 stmt = conn.prepareStatement("SELECT id,path,keyword,searchType FROM favorite WHERE username=? AND category=?");
-                stmt.setString(1,accountManager.getUsername());
+                stmt.setString(1,accountManager.getUsername().getValue());
                 stmt.setString(2,id);
                 resultSet = stmt.executeQuery();
                 while(resultSet.next()){
@@ -90,7 +90,7 @@ public class FavoriteManager {
         return categoryNames;
     }
 
-    public void addFavorite(boolean newCategory,String categoryName){
+    public boolean addFavorite(boolean newCategory,String categoryName){
         try {
             conn=dbManager.connect();
 
@@ -101,7 +101,7 @@ public class FavoriteManager {
                 stmt = conn.prepareStatement("INSERT INTO category(id,name,username) VALUES (?,?,?)");
                 stmt.setString(1,categoryID);
                 stmt.setString(2,categoryName);
-                stmt.setString(3,accountManager.getUsername());
+                stmt.setString(3,accountManager.getUsername().getValue());
                 stmt.executeUpdate();
                 stmt.close();
 
@@ -111,7 +111,7 @@ public class FavoriteManager {
                 stmt.setString(3,keyword);
                 stmt.setString(4,searchType);
                 stmt.setString(5,categoryID);
-                stmt.setString(6,accountManager.getUsername());
+                stmt.setString(6,accountManager.getUsername().getValue());
                 stmt.executeUpdate();
                 stmt.close();
 
@@ -131,7 +131,7 @@ public class FavoriteManager {
                         stmt.setString(3,keyword);
                         stmt.setString(4,searchType);
                         stmt.setString(5,id);
-                        stmt.setString(6,accountManager.getUsername());
+                        stmt.setString(6,accountManager.getUsername().getValue());
                         stmt.executeUpdate();
                         stmt.close();
 
@@ -140,8 +140,10 @@ public class FavoriteManager {
                 }
             }
             conn.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

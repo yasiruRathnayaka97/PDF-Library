@@ -25,7 +25,7 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         accountManager = AccountManager.getInstance();
         windowManager = new WindowManager();
-        lblUserUsername.setText(accountManager.getUsername());
+        lblUserUsername.textProperty().bind(accountManager.getUsername());
     }
 
     public void back(MouseEvent mouseEvent){

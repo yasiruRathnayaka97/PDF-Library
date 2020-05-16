@@ -33,6 +33,7 @@ public class ChangeWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
+        alertManager = AlertManager.getInstance();
         accountManager = AccountManager.getInstance();
         if(accountManager.isChangeUsername()){
             txtChangeNewUsername.setVisible(true);
@@ -45,7 +46,12 @@ public class ChangeWindowController implements Initializable {
 
     //close window
     public void closeWindow(MouseEvent mouseEvent) {
-        windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+        try {
+            windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
+            windowManager.stageLoader("../User.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -75,6 +81,7 @@ public class ChangeWindowController implements Initializable {
 
             if(res.equals("success")){
                 alertManager.showAlert("password is changed!");
+                System.out.println("password is changed!");
                 windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
             }
             else{

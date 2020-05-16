@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,7 +12,7 @@ public class AccountManager{
 
     private AccountManager(){
         dbManager = DBManager.getInstance();
-        alertManager = AlertManager.getInstance();
+        username = new SimpleStringProperty("");
     };
 
     public static AccountManager getInstance(){
@@ -23,10 +25,9 @@ public class AccountManager{
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet resultSet;
-    private String username;
+    private SimpleStringProperty username;
     private String password;
     private boolean hasRegistered;
-    private AlertManager alertManager;
     private boolean changeUsername;
 
     public String getMd5(String input) {
@@ -83,7 +84,7 @@ public class AccountManager{
                 return "Password is too short";
             }
 
-            this.username = username;
+            this.username.set(username);
             this.password = password;
 
             if (isHasRegistered(username)){
@@ -112,7 +113,7 @@ public class AccountManager{
                 return "Please enter required data";
             }
 
-            this.username = username;
+            this.username.set(username);
             hasRegistered = true;
 
             conn=dbManager.connect();
@@ -142,7 +143,7 @@ public class AccountManager{
         }
     }
 
-    public String getUsername() {
+    public SimpleStringProperty getUsername() {
         return username;
     }
 
@@ -158,7 +159,7 @@ public class AccountManager{
             }
 
             if(login(username,password)=="success") {
-                if (isHasRegistered(username)){
+                if (isHasRegistered(newUsername)){
                     return "This username has been used!";
                 }
 
@@ -170,6 +171,7 @@ public class AccountManager{
                 stmt.close();
                 conn.close();
                 System.out.println("username is changed!");
+                this.username.set(newUsername);
                 return "success";
             }
             System.out.println("Invalid username or password!");
@@ -221,7 +223,7 @@ public class AccountManager{
         try {
             conn = dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM user WHERE username = ?");
-            stmt.setString(1,username);
+            stmt.setString(1,username.getValue());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

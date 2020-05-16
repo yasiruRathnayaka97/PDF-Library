@@ -38,7 +38,7 @@ public class HistoryManager{
             stmt.setString(2,keyword);
             stmt.setString(3,type);
             stmt.setString(4,directory);
-            stmt.setString(5,accountManager.getUsername());
+            stmt.setString(5,accountManager.getUsername().getValue());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -54,7 +54,7 @@ public class HistoryManager{
         try{
            conn = dbManager.connect();
            stmt = conn.prepareStatement("SELECT id,keyword,type,directory FROM history WHERE username=?");
-           stmt.setString(1,accountManager.getUsername());
+           stmt.setString(1,accountManager.getUsername().getValue());
            resultSet = stmt.executeQuery();
            while (resultSet.next()){
                historyItem = new HistoryItem(resultSet.getString("id"), resultSet.getString("keyword"),resultSet.getString("type"),resultSet.getString("directory"));
@@ -88,7 +88,7 @@ public class HistoryManager{
         try{
             conn = dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM history WHERE username=?");
-            stmt.setString(1,accountManager.getUsername());
+            stmt.setString(1,accountManager.getUsername().getValue());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.AlertManager;
 import Models.CategoryItem;
 //import Models.FavoriteManager;
 import Models.FavoriteManager;
@@ -27,11 +28,13 @@ public class NewFavoriteController implements Initializable{
 
     private WindowManager windowManager;
     private FavoriteManager favouriteManager;
+    private AlertManager alertManager;
     private ObservableList<String> categories;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
+        alertManager = AlertManager.getInstance();
         favouriteManager = FavoriteManager.getInstance();
         categories = favouriteManager.getCategoryNames();
         categories.add("Add category");
@@ -49,9 +52,12 @@ public class NewFavoriteController implements Initializable{
         });
     }
 
-    public void addFavourite(MouseEvent mouseEvent) {
+    public void addFavourite(MouseEvent mouseEvent) throws Exception {
         if(comboCategory.getSelectionModel().getSelectedItem().equals("Add category")){
-            favouriteManager.addFavorite(true,textNew.getText());
+            if(favouriteManager.addFavorite(true,textNew.getText())){
+                alertManager.showAlert("Successfully added to favourite!");
+            }
+
         }
         else{
             favouriteManager.addFavorite(false,comboCategory.getSelectionModel().getSelectedItem().toString());
