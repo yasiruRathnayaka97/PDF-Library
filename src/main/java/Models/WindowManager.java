@@ -40,6 +40,9 @@ public class WindowManager {
         //set title
         if(title!=null){
             stage.setTitle(title);
+            if(title.equals("PDF Library")){
+                stage.setMaximized(true);
+            }
         }
 
         if(title=="PDF Library"){
