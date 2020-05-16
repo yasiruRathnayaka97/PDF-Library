@@ -62,6 +62,11 @@ public class UserController implements Initializable {
     public void deleteAccount(MouseEvent mouseEvent){
         accountManager.deleteAccount();
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
+        try {
+            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void signOut(MouseEvent mouseEvent){

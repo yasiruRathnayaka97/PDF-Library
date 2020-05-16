@@ -13,6 +13,7 @@ public class AccountManager{
     private AccountManager(){
         dbManager = DBManager.getInstance();
         username = new SimpleStringProperty("");
+        password = new SimpleStringProperty("");
     };
 
     public static AccountManager getInstance(){
@@ -26,7 +27,7 @@ public class AccountManager{
     private PreparedStatement stmt;
     private ResultSet resultSet;
     private SimpleStringProperty username;
-    private String password;
+    private SimpleStringProperty password;
     private boolean hasRegistered;
     private boolean changeUsername;
 
@@ -85,7 +86,7 @@ public class AccountManager{
             }
 
             this.username.set(username);
-            this.password = password;
+            this.password.set(password);
 
             if (isHasRegistered(username)){
                 return "This username has been used!";
@@ -121,14 +122,14 @@ public class AccountManager{
             stmt.setString(1,username);
             resultSet = stmt.executeQuery();
             if(resultSet.next()){
-                this.password = resultSet.getString("password");
+                this.password.set(resultSet.getString("password"));
                 hasRegistered = false;
             };
             resultSet.close();
             stmt.close();
             conn.close();
             if(!hasRegistered){
-                if(this.password.equals(getMd5(password))){
+                if(this.password.getValue().equals(getMd5(password))){
                     System.out.println("Success!");
                     return "success";
                 }
@@ -201,7 +202,8 @@ public class AccountManager{
                 stmt.close();
                 conn.close();
                 System.out.println("password is changed!");
-                return "password is changed!";
+                this.password.set(getMd5(newPassword));
+                return "success";
             }
             System.out.println("Invalid username or password!");
             return "Invalid username or password!";
@@ -234,7 +236,7 @@ public class AccountManager{
     }
 
     public void signOut(){
-        username = null;
-        password = null;
+        username.set("");
+        password.set("");
     }
 }

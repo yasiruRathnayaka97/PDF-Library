@@ -81,7 +81,6 @@ public class ChangeWindowController implements Initializable {
 
             if(res.equals("success")){
                 alertManager.showAlert("password is changed!");
-                System.out.println("password is changed!");
                 windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
             }
             else{
