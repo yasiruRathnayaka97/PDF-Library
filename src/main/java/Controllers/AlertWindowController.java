@@ -27,7 +27,6 @@ public class AlertWindowController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //get message from common store
         alertManager = AlertManager.getInstance();
         windowManager = new WindowManager();
         lbl.setText(alertManager.getMessage());

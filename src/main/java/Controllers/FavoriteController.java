@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.*;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,15 +26,19 @@ public class FavoriteController implements Initializable {
     private TableColumn<FavoriteItem,String> colFavKeyword;
     @FXML
     private TableColumn<FavoriteItem,String> colFavSearchType;
+    @FXML
+    private JFXButton btnClose;
 
     private PdfManager pdfManager;
     private AlertManager alertManager;
+    private WindowManager windowManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         favoriteManager = FavoriteManager.getInstance();
         pdfManager = new PdfManager();
         alertManager = AlertManager.getInstance();
+        windowManager = new WindowManager();
         comboFavCategory.setItems(favoriteManager.getCategoryNames());
 
         colFavKeyword.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.3));
@@ -91,5 +97,9 @@ public class FavoriteController implements Initializable {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public void close(MouseEvent mouseEvent){
+        windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
     }
 }

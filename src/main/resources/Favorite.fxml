@@ -10,10 +10,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FavoriteController">
+<AnchorPane prefHeight="501.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FavoriteController">
 
     <AnchorPane fx:id="paneFav" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0">
         <children>
+         <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="517.0" layoutY="316.0" onMouseClicked="#close" prefHeight="40.0" prefWidth="62.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-width: 2px;" text="close" textAlignment="CENTER" textFill="#1a33d5" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="20.0">
+            <tooltip>
+               <Tooltip text="Clear Favorites in the Category" />
+            </tooltip>
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </JFXButton>
             <TableView fx:id="tableFav" layoutX="74.0" layoutY="82.0" stylesheets="@Stylesheets/Table.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
                 <columns>
                     <TableColumn fx:id="colFavPath" prefWidth="75.0" text="path" />

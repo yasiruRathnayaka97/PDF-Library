@@ -28,12 +28,7 @@ public class UserController implements Initializable {
         lblUserUsername.textProperty().bind(accountManager.getUsername());
     }
 
-    public void back(MouseEvent mouseEvent){
-        try {
-            windowManager.stageLoader("../App.fxml",false,"PDF Library");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void close(MouseEvent mouseEvent){
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
     }
 

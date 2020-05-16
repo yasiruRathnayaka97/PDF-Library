@@ -64,6 +64,13 @@ public class AppController implements Initializable {
         favoriteManager = FavoriteManager.getInstance();
         searchManager = SearchManager.getInstance();
 
+        //close when sign out
+        accountManager.getUsername().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue.equals("")){
+                windowManager.closeWindow((Stage) btnUser.getScene().getWindow());
+            }
+        });
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +78,6 @@ public class AppController implements Initializable {
     public void handleUser(MouseEvent mouseEvent) {
         try {
             windowManager.stageLoader("../User.fxml",true,null);
-            windowManager.closeWindow((Stage) btnUser.getScene().getWindow());
         } catch (Exception e) {
             e.printStackTrace();
         }
