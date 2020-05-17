@@ -37,12 +37,12 @@ public class UserController implements Initializable {
     }
 
     public void changeUsername(MouseEvent mouseEvent){
-        accountManager.setChangeUsername(true);
+        accountManager.setIsChangeUsername(true);
         changeUsernamePassword();
     }
 
     public void changePassword(MouseEvent mouseEvent){
-        accountManager.setChangeUsername(false);
+        accountManager.setIsChangeUsername(false);
         changeUsernamePassword();
     }
 

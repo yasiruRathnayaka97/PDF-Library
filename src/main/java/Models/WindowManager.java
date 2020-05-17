@@ -53,7 +53,8 @@ public class WindowManager {
 
         //set modality and boarder style
         if(borderless) {
-            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setResizable(false);//TODO metana minimize karanna hadanna
 
             //set stage movable
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -84,7 +85,7 @@ public class WindowManager {
     public void dirWindow(){
         //stage = (Stage)anchorPane.getScene().getWindow();
         stage = new Stage();
-        dirChooser = new DirectoryChooser();//metana application mode ekata modality set karanna ona
+        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona
 
         //get selected directory to file
         indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
@@ -109,7 +110,7 @@ public class WindowManager {
             fileChooser.setTitle("Save Search");
             FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
             fileChooser.getExtensionFilters().add(txtFilter);
-            File file = fileChooser.showSaveDialog(new Stage());
+            File file = fileChooser.showSaveDialog(new Stage());//TODO metana application mode ekata modality set karanna ona
             fileManager.saveFile(file.getAbsolutePath());
         }catch (Exception e){
 

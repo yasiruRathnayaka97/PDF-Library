@@ -1,7 +1,21 @@
 package Models;
 
 import javafx.beans.property.SimpleStringProperty;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -99,6 +113,9 @@ public class AccountManager{
             stmt.executeUpdate();
             stmt.close();
             conn.close();
+
+            writeLastLogged();
+
             System.out.println("success");
             return "success";
         } catch (Exception e) {
@@ -131,6 +148,7 @@ public class AccountManager{
             if(!hasRegistered){
                 if(this.password.getValue().equals(getMd5(password))){
                     System.out.println("Success!");
+                    writeLastLogged();
                     return "success";
                 }
                 System.out.println("Invalid username or password!");
@@ -144,11 +162,43 @@ public class AccountManager{
         }
     }
 
+    public boolean checkLoggingCorrect(String username, String password){
+        try {
+            hasRegistered = true;
+
+            conn=dbManager.connect();
+            stmt = conn.prepareStatement("SELECT password FROM user WHERE username= ?");
+            stmt.setString(1,username);
+            resultSet = stmt.executeQuery();
+            if(resultSet.next()){
+                this.password.set(resultSet.getString("password"));
+                hasRegistered = false;
+            };
+            resultSet.close();
+            stmt.close();
+            conn.close();
+            if(!hasRegistered){
+                if(this.password.getValue().equals(password)){
+                    System.out.println("Success!");
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public SimpleStringProperty getUsername() {
         return username;
     }
 
-    public String changeUsername(String username,String password,String newUsername){
+    public SimpleStringProperty getPassword() {
+        return password;
+    }
+
+    public String changeUsername(String username, String password, String newUsername){
         try {
             if(username.isEmpty() || password.isEmpty() || newUsername.isEmpty()){
                 System.out.println("Please enter required data");
@@ -173,6 +223,9 @@ public class AccountManager{
                 conn.close();
                 System.out.println("username is changed!");
                 this.username.set(newUsername);
+
+                writeLastLogged();
+
                 return "success";
             }
             System.out.println("Invalid username or password!");
@@ -203,6 +256,9 @@ public class AccountManager{
                 conn.close();
                 System.out.println("password is changed!");
                 this.password.set(getMd5(newPassword));
+
+                writeLastLogged();
+
                 return "success";
             }
             System.out.println("Invalid username or password!");
@@ -213,7 +269,7 @@ public class AccountManager{
         }
     }
 
-    public void setChangeUsername(boolean changeUsername) {
+    public void setIsChangeUsername(boolean changeUsername) {
         this.changeUsername = changeUsername;
     }
 
@@ -238,5 +294,74 @@ public class AccountManager{
     public void signOut(){
         username.set("");
         password.set("");
+        writeLastLogged();
+    }
+
+    public boolean readLastLogged(){
+        try {
+
+            File fXmlFile = new File("config.xml");
+
+            if(!fXmlFile.exists()){
+                System.out.println("No last log file");
+                return false;
+            }
+
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            Element user = doc.getDocumentElement();
+
+            username.set(user.getElementsByTagName("username").item(0).getTextContent());
+            password.set(user.getElementsByTagName("password").item(0).getTextContent());
+
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void writeLastLogged(){
+        System.out.println("AA");
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+
+            Document doc = db.newDocument();
+
+            Element rootElement = doc.createElement("lastLogged");
+
+            Element element = doc.createElement("username");
+            element.appendChild(doc.createTextNode(username.getValue()));
+            rootElement.appendChild(element);
+
+            element = doc.createElement("password");
+            element.appendChild(doc.createTextNode(password.getValue()));
+            rootElement.appendChild(element);
+
+            doc.appendChild(rootElement);
+
+            Transformer tr = TransformerFactory.newInstance().newTransformer();
+            tr.setOutputProperty(OutputKeys.INDENT, "yes");
+            tr.setOutputProperty(OutputKeys.METHOD, "xml");
+            tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+            // send DOM to file
+            tr.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("config.xml")));
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException te) {
+            System.out.println(te.getMessage());
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
     }
 }

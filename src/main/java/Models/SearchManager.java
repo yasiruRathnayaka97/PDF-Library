@@ -86,11 +86,11 @@ public class SearchManager {
                     String resultPageNum = d.get("pageNum");
                 if (searchType == "content") {
 
-                    String result1 = "Match content :: " + resultContent + ".\n" + "Match PDF name :: " + resultPdfName + "\n" + "Match page number :: " + resultPageNum + "\n" + "Match PDF path :: " + resultPath;
+                    String result1 = "Match content: " + resultContent + ".\n" + "Match PDF name: " + resultPdfName + "\n" + "Match page number: " + resultPageNum + "\n" + "Match PDF path: " + resultPath;
                     matchPdfList.add(result1);
 
                 } else {
-                    String result2 = "Match PDF name :: " + resultPdfName + "\n" + "Match PDF path :: " + resultPath;
+                    String result2 = "Match PDF name: " + resultPdfName + "\n" + "Match PDF path: " + resultPath;
                     matchPdfList.add(result2);
                 }
             }

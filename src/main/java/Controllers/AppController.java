@@ -52,7 +52,8 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
         accountManager = AccountManager.getInstance();
-        btnUser.setText(accountManager.getUsername().getValue());
+        //btnUser.setText(accountManager.getUsername().getValue());
+        btnUser.textProperty().bind(accountManager.getUsername());
 
         //home pane
         alertManager = AlertManager.getInstance();
