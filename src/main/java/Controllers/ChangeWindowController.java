@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -18,13 +19,23 @@ public class ChangeWindowController implements Initializable {
     @FXML
     private JFXButton btnChange;
     @FXML
-    private JFXTextField txtChangeUsername;
+    private AnchorPane paneUsername;
     @FXML
-    private JFXPasswordField txtChangePassword;
+    private AnchorPane panePassword;
     @FXML
-    private JFXTextField txtChangeNewUsername;
+    private JFXTextField txtPaneUserUsername;
     @FXML
-    private JFXPasswordField txtChangeNewPassword;
+    private JFXPasswordField txtPaneUserPassword;
+    @FXML
+    private JFXTextField txtNewUsername;
+    @FXML
+    private JFXTextField txtPanePwdUsername;
+    @FXML
+    private JFXPasswordField txtPanePwdPassword;
+    @FXML
+    private JFXPasswordField txtNewPassword;
+    @FXML
+    private JFXPasswordField txtConfNewPassword;
 
     private WindowManager windowManager;
     private AccountManager accountManager;
@@ -36,11 +47,9 @@ public class ChangeWindowController implements Initializable {
         alertManager = AlertManager.getInstance();
         accountManager = AccountManager.getInstance();
         if(accountManager.isChangeUsername()){
-            txtChangeNewUsername.setVisible(true);
-            txtChangeNewPassword.setVisible(false);
+            paneUsername.toFront();
         }else{
-            txtChangeNewUsername.setVisible(false);
-            txtChangeNewPassword.setVisible(true);
+            panePassword.toFront();
         }
     }
 
@@ -57,7 +66,7 @@ public class ChangeWindowController implements Initializable {
 
     public void handleChange(MouseEvent mouseEvent) throws Exception {
         if(accountManager.isChangeUsername()) {
-            String res = accountManager.changeUsername(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewUsername.getText());;
+            String res = accountManager.changeUsername(txtPaneUserUsername.getText(), txtPaneUserPassword.getText(), txtNewUsername.getText());;
 
             if(res.equals("success")){
                 alertManager.showAlert("username is changed!");
@@ -77,7 +86,7 @@ public class ChangeWindowController implements Initializable {
             }
         }
         else {
-            String res = accountManager.changePassword(txtChangeUsername.getText(), txtChangePassword.getText(), txtChangeNewPassword.getText());;
+            String res = accountManager.changePassword(txtPanePwdUsername.getText(), txtPanePwdPassword.getText(), txtNewPassword.getText(), txtConfNewPassword.getText());;
 
             if(res.equals("success")){
                 alertManager.showAlert("password is changed!");

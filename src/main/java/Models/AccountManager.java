@@ -236,13 +236,17 @@ public class AccountManager{
         }
     }
 
-    public String changePassword(String username,String password, String newPassword){
+    public String changePassword(String username,String password, String newPassword, String confNewPassword){
         try {
-            if(username.isEmpty() || password.isEmpty() || newPassword.isEmpty()){
+            if(username.isEmpty() || password.isEmpty() || newPassword.isEmpty() || confNewPassword.isEmpty()){
                 return "Please enter required data";
             }
+            if(!newPassword.equals(confNewPassword)){
+                return "New password and confirm new password mismatch!";
+            }
+
             if(newPassword.length()<7){
-                return "Password is too short";
+                return "Password is too short!";
             }
 
             if(login(username,password)=="success") {
