@@ -12,12 +12,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class IndexingLoaderController implements Initializable {
     @FXML
     private JFXSpinner spinner;
 
-    private Stage stage;
     private IndexManager indexManager;
     private WindowManager windowManager;
 

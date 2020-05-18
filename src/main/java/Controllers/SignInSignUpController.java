@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,16 +23,12 @@ public class SignInSignUpController implements Initializable {
     private AnchorPane signUpPane;
     @FXML
     private AnchorPane signInPane;
-
     @FXML
     private JFXTextField textSignUpName;
     @FXML
     private JFXPasswordField textSignUpPassword;
     @FXML
     private JFXPasswordField textSignUpConfPassword;
-    @FXML
-    private JFXButton btnSignUp;
-
     @FXML
     private JFXTextField textSignInName;
     @FXML
@@ -49,11 +44,6 @@ public class SignInSignUpController implements Initializable {
         windowManager = new WindowManager();
         alertManager = AlertManager.getInstance();
         btnSignUpTab.setDisable(true);
-    }
-
-    //exit
-    public void handleClose(MouseEvent mouseEvent) {
-        System.exit(0);
     }
 
     //show sign up form

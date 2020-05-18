@@ -9,13 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,18 +20,12 @@ public class AppController implements Initializable {
     @FXML
     private JFXButton btnUser;
     @FXML
-    private AnchorPane paneHome;
-
-    private WindowManager windowManager;
-    private AccountManager accountManager;
-
-    //home pane
-    @FXML
     private JFXTextField textSearch;
     @FXML
     private JFXListView listViewResult;
     @FXML
     private JFXComboBox dropDownSearchType;
+
     private ObservableList<String> searchTypes;
     private IndexManager indexManager;
     private List<String> searchResult;
@@ -47,12 +37,13 @@ public class AppController implements Initializable {
     private FavoriteManager favoriteManager;
     private PdfManager pdfManager;
     private SearchManager searchManager;
+    private WindowManager windowManager;
+    private AccountManager accountManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
         accountManager = AccountManager.getInstance();
-        //btnUser.setText(accountManager.getUsername().getValue());
         btnUser.textProperty().bind(accountManager.getUsername());
 
         //home pane

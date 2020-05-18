@@ -6,15 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
-    @FXML
-    private VBox vBoxUser;
     @FXML
     private Label lblUserUsername;
 
@@ -30,10 +26,6 @@ public class UserController implements Initializable {
 
     public void close(MouseEvent mouseEvent){
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
-    }
-
-    public void minimize(MouseEvent mouseEvent){
-        windowManager.minimize((Stage) lblUserUsername.getScene().getWindow());
     }
 
     public void changeUsername(MouseEvent mouseEvent){

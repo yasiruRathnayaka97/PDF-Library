@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class AccountManagerTest {
 
+    //Need to create dilanka user account with password dilanka before the test
+
     @Test
     public void getMd5Test(){
         AccountManager accountManager = AccountManager.getInstance();
@@ -188,45 +190,66 @@ public class AccountManagerTest {
         assertEquals("Invalid username or password!",accountManager.changeUsername("dilanka","dil","dilankar"));
     }
 
-    /*@Test
+    @Test
     public void changePasswordTest1(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Please enter required data",accountManager.changePassword("","",""));
+        assertEquals("Please enter required data",accountManager.changePassword("","","",""));
     }
 
     @Test
     public void changePasswordTest2(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Please enter required data",accountManager.changePassword("","dilanka","dilankar"));
+        assertEquals("Please enter required data",accountManager.changePassword("","dilanka","dilankar","dilankar"));
     }
 
     @Test
     public void changePasswordTest3(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka",""));
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","","dilankar","dilankar"));
     }
 
     @Test
     public void changePasswordTest4(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Please enter required data",accountManager.changePassword("dilanka","","dilankar"));
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","","dilankar"));
     }
 
     @Test
     public void changePasswordTest5(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka",""));
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","dilankar","dilankar"));
     }
 
     @Test
     public void changePasswordTest6(){
         AccountManager accountManager = AccountManager.getInstance();
 
-        assertEquals("Password is too short",accountManager.changePassword("dilanka","dilanka","dil"));
-    }*/
+        assertEquals("Password is too short",accountManager.changePassword("dilanka","dilanka","dil","dil"));
+    }
+
+    @Test
+    public void changePasswordTest7(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertEquals("New password and confirm new password mismatch!",accountManager.changePassword("dilanka","dilanka","dilankaAnuradha","dilankar"));
+    }
+
+    @Test
+    public void checkLoggingCorrectTest1(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertFalse(accountManager.checkLoggingCorrect("dilanka","dilanka"));
+    }
+
+    @Test
+    public void checkLoggingCorrectTest2(){
+        AccountManager accountManager = AccountManager.getInstance();
+
+        assertTrue(accountManager.checkLoggingCorrect("dilanka","f9c5c5794732f911005968289704cd9c"));
+    }
 }

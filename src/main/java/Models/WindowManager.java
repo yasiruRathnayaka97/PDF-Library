@@ -1,11 +1,9 @@
 package Models;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.*;
 
 import java.io.File;
@@ -15,15 +13,11 @@ public class WindowManager {
     private Parent root;
     private Scene scene;
     private Stage stage;
-    private double xOffset;
-    private double yOffset;
     private DirectoryChooser dirChooser;
     private IndexManager indexManager;
     private FileManager fileManager;
 
     public WindowManager(){
-        xOffset = 0;
-        yOffset = 0;
         indexManager = IndexManager.getInstance();
         fileManager = new FileManager();
     };
@@ -82,11 +76,6 @@ public class WindowManager {
             e.printStackTrace();
             return;
         }
-    }
-
-    public void minimize(Stage stage){
-        this.stage = stage;
-        stage.setIconified(true);
     }
 
     public void openSaveDialog(){

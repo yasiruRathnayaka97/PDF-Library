@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FavoriteController implements Initializable {
-    private FavoriteManager favoriteManager;
     @FXML
     private JFXComboBox<String> comboFavCategory;
     @FXML
@@ -32,6 +31,7 @@ public class FavoriteController implements Initializable {
     private PdfManager pdfManager;
     private AlertManager alertManager;
     private WindowManager windowManager;
+    private FavoriteManager favoriteManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,8 +1,6 @@
 package Controllers;
 
 import Models.AlertManager;
-import Models.CategoryItem;
-//import Models.FavoriteManager;
 import Models.FavoriteManager;
 import Models.WindowManager;
 import com.jfoenix.controls.JFXButton;
@@ -13,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NewFavoriteController implements Initializable{

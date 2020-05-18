@@ -3,8 +3,6 @@ package Models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.HashMap;
-
 public class CategoryItem {
     private final String name;
     private ObservableList<FavoriteItem> favorites;

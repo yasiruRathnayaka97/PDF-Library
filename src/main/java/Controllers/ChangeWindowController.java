@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,7 +61,6 @@ public class ChangeWindowController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     public void handleChange(MouseEvent mouseEvent) throws Exception {
         if(accountManager.isChangeUsername()) {
