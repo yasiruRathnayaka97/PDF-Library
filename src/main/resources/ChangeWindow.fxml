@@ -3,18 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="363.0" prefWidth="368.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChangeWindowController">
+<AnchorPane prefHeight="363.0" prefWidth="368.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChangeWindowController">
    <children>
-      <JFXButton fx:id="btnClose" layoutX="614.0" layoutY="17.0" onMouseClicked="#closeWindow" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-background-radius: 100px;" text="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="7.0">
-         <graphic>
-            <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CLOSE" selectionFill="#ffffff00" size="1.1em" text="" textAlignment="CENTER" />
-         </graphic>
-      </JFXButton>
-      <JFXTextField fx:id="txtChangeUsername" labelFloat="true" layoutX="20.0" layoutY="85.0" prefWidth="330.0" promptText="username" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <JFXTextField fx:id="txtChangeUsername" labelFloat="true" layoutX="20.0" layoutY="85.0" prefWidth="330.0" promptText="username" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="85.0">
          <font>
             <Font size="14.0" />
          </font>

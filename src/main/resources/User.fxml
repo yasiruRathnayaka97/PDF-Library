@@ -10,27 +10,9 @@
 
 <AnchorPane prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
 
-    <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="471.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox fx:id="vBoxUser" alignment="TOP_CENTER" prefHeight="471.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
-            <Pane prefHeight="71.0" prefWidth="599.0">
-            <children>
-               <JFXButton graphicTextGap="0.0" layoutX="547.0" layoutY="14.0" onMouseClicked="#close" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: red; -fx-background-radius: 30px;" text="" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="14.0" />
-                  </font>
-                  <graphic>
-                     <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CLOSE" size="1.25em" />
-                  </graphic>
-               </JFXButton>
-               <JFXButton fx:id="btnMin" graphicTextGap="0.0" layoutX="502.0" layoutY="14.0" onMouseClicked="#minimize" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px;" text="" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="14.0" />
-                  </font>
-                  <graphic>
-                     <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="MINUS" size="1.25em" />
-                  </graphic>
-               </JFXButton>
-            </children></Pane>
+            <Pane prefHeight="41.0" prefWidth="599.0" />
             <FontAwesomeIcon fx:id="iconUser" fill="#1a33d5" glyphName="USER" size="4em" />
             <Label fx:id="lblUserUsername" text="username" textFill="#1a33d5">
                 <font>

@@ -28,11 +28,11 @@ public class App extends Application {
         accountManager.readLastLogged();
 
         if(accountManager.checkLoggingCorrect(accountManager.getUsername().getValue(),accountManager.getPassword().getValue())){
-            windowManager.stageLoader("../App.fxml",false,"PDF Library");
+            windowManager.stageLoader("../App.fxml",1,"PDF Library");
         }
         else{
             //load sign in sign up stage
-            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+            windowManager.stageLoader("../SignInSignUp.fxml",2,null);
         }
     }
 }

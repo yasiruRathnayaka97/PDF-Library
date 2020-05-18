@@ -48,7 +48,7 @@ public class UserController implements Initializable {
 
     public void changeUsernamePassword(){
         try {
-            windowManager.stageLoader("../ChangeWindow.fxml",true,null);
+            windowManager.stageLoader("../ChangeWindow.fxml",2,null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class UserController implements Initializable {
         accountManager.deleteAccount();
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
         try {
-            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+            windowManager.stageLoader("../SignInSignUp.fxml",2,null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class UserController implements Initializable {
         accountManager.signOut();
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
         try {
-            windowManager.stageLoader("../SignInSignUp.fxml",true,null);
+            windowManager.stageLoader("../SignInSignUp.fxml",2,null);
         } catch (Exception e) {
             e.printStackTrace();
         }

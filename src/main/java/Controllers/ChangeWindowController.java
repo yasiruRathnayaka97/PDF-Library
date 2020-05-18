@@ -48,7 +48,7 @@ public class ChangeWindowController implements Initializable {
     public void closeWindow(MouseEvent mouseEvent) {
         try {
             windowManager.closeWindow((Stage) btnChange.getScene().getWindow());
-            windowManager.stageLoader("../User.fxml",true,null);
+            windowManager.stageLoader("../User.fxml",2,null);
         } catch (Exception e) {
             e.printStackTrace();
         }

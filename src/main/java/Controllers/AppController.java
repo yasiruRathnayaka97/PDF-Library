@@ -78,7 +78,7 @@ public class AppController implements Initializable {
     //vertical box
     public void handleUser(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../User.fxml",true,null);
+            windowManager.stageLoader("../User.fxml",2,null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class AppController implements Initializable {
 
     public void handleFav(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../Favorite.fxml",false,"Favorite");
+            windowManager.stageLoader("../Favorite.fxml",1,"Favorite");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,7 +103,7 @@ public class AppController implements Initializable {
 
     public void handleHistory(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../History.fxml",false,"History");
+            windowManager.stageLoader("../History.fxml",1,"History");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -155,7 +155,7 @@ public class AppController implements Initializable {
 
     public void openFile(MouseEvent mouseEvent) {
         try {
-            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
+            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(":");
             pdfManager.openPdf(arr[arr.length-1].trim());
         }catch (Exception e){
             try {
@@ -169,11 +169,11 @@ public class AppController implements Initializable {
 
     public void addFav(MouseEvent mouseEvent) {
         try {
-            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(" :: ");
+            String[] arr=listViewResult.getSelectionModel().getSelectedItem().toString().split(": ");
             favoriteManager.setPath(arr[arr.length-1].trim());
             favoriteManager.setKeyword(textSearch.getText());
             favoriteManager.setSearchType(dropDownSearchType.getSelectionModel().getSelectedItem().toString());
-            windowManager.stageLoader("../NewFavorite.fxml",true,null);
+            windowManager.stageLoader("../NewFavorite.fxml",2,null);
         } catch (Exception e) {
             try {
                 alertManager.showAlert("No item has been selected!");

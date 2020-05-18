@@ -77,7 +77,7 @@ public class SignInSignUpController implements Initializable {
         String res = accountManager.register(textSignUpName.getText(),textSignUpPassword.getText(),textSignUpConfPassword.getText());
         if(res.equals("success")){
             System.out.println("Successfully Sign Up!");
-            windowManager.stageLoader("../App.fxml",false,"PDF Library");
+            windowManager.stageLoader("../App.fxml",1,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
         }
         else if(res.equals("Please enter required data")){
@@ -102,7 +102,7 @@ public class SignInSignUpController implements Initializable {
         String res = accountManager.login(textSignInName.getText(),textSignInPassword.getText());
         if(res.equals("success")){
             System.out.println("Successfully login!");
-            windowManager.stageLoader("../App.fxml",false,"PDF Library");
+            windowManager.stageLoader("../App.fxml",1,"PDF Library");
             windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
         }
         else if(res.equals("Please enter required data")){

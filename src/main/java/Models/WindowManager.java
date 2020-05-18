@@ -29,7 +29,7 @@ public class WindowManager {
     };
 
     //load stage
-    public void stageLoader(String path,boolean borderless,String title) throws Exception{
+    public void stageLoader(String path,int borderType,String title) throws Exception{
         //load stage
         root = FXMLLoader.load(getClass().getResource(path));
         scene = new Scene(root);
@@ -52,12 +52,12 @@ public class WindowManager {
         }
 
         //set modality and boarder style
-        if(borderless) {
+        if(borderType==2) {
             stage.initStyle(StageStyle.DECORATED);
-            stage.setResizable(false);//TODO metana minimize karanna hadanna
+            stage.setResizable(false);
 
             //set stage movable
-            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            /*root.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     xOffset = event.getSceneX();
@@ -70,7 +70,9 @@ public class WindowManager {
                     stage.setX(event.getScreenX() - xOffset);
                     stage.setY(event.getScreenY() - yOffset);
                 }
-            });
+            });*/
+        }else if(borderType==3){
+            stage.initStyle(StageStyle.UNDECORATED);
         }
 
         //show stage
@@ -85,14 +87,14 @@ public class WindowManager {
     public void dirWindow(){
         //stage = (Stage)anchorPane.getScene().getWindow();
         stage = new Stage();
-        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona
+        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona\
 
         //get selected directory to file
         indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
 
         //indexing
         try {
-            stageLoader("../IndexingLoader.fxml",true,null);
+            stageLoader("../IndexingLoader.fxml",3,null);
         } catch (Exception e) {
             e.printStackTrace();
             return;
