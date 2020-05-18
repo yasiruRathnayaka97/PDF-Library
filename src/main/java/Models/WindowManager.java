@@ -55,22 +55,6 @@ public class WindowManager {
         if(borderType==2) {
             stage.initStyle(StageStyle.DECORATED);
             stage.setResizable(false);
-
-            //set stage movable
-            /*root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    xOffset = event.getSceneX();
-                    yOffset = event.getSceneY();
-                }
-            });
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    stage.setX(event.getScreenX() - xOffset);
-                    stage.setY(event.getScreenY() - yOffset);
-                }
-            });*/
         }else if(borderType==3){
             stage.initStyle(StageStyle.UNDECORATED);
         }
@@ -85,9 +69,8 @@ public class WindowManager {
     }
 
     public void dirWindow(){
-        //stage = (Stage)anchorPane.getScene().getWindow();
         stage = new Stage();
-        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona\
+        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona
 
         //get selected directory to file
         indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());

@@ -24,7 +24,7 @@
             </JFXPasswordField>
             <Label fx:id="lbl21" alignment="CENTER" layoutX="86.0" prefHeight="70.0" prefWidth="189.0" text="Sign In" textFill="#1a33d5">
                <font>
-                  <Font size="48.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
             <JFXButton fx:id="btnSignIn" buttonType="RAISED" layoutX="161.0" layoutY="302.0" onMouseClicked="#handleSignIn" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px;" text="" textFill="WHITE">
@@ -64,7 +64,7 @@
             </JFXButton>
             <Label fx:id="lbl2" alignment="CENTER" layoutX="86.0" prefHeight="70.0" prefWidth="189.0" text="Sign Up" textFill="#1a33d5">
                <font>
-                  <Font size="48.0" />
+                  <Font name="System Bold" size="48.0" />
                </font>
             </Label>
          </children>
@@ -83,12 +83,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="btnSignUpTab" layoutY="146.0" onMouseClicked="#showSignUp" prefHeight="46.0" prefWidth="107.0" text="Sign Up" textFill="#1a33d5" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="146.0">
+      <JFXButton fx:id="btnSignUpTab" layoutX="14.0" layoutY="146.0" onMouseClicked="#showSignUp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #bababa;" text="Sign Up" textFill="#1a33d5" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="146.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnSignInTab" layoutY="227.0" onMouseClicked="#showSignIn" prefHeight="46.0" prefWidth="107.0" text="Sign In" textFill="#1a33d5" AnchorPane.rightAnchor="625.8" AnchorPane.topAnchor="227.0">
+      <JFXButton fx:id="btnSignInTab" layoutX="14.0" layoutY="228.0" onMouseClicked="#showSignIn" prefHeight="46.0" prefWidth="80.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #bababa;" text="Sign In" textFill="#1a33d5" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="228.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

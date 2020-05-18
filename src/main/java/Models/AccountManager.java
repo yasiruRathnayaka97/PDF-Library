@@ -327,8 +327,6 @@ public class AccountManager{
     }
 
     public void writeLastLogged(){
-        System.out.println("AA");
-
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();

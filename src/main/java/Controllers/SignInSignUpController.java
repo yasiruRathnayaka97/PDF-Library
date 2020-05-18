@@ -17,8 +17,6 @@ import java.util.ResourceBundle;
 
 public class SignInSignUpController implements Initializable {
     @FXML
-    private JFXButton btnClose;
-    @FXML
     private JFXButton btnSignUpTab;
     @FXML
     private JFXButton btnSignInTab;
@@ -78,7 +76,7 @@ public class SignInSignUpController implements Initializable {
         if(res.equals("success")){
             System.out.println("Successfully Sign Up!");
             windowManager.stageLoader("../App.fxml",1,"PDF Library");
-            windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+            windowManager.closeWindow((Stage) btnSignUpTab.getScene().getWindow());
         }
         else if(res.equals("Please enter required data")){
             alertManager.showAlert("Please enter required data");
@@ -103,7 +101,7 @@ public class SignInSignUpController implements Initializable {
         if(res.equals("success")){
             System.out.println("Successfully login!");
             windowManager.stageLoader("../App.fxml",1,"PDF Library");
-            windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
+            windowManager.closeWindow((Stage) btnSignUpTab.getScene().getWindow());
         }
         else if(res.equals("Please enter required data")){
             alertManager.showAlert("Please enter required data");
