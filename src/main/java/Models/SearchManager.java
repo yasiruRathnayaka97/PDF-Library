@@ -39,13 +39,14 @@ public class SearchManager {
     private String searchType;
     private String searchKeyword;
 
-    public void setSearchResult(String searchKeyword, String searchType) {
+    public String setSearchResult(String searchKeyword, String searchType) {
         searchResult = search(searchType,searchKeyword);
         this.searchType = searchType;
         this.searchKeyword = searchKeyword;
 
         //add to history
         historyManager.addHistory(searchKeyword,searchType,indexManager.getDirPath());
+        return "success";
     }
 
     public ArrayList<String> getSearchResult() {

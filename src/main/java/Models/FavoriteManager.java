@@ -52,7 +52,7 @@ public class FavoriteManager {
         return path;
     }
 
-    public void getCategoryFromDB(){
+    public String getCategoryFromDB(){
         try {
             conn=dbManager.connect();
             stmt = conn.prepareStatement("SELECT id,name FROM Category WHERE username=?");
@@ -76,8 +76,10 @@ public class FavoriteManager {
             resultSet.close();
             stmt.close();
             conn.close();
+            return "success";
         } catch (SQLException e) {
             e.printStackTrace();
+            return "error";
         }
     }
 
@@ -184,7 +186,7 @@ public class FavoriteManager {
         return true;
     }
 
-    public void clearFav(String categoryName){
+    public boolean clearFav(String categoryName){
         String categoryID = getCategoryID(categoryName);
 
         try {
@@ -196,12 +198,14 @@ public class FavoriteManager {
             conn.close();
         }catch (Exception e){
             e.printStackTrace();
+            return false;
         }
 
         categories.get(categoryID).clearFavorites();
+        return true;
     }
 
-    public void deleteCategory(String categoryName){
+    public boolean deleteCategory(String categoryName){
         String categoryID = getCategoryID(categoryName);
         clearFav(categoryName);
 
@@ -214,9 +218,11 @@ public class FavoriteManager {
             conn.close();
         }catch (Exception e){
             e.printStackTrace();
+            return false;
         }
 
         categories.remove(categoryID);
+        return true;
     }
 
     public String getCategoryID(String categoryName){

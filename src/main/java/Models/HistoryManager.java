@@ -29,7 +29,7 @@ public class HistoryManager{
     private ResultSet resultSet;
     private HistoryItem historyItem;
 
-    public void addHistory(String keyword, String type, String directory){
+    public boolean addHistory(String keyword, String type, String directory){
         try {
             conn = dbManager.connect();
             stmt = conn.prepareStatement("INSERT INTO history(id,keyword,type,directory,username) VALUES (?,?,?,?,?)");
@@ -42,10 +42,11 @@ public class HistoryManager{
             stmt.close();
             conn.close();
             System.out.println("Added to history");
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-
     }
 
     public ArrayList<HistoryItem> getHistory(){
@@ -70,7 +71,7 @@ public class HistoryManager{
     }
 
     //delete history one record from array list index
-    public void deleteOne(String id){
+    public boolean deleteOne(String id){
         try{
             conn = dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM history WHERE id = ?");
@@ -78,12 +79,14 @@ public class HistoryManager{
             stmt.executeUpdate();
             stmt.close();
             conn.close();
+            return true;
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void deleteAll(){
+    public boolean deleteAll(){
         try{
             conn = dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM history WHERE username=?");
@@ -92,8 +95,10 @@ public class HistoryManager{
             stmt.close();
             conn.close();
             history.clear();
+            return true;
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 }
