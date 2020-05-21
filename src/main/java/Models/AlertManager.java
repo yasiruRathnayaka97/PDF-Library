@@ -25,6 +25,6 @@ public class AlertManager {
         this.message = message;
 
         //load alert stage
-        windowManager.stageLoader("../AlertWindow.fxml",2,null);
+        windowManager.stageLoader("../AlertWindow.fxml",3,"Alert!");
     }
 }

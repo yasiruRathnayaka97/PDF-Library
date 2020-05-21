@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="296.0" prefWidth="364.0" style="-fx-background-color: white; -fx-border-color: #1A33D5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NewFavoriteController">
+<AnchorPane prefHeight="296.0" prefWidth="364.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NewFavoriteController">
    <children>
       <JFXComboBox fx:id="comboCategory" labelFloat="true" layoutX="89.0" layoutY="30.0" prefHeight="26.0" prefWidth="186.0" promptText="Category" stylesheets="@Stylesheets/ComboBox.css" AnchorPane.topAnchor="40.0">
          <styleClass>

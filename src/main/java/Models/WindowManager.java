@@ -31,26 +31,22 @@ public class WindowManager {
         stage.setScene(scene);
         stage.getIcons().add(new Image("Icon.png"));
 
-        //set title
-        if(title!=null){
-            stage.setTitle(title);
-            if(title.equals("PDF Library")){
-                stage.setMaximized(true);
-            }
-        }
+        stage.setTitle(title);
 
-        if(title=="PDF Library"){
+        if(borderType==1){
+            stage.setMaximized(true);
             stage.initModality(Modality.WINDOW_MODAL);
-        }else{
-            stage.initModality(Modality.APPLICATION_MODAL);
         }
-
-        //set modality and boarder style
-        if(borderType==2) {
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setResizable(false);
-        }else if(borderType==3){
-            stage.initStyle(StageStyle.UNDECORATED);
+        else{
+            stage.initModality(Modality.APPLICATION_MODAL);
+            if(borderType==2) {
+                stage.initStyle(StageStyle.DECORATED);
+            }else if(borderType==3){
+                stage.initStyle(StageStyle.DECORATED);
+                stage.setResizable(false);
+            }else if(borderType==4){
+                stage.initStyle(StageStyle.UNDECORATED);
+            }
         }
 
         //show stage
@@ -71,7 +67,7 @@ public class WindowManager {
 
         //indexing
         try {
-            stageLoader("../IndexingLoader.fxml",3,null);
+            stageLoader("../IndexingLoader.fxml",4,null);
         } catch (Exception e) {
             e.printStackTrace();
             return;

@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: #bababa; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.IndexingLoaderController">
    <children>
-      <Label layoutX="95.0" layoutY="218.0" prefHeight="30.0" prefWidth="113.0" text="Please Wait!" AnchorPane.bottomAnchor="51.599999999999994" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="94.0">
+      <Label layoutX="93.0" layoutY="218.0" prefHeight="30.0" prefWidth="119.0" text="Please Wait!" AnchorPane.bottomAnchor="51.599999999999994" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="92.0">
          <font>
             <Font size="20.0" />
          </font></Label>

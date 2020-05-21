@@ -32,7 +32,7 @@ public class App extends Application {
         }
         else{
             //load sign in sign up stage
-            windowManager.stageLoader("../SignInSignUp.fxml",2,null);
+            windowManager.stageLoader("../SignInSignUp.fxml",3,"Welcome to PDF Library");
         }
     }
 }
