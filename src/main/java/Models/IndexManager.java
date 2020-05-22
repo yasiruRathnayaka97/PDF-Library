@@ -95,10 +95,11 @@ public class IndexManager {
         return paths;
     }
 
-    public void setDirPath(String dirPath) {
+    public String setDirPath(String dirPath) {
         this.dirPath = dirPath;
         this.paths = fm.getAllPDFUnderDir(dirPath);
         System.out.println("Paths updated");
+        return "Paths updated";
     }
 
     public String getDirPath() {

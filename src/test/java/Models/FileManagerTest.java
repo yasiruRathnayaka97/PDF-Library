@@ -1,6 +1,10 @@
 package Models;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class FileManagerTest {
@@ -42,6 +46,17 @@ public class FileManagerTest {
         FileManager fileManager = new FileManager();
 
         assertEquals("deleted",fileManager.clearDir("./pdf/Dilanka"));
+    }
+
+    //getAllPDFUnderDir
+    @Test
+    public void getAllPDFUnderDirTest(){
+        FileManager fileManager = new FileManager();
+
+        List<String> expected = new ArrayList<String>();
+        expected.add(".\\pdf\\CS2022_L01_Introduction.pdf");
+
+        assertEquals(expected,fileManager.getAllPDFUnderDir("./pdf"));
     }
 
 }
