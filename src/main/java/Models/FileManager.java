@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileManager {
-    public void saveFile(String path){
+    public boolean saveFile(String path){
         AccountManager accountManager = AccountManager.getInstance();
         SearchManager searchManager = SearchManager.getInstance();
         String resultout="";
@@ -34,8 +34,10 @@ public class FileManager {
             FileWriter fileWriter=new FileWriter(path);
             fileWriter.write(content);
             fileWriter.close();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
@@ -73,15 +75,14 @@ public class FileManager {
     public  String clearDir(String path) {
         try {
             FileUtils.cleanDirectory(new File(path));
+            return  "deleted";
+        }
+        catch(IOException e){
+            e.printStackTrace();
+            return "error";
         }
 
-    catch(IOException e)
-
-    {
-        e.printStackTrace();
-    }
-    return  "deleted";
     }
 
-    }
+}
 
