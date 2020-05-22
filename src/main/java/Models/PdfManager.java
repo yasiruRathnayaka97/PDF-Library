@@ -9,52 +9,56 @@ import java.util.ArrayList;
 public class PdfManager {
 
     public String readPdfPage(PDDocument pdf,PDFTextStripper pdfStripper,int pageNumber){
-try {
-    pdfStripper.setStartPage(pageNumber);
-    pdfStripper.setEndPage(pageNumber);
+        try {
+            pdfStripper.setStartPage(pageNumber);
+            pdfStripper.setEndPage(pageNumber);
 
             String text = pdfStripper.getText(pdf);
             return text;
 
-}
-catch (Exception e){
-    e.printStackTrace();
-    return "Error";
-}
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return "Error";
+        }
     }
 
     public ArrayList<String> readPdf(String pathPdf) {
         ArrayList<String> contentArrayList=new ArrayList<String>();
-    try{
-        File file = new File(pathPdf);
-        if (file.exists()) {
-            String[] pathSplit = pathPdf.split("/");
-            String extension = pathSplit[pathSplit.length - 1].split("\\.")[1];
-            if (extension.equals("pdf")) {
-                PDDocument pdf = PDDocument.load(file);
-                PDFTextStripper pdfStripper = new PDFTextStripper();
-                for(int pageNumber=1;pageNumber<=pdf.getNumberOfPages();pageNumber++){
-                    String pageContent=readPdfPage(pdf,pdfStripper, pageNumber);
-                    contentArrayList.add(pageContent);
-                }
-                pdf.close();
-                return contentArrayList;
-            } else {
-                System.out.println("Not a PDF");
-                return null;
+        try{
+            File file = new File(pathPdf);
+            if (file.exists()) {
+                String[] pathSplit = pathPdf.split("/");
+                String extension = pathSplit[pathSplit.length - 1].split("\\.")[1];
+                if (extension.equals("pdf")) {
+                    PDDocument pdf = PDDocument.load(file);
+                    PDFTextStripper pdfStripper = new PDFTextStripper();
+                    for(int pageNumber=1;pageNumber<=pdf.getNumberOfPages();pageNumber++){
+                        String pageContent=readPdfPage(pdf,pdfStripper, pageNumber);
+                        contentArrayList.add(pageContent);
+                    }
+                    pdf.close();
+                    return contentArrayList;
+                } else {
+                    System.out.println("Not a PDF");
+                    ArrayList<String> returnMsg = new ArrayList<String>();
+                    returnMsg.add("Not a PDF");
+                    return returnMsg;
 
-            }
+                }
         } else {
             System.out.println("File path is invalid");
-            return null;
+            ArrayList<String> returnMsg = new ArrayList<String>();
+            returnMsg.add("File path is invalid");
+            return returnMsg;
         }
+    }
+    catch (Exception e){
+                e.printStackTrace();
+            return  null;
+            }
+    }
 
-    }
-catch (Exception e){
-            e.printStackTrace();
-        return  null;
-        }
-    }
     public String openPdf(String pathPdf){
         try {
 
