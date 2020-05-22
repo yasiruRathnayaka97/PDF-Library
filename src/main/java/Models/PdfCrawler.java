@@ -27,7 +27,7 @@ public class PdfCrawler {
 
     public ArrayList<String[]> getCrawlData(ArrayList<String> contentArrayList){
 
-         ArrayList<String[]> crawlData=new ArrayList<> ();
+        ArrayList<String[]> crawlData=new ArrayList<> ();
         for(int i=0;i<contentArrayList.size();i++){
             int pageNumber=i+1;
             ArrayList<String[]> filteredArr= this.filterSentences(pageNumber ,this.getSentences(contentArrayList.get(i)));
