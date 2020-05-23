@@ -49,7 +49,7 @@ public class FavoriteManagerTest {
     }
 
     //Test on add to existing category
-    @Test
+    /*@Test
     public void addFavoriteTest3(){ //TODO metana hadanna puluwanda balanna nettan delete karanna
         AccountManager accountManager = AccountManager.getInstance();
 
@@ -68,7 +68,7 @@ public class FavoriteManagerTest {
         assertEquals("success",favoriteManager.addFavorite(false,"Crime"));
 
         accountManager.deleteAccount("DilankaAdmin");
-    }
+    }*/
 
     //Test on create new category with existing name
     @Test
