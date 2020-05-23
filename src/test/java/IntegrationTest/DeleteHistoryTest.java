@@ -1,36 +1,30 @@
-package Models;
+package IntegrationTest;
 
+import Models.AccountManager;
+import Models.HistoryItem;
+import Models.HistoryManager;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-public class HistoryManagerTest {
-    //addHistory
-    //test on success
-    @Test
-    public void addHistoryTest(){
-        AccountManager accountManager = AccountManager.getInstance();
+public class DeleteHistoryTest {
+    AccountManager accountManager;
+    HistoryManager historyManager;
 
+    @Before
+    public void setup(){
+        accountManager = AccountManager.getInstance();
         accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        HistoryManager historyManager = HistoryManager.getInstance();
-
-        assertTrue(historyManager.addHistory("The","content","C:\\Users\\DilankaRathnasiri"));
-
-        accountManager.deleteAccount("Dilanka");
+        historyManager = HistoryManager.getInstance();
     }
 
     //deleteOne
     @Test
     public void deleteOneTest(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        HistoryManager historyManager = HistoryManager.getInstance();
-
         historyManager.addHistory("The","content","C:\\Users\\DilankaRathnasiri");
 
         ArrayList<HistoryItem> history = historyManager.getHistory();
@@ -43,12 +37,6 @@ public class HistoryManagerTest {
     //deleteAll
     @Test
     public void deleteAllTest(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        HistoryManager historyManager = HistoryManager.getInstance();
-
         historyManager.addHistory("The","content","C:\\Users\\DilankaRathnasiri");
 
         historyManager.addHistory("The","content","C:\\Users\\DilankaRathnasiri");
@@ -60,8 +48,10 @@ public class HistoryManagerTest {
         ArrayList<HistoryItem> history = historyManager.getHistory();
 
         assertTrue(historyManager.deleteAll());
-
-        accountManager.deleteAccount("Dilanka");
     }
 
+    @After
+    public void teardown(){
+        accountManager.deleteAccount("Dilanka");
+    }
 }

@@ -280,7 +280,7 @@ public class AccountManager{
         return changeUsername;
     }
 
-    public void deleteAccount(String username){
+    public String deleteAccount(String username){
         try {
             conn = dbManager.connect();
             stmt = conn.prepareStatement("DELETE FROM user WHERE username = ?");
@@ -289,8 +289,10 @@ public class AccountManager{
             stmt.close();
             conn.close();
             signOut();
+            return "success";
         } catch (Exception e) {
             e.printStackTrace();
+            return "error";
         }
     }
 

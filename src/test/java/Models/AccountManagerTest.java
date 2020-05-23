@@ -125,80 +125,51 @@ public class AccountManagerTest {
     //changePassword
     @Test
     public void changePasswordTest2(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Please enter required data",accountManager.changePassword("","","",""));
     }
 
     @Test
     public void changePasswordTest3(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Please enter required data",accountManager.changePassword("","dilanka","Anuradha","Anuradha"));
     }
 
     @Test
     public void changePasswordTest4(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Please enter required data",accountManager.changePassword("dilanka","","Anuradha","Anuradha"));
     }
 
     @Test
     public void changePasswordTest5(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","","Anuradha"));
     }
 
     @Test
     public void changePasswordTest6(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","Anuradha",""));
     }
 
     @Test
     public void changePasswordTest7(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Password is too short!",accountManager.changePassword("Dilanka","Dilanka","Anu","Anu"));
     }
 
     @Test
     public void changePasswordTest8(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("New password and confirm new password mismatch!",accountManager.changePassword("Dilanka","Dilanka","Dilanka","Anuradha"));
     }
 
     @Test
     public void changePasswordTest9(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertEquals("Invalid username or password!",accountManager.changePassword("Dilanka","Dilanka","Anuradha","Anuradha"));
-    }
-
-    @Test
-    public void changePasswordTest10(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        assertEquals("Invalid username or password!",accountManager.changePassword("Dilanka","Anuradha","Dilanka","Dilanka"));
-
-        accountManager.deleteAccount("Dilanka");
     }
 
     //checkLoggingCorrect
     @Test
     public void checkLoggingCorrectTest1(){
-        AccountManager accountManager = AccountManager.getInstance();
-
         assertFalse(accountManager.checkLoggingCorrect("dilanka","dilanka"));
     }
 
-    @Test
+    @Test //TODO ==> integration test
     public void checkLoggingCorrectTest2(){
         AccountManager accountManager = AccountManager.getInstance();
 

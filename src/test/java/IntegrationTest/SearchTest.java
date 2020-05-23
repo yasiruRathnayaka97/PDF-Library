@@ -1,13 +1,15 @@
-package Models;
+package IntegrationTest;
 
+import Models.AccountManager;
+import Models.IndexManager;
+import Models.SearchManager;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class SearchManagerTest {
-    //setSearchResult
+public class SearchTest {
     @Test
-    public void setSearchResultTest(){
+    public void success(){
         SearchManager searchManager = SearchManager.getInstance();
 
         AccountManager accountManager = AccountManager.getInstance();
@@ -22,7 +24,4 @@ public class SearchManagerTest {
 
         accountManager.deleteAccount("Dilanka");
     }
-
-    //
-
 }
