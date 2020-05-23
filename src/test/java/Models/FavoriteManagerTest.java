@@ -8,26 +8,6 @@ import static org.junit.Assert.assertTrue;
 
 public class FavoriteManagerTest {
     //addFavoriteTest
-    //test on add new category success
-    @Test
-    public void addFavoriteTest1(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        FavoriteManager favoriteManager = FavoriteManager.getInstance();
-
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
-
-        favoriteManager.setKeyword("Godfather");
-
-        favoriteManager.setSearchType("content");
-
-        assertEquals("success",favoriteManager.addFavorite(true,"Crime"));
-
-        accountManager.deleteAccount("Dilanka");
-    }
-
     //Test on empty categoryName
     @Test
     public void addFavoriteTest2(){
@@ -37,9 +17,9 @@ public class FavoriteManagerTest {
 
         FavoriteManager favoriteManager = FavoriteManager.getInstance();
 
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
+        favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
-        favoriteManager.setKeyword("Godfather");
+        favoriteManager.setKeyword("The");
 
         favoriteManager.setSearchType("content");
 
@@ -47,28 +27,6 @@ public class FavoriteManagerTest {
 
         accountManager.deleteAccount("Dilanka");
     }
-
-    //Test on add to existing category
-    /*@Test
-    public void addFavoriteTest3(){ //TODO metana hadanna puluwanda balanna nettan delete karanna
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("DilankaAdmin","DilankaAdmin","DilankaAdmin");
-
-        FavoriteManager favoriteManager = FavoriteManager.getInstance();
-
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
-
-        favoriteManager.setKeyword("Godfather");
-
-        favoriteManager.setSearchType("content");
-
-        favoriteManager.addFavorite(true,"Crime");
-
-        assertEquals("success",favoriteManager.addFavorite(false,"Crime"));
-
-        accountManager.deleteAccount("DilankaAdmin");
-    }*/
 
     //Test on create new category with existing name
     @Test
@@ -79,15 +37,15 @@ public class FavoriteManagerTest {
 
         FavoriteManager favoriteManager = FavoriteManager.getInstance();
 
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
+        favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
-        favoriteManager.setKeyword("Godfather");
+        favoriteManager.setKeyword("The");
 
         favoriteManager.setSearchType("content");
 
-        favoriteManager.addFavorite(true,"Crime");
+        favoriteManager.addFavorite(true,"A");
 
-        assertEquals("Category is already existed!",favoriteManager.addFavorite(true,"Crime"));
+        assertEquals("Category is already existed!",favoriteManager.addFavorite(true,"A"));
 
         accountManager.deleteAccount("Dilanka");
     }
@@ -108,9 +66,9 @@ public class FavoriteManagerTest {
 
         FavoriteManager favoriteManager = FavoriteManager.getInstance();
 
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
+        favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
-        favoriteManager.setKeyword("Godfather");
+        favoriteManager.setKeyword("The");
 
         favoriteManager.setSearchType("content");
 
@@ -156,9 +114,9 @@ public class FavoriteManagerTest {
 
         FavoriteManager favoriteManager = FavoriteManager.getInstance();
 
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
+        favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
-        favoriteManager.setKeyword("Godfather");
+        favoriteManager.setKeyword("The");
 
         favoriteManager.setSearchType("content");
 
@@ -175,60 +133,6 @@ public class FavoriteManagerTest {
         accountManager.deleteAccount("Dilanka");
     }
 
-    //deleteFav
-    @Test
-    public void deleteFavTest(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        FavoriteManager favoriteManager = FavoriteManager.getInstance();
-
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
-
-        favoriteManager.setKeyword("Godfather");
-
-        favoriteManager.setSearchType("content");
-
-        favoriteManager.addFavorite(true,"A");
-
-        ObservableList<FavoriteItem> favorites = FXCollections.observableArrayList();
-
-        favorites = favoriteManager.getFavorites("A");
-
-        assertTrue(favoriteManager.deleteFav(favorites.get(0),"A"));
-
-        accountManager.deleteAccount("Dilanka");
-    }
-
-    //clearFav
-    @Test
-    public void clearFavTest(){
-        AccountManager accountManager = AccountManager.getInstance();
-
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        FavoriteManager favoriteManager = FavoriteManager.getInstance();
-
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
-
-        favoriteManager.setKeyword("Godfather");
-
-        favoriteManager.setSearchType("content");
-
-        favoriteManager.addFavorite(true,"A");
-
-        favoriteManager.addFavorite(false,"A");
-
-        favoriteManager.addFavorite(false,"A");
-
-        favoriteManager.addFavorite(false,"A");
-
-        assertTrue(favoriteManager.clearFav("A"));
-
-        accountManager.deleteAccount("Dilanka");
-    }
-
     //deleteCategory
     @Test
     public void deleteCategoryTest(){
@@ -238,9 +142,9 @@ public class FavoriteManagerTest {
 
         FavoriteManager favoriteManager = FavoriteManager.getInstance();
 
-        favoriteManager.setPath("C:\\Users\\DilankaRathnasiri\\Desktop\\Godfather 01 - The Godfather ( PDFDrive.com ).pdf");
+        favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
-        favoriteManager.setKeyword("Godfather");
+        favoriteManager.setKeyword("The");
 
         favoriteManager.setSearchType("content");
 
