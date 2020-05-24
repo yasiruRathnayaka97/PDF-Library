@@ -58,9 +58,8 @@ public class WindowManager {
         stage.close();
     }
 
-    public void dirWindow(){
-        stage = new Stage();
-        dirChooser = new DirectoryChooser();//TODO metana application mode ekata modality set karanna ona
+    public void dirWindow(Stage stage){
+        dirChooser = new DirectoryChooser();
 
         //get selected directory to file
         indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
@@ -74,13 +73,13 @@ public class WindowManager {
         }
     }
 
-    public void openSaveDialog(){
+    public void openSaveDialog(Stage stage){
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save Search");
             FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter(".txt files (*.txt)", "*.txt");
             fileChooser.getExtensionFilters().add(txtFilter);
-            File file = fileChooser.showSaveDialog(new Stage());//TODO metana application mode ekata modality set karanna ona
+            File file = fileChooser.showSaveDialog(stage);
             fileManager.saveFile(file.getAbsolutePath());
         }catch (Exception e){
 

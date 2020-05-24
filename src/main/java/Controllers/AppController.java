@@ -77,7 +77,7 @@ public class AppController implements Initializable {
 
     public void handleDirectory(MouseEvent mouseEvent) {
         try{
-            windowManager.dirWindow();
+            windowManager.dirWindow((Stage) btnUser.getScene().getWindow());
         }catch(Exception e){
 
         }
@@ -183,6 +183,6 @@ public class AppController implements Initializable {
             }
             return;
         }
-        windowManager.openSaveDialog();
+        windowManager.openSaveDialog((Stage) btnUser.getScene().getWindow());
     }
 }
