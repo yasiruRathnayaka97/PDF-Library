@@ -33,7 +33,7 @@ public class AddFavouriteTest {
     }
 
     @Test
-    public void addFavoriteTest3(){
+    public void addExistingCategorySuccess(){
         favoriteManager.setPath("./pdf/CS2022_L01_Introduction.pdf");
 
         favoriteManager.setKeyword("The");
