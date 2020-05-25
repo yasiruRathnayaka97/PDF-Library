@@ -23,6 +23,36 @@ public class ChangeUsernameTest {
     }
 
     @Test
+    public void allEmptyInputs(){
+        assertEquals("Please enter required data",accountManager.changeUsername("","",""));
+    }
+
+    @Test
+    public void emptyUsername(){
+        assertEquals("Please enter required data",accountManager.changeUsername("","dilanka","dilankar"));
+    }
+
+    @Test
+    public void emptyPassword(){
+        assertEquals("Please enter required data",accountManager.changeUsername("dilanka","","dilankar"));
+    }
+
+    @Test
+    public void emptyNewUsername(){
+        assertEquals("Please enter required data",accountManager.changeUsername("dilanka","dilanka",""));
+    }
+
+    @Test
+    public void newUsernameWithSpace(){
+        assertEquals("User name cannot be contained spaces",accountManager.changeUsername("dilanka","dilanka","dilanka r"));
+    }
+
+    @Test
+    public void InvalidUsername(){
+        assertEquals("Invalid username or password!",accountManager.changeUsername("dil","dilanka","dilankar"));
+    }
+
+    @Test
     public void usernameIsUsed(){
         accountManager.register("Dilanka","Dilanka","Dilanka");
 

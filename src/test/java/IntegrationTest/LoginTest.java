@@ -22,8 +22,28 @@ public class LoginTest {
     }
 
     @Test
-    public void userNotRegistered(){
+    public void incorrectPassword(){
         assertEquals("Invalid username or password!",accountManager.login("Dilanka","dilanka"));
+    }
+
+    @Test
+    public void allEmptyInputs(){
+        assertEquals("Please enter required data",accountManager.login("",""));
+    }
+
+    @Test
+    public void emptyPassword(){
+        assertEquals("Please enter required data",accountManager.login("dilanka",""));
+    }
+
+    @Test
+    public void emptyUsername(){
+        assertEquals("Please enter required data",accountManager.login("","dilanka"));
+    }
+
+    @Test
+    public void invalidUsername(){
+        assertEquals("Invalid username or password!",accountManager.login("dil","dilanka"));
     }
 
     @After

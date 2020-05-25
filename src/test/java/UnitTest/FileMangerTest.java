@@ -1,31 +1,25 @@
-package Models;
+package UnitTest;
 
+import Models.FileManager;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class FileManagerTest {
-    //saveFile //TODO metana balanna
-    /*@Test
-    public void saveFileTest(){
-        FileManager fileManager = new FileManager();
+public class FileMangerTest {
+    FileManager fileManager;
 
-        AccountManager accountManager = AccountManager.getInstance();
-        accountManager.register("Dilanka","Dilanka","Dilanka");
-
-        assertTrue(fileManager.saveFile("./pdf/Dilanka"));
-
-        accountManager.deleteAccount("Dilanka");
-    }*/
+    @Before
+    public void setup(){
+        fileManager = new FileManager();
+    }
 
     //createDir
     @Test
     public void createDirTest1(){
-        FileManager fileManager = new FileManager();
-
         assertEquals("Dir created successfully",fileManager.createDir("./pdf/Dilanka/Dilanka"));
 
         fileManager.clearDir("./pdf/Dilanka");
@@ -33,8 +27,6 @@ public class FileManagerTest {
 
     @Test
     public void createDirTest2(){
-        FileManager fileManager = new FileManager();
-
         assertEquals("Dir almost exist",fileManager.createDir("./pdf/Dilanka"));
 
         fileManager.clearDir("./pdf/Dilanka");
@@ -43,20 +35,15 @@ public class FileManagerTest {
     //clearDir
     @Test
     public void clearDirTest1(){
-        FileManager fileManager = new FileManager();
-
         assertEquals("deleted",fileManager.clearDir("./pdf/Dilanka"));
     }
 
     //getAllPDFUnderDir
     @Test
     public void getAllPDFUnderDirTest(){
-        FileManager fileManager = new FileManager();
-
         List<String> expected = new ArrayList<String>();
         expected.add(".\\pdf\\CS2022_L01_Introduction.pdf");
 
         assertEquals(expected,fileManager.getAllPDFUnderDir("./pdf"));
     }
-
 }

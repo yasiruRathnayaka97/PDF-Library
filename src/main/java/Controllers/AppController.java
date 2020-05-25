@@ -128,7 +128,10 @@ public class AppController implements Initializable {
             searchType = dropDownSearchType.getValue().toString();
             keyword = textSearch.getText();
             searchManager.setSearchResult(keyword,searchType);
+            //add to history
+            historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
             searchResult = searchManager.getSearchResult();
+
 
             //display search result in list view
             if (!searchResult.isEmpty()){

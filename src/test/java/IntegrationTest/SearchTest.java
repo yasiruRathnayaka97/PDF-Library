@@ -18,7 +18,7 @@ public class SearchTest {
 
         IndexManager indexManager = IndexManager.getInstance();
 
-        indexManager.setDirPath("C:\\Users\\DilankaRathnasiri\\Documents\\sample");
+        indexManager.setDirPath("./pdf");
 
         assertEquals("success",searchManager.setSearchResult("The","content"));
 

@@ -25,6 +25,46 @@ public class ChangePasswordTest {
         assertEquals("Invalid username or password!",accountManager.changePassword("Dilanka","Anuradha","Dilanka","Dilanka"));
     }
 
+    @Test
+    public void allEmptyInputs(){
+        assertEquals("Please enter required data",accountManager.changePassword("","","",""));
+    }
+
+    @Test
+    public void emptyUsername(){
+        assertEquals("Please enter required data",accountManager.changePassword("","dilanka","Anuradha","Anuradha"));
+    }
+
+    @Test
+    public void emptyPassword(){
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","","Anuradha","Anuradha"));
+    }
+
+    @Test
+    public void emptyNewPassword(){
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","","Anuradha"));
+    }
+
+    @Test
+    public void emptyConfPassword(){
+        assertEquals("Please enter required data",accountManager.changePassword("dilanka","dilanka","Anuradha",""));
+    }
+
+    @Test
+    public void shortNewPassword(){
+        assertEquals("Password is too short!",accountManager.changePassword("Dilanka","Dilanka","Anu","Anu"));
+    }
+
+    @Test
+    public void newPasswordConfPasswordMismatch(){
+        assertEquals("New password and confirm new password mismatch!",accountManager.changePassword("Dilanka","Dilanka","Dilanka","Anuradha"));
+    }
+
+    @Test
+    public void invalidUser(){
+        assertEquals("Invalid username or password!",accountManager.changePassword("dil","Dilanka","Anuradha","Anuradha"));
+    }
+
     @After
     public void teardown(){
         accountManager.deleteAccount("Dilanka");

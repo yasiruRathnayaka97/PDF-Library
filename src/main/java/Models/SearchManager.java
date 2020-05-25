@@ -43,9 +43,6 @@ public class SearchManager {
         searchResult = search(searchType,searchKeyword);
         this.searchType = searchType;
         this.searchKeyword = searchKeyword;
-
-        //add to history
-        historyManager.addHistory(searchKeyword,searchType,indexManager.getDirPath());
         return "success";
     }
 
