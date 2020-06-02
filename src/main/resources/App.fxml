@@ -90,7 +90,11 @@
                </graphic>
             </JFXButton>
             <JFXTextField fx:id="textSearch" focusColor="#1a33d5" layoutX="35.0" layoutY="37.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="37.0" />
-            <JFXListView fx:id="listViewResult" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@Stylesheets/ListView.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0" />
+            <JFXListView fx:id="listViewResult" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@Stylesheets/ListView.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
+               <styleClass>
+                  <String fx:value="list-cell" />
+                  <String fx:value="list-view" />
+               </styleClass></JFXListView>
             <JFXComboBox fx:id="dropDownSearchType" focusColor="#1a33d5" labelFloat="true" prefHeight="26.0" prefWidth="134.0" promptText="Search type" stylesheets="@Stylesheets/ComboBox.css" visibleRowCount="3" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="32.0">
                <styleClass>
                   <String fx:value="combo-box" />
