@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,6 +42,7 @@ public class FavoriteController implements Initializable {
         windowManager = new WindowManager();
         comboFavCategory.setItems(favoriteManager.getCategoryNames());
 
+        tableFav.setPlaceholder(new Label("No favorite items"));
         colFavKeyword.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.3));
         colFavSearchType.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.2));
         colFavPath.prefWidthProperty().bind(tableFav.widthProperty().multiply(0.5));

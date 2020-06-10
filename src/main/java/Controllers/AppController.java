@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.net.URL;
@@ -138,9 +139,7 @@ public class AppController implements Initializable {
                 listViewResult.setItems(FXCollections.observableArrayList(searchResult));
             }
             else{
-                ArrayList<String> out=new ArrayList<String>();
-                out.add(keyword+" not match for any "+searchType);
-                listViewResult.setItems(FXCollections.observableArrayList(out));
+                listViewResult.setPlaceholder(new Label(keyword+" not match for any "+searchType));
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,6 +44,7 @@ public class HistoryController implements Initializable {
         colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
 
         historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
+        historyTable.setPlaceholder(new Label("No history items"));
 
         colKeyword.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.3));
         colType.prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
