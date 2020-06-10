@@ -24,4 +24,8 @@ public class FavoriteItem {
     public String getKeyword() {
         return keyword;
     }
+
+    public String getSearchType(){
+        return searchType;
+    }
 }
