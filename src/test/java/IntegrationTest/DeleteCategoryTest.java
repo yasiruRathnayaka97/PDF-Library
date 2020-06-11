@@ -19,9 +19,9 @@ public class DeleteCategoryTest {
         favoriteManager.setKeyword("The");
         favoriteManager.setSearchType("content");
 
-        favoriteManager.addFavorite(true,"A");
+        favoriteManager.addFavorite(true,"B");
 
-        assertEquals("success",favoriteManager.addFavorite(false,"A"));
+        assertEquals("success",favoriteManager.addFavorite(false,"B"));
 
         accountManager.deleteAccount("Dilanka");
     }

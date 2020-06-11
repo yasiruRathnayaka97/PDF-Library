@@ -8,6 +8,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -37,6 +38,9 @@
                <tooltip>
                   <Tooltip text="Manage User Settings" />
                </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnDir" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleDirectory" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="Directory" textFill="WHITE">
                <graphic>
@@ -51,6 +55,9 @@
                <tooltip>
                   <Tooltip text="Select Searching Directory" />
                </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnFavourite" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleFav" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="Favorite" textFill="WHITE">
                <graphic>
@@ -65,6 +72,9 @@
                <tooltip>
                   <Tooltip text="Open Favorite" />
                </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnHistory" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleHistory" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1A33D5;" text="History" textFill="WHITE">
                <graphic>
@@ -79,6 +89,9 @@
                <tooltip>
                   <Tooltip text="Open History" />
                </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </VBox>
@@ -86,13 +99,25 @@
          <children>
             <JFXButton fx:id="buttonSearch" buttonType="RAISED" layoutX="571.0" layoutY="31.0" onMouseClicked="#clickSearch" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 200PX;" text=" " textAlignment="CENTER" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="23.0">
                <tooltip>
-                  <Tooltip text="Search" />
+                  <Tooltip text="Search">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
                </tooltip>
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" size="2em" textAlignment="RIGHT" wrappingWidth="29.542881965637207" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXTextField fx:id="textSearch" focusColor="#1a33d5" layoutX="35.0" layoutY="37.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="37.0" />
+            <JFXTextField fx:id="textSearch" focusColor="#1a33d5" layoutX="35.0" layoutY="37.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="37.0">
+               <tooltip>
+                  <Tooltip text="Type Search keyword Here">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
+               </tooltip></JFXTextField>
             <JFXListView fx:id="listViewResult" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@Stylesheets/ListView.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="82.0">
                <styleClass>
                   <String fx:value="list-cell" />
@@ -104,18 +129,33 @@
                   <String fx:value="combo-box-popup" />
                   <String fx:value="list-cell" />
                   <String fx:value="list-view" />
-               </styleClass></JFXComboBox>
+               </styleClass>
+               <tooltip>
+                  <Tooltip text="Select Search Type">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
+               </tooltip></JFXComboBox>
             <JFXButton fx:id="btnOpen" buttonType="RAISED" layoutX="571.0" layoutY="184.0" onMouseClicked="#openFile" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <tooltip>
-                  <Tooltip text="open selected file" />
+                  <Tooltip text="Open Selected File">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
                </tooltip>
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnaddFavourite" buttonType="RAISED" layoutX="572.0" layoutY="106.0" onMouseClicked="#addFav" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 10em;" text="" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="106.0">
                <tooltip>
-                  <Tooltip text="add to favourite" />
+                  <Tooltip text="Add to Favourite">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
                </tooltip>
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -123,14 +163,23 @@
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.5em" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="571.0" layoutY="253.0" onMouseClicked="#saveSearch" prefHeight="40.0" prefWidth="56.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="save" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <tooltip>
-                  <Tooltip text="Save Search Result" />
+                  <Tooltip text="Save Search Result">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Tooltip>
                </tooltip>
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </AnchorPane>

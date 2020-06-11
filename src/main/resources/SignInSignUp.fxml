@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -61,6 +62,9 @@
                <graphic>
                   <FontAwesomeIcon fill="WHITE" fontSmoothingType="LCD" glyphName="CHEVRON_RIGHT" size="2em" textAlignment="CENTER" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <Label fx:id="lbl2" alignment="CENTER" layoutX="86.0" prefHeight="70.0" prefWidth="189.0" text="Sign Up" textFill="#1a33d5">
                <font>
@@ -87,11 +91,17 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton fx:id="btnSignInTab" layoutX="14.0" layoutY="228.0" onMouseClicked="#showSignIn" prefHeight="46.0" prefWidth="80.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #bababa;" text="Sign In" textFill="#1a33d5" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="228.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </AnchorPane>

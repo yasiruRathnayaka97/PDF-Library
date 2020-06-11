@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,30 +26,60 @@
                 <font>
                     <Font size="18.0" />
                 </font>
+            <tooltip>
+               <Tooltip text="Change username" />
+            </tooltip>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
             <Pane prefHeight="17.0" prefWidth="650.0" />
             <JFXButton fx:id="btnUserChangePassword" onMouseClicked="#changePassword" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Change password" textFill="#1a33d5">
                 <font>
                     <Font size="18.0" />
                 </font>
+            <tooltip>
+               <Tooltip text="Change password" />
+            </tooltip>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
             <Pane prefHeight="17.0" prefWidth="650.0" />
             <JFXButton fx:id="btnUserDeleteUser" onMouseClicked="#deleteAccount" prefHeight="42.0" prefWidth="182.0" style="-fx-border-color: red; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="delete account" textFill="RED">
                 <font>
                     <Font size="18.0" />
                 </font>
+            <tooltip>
+               <Tooltip text="delete account" />
+            </tooltip>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
             <Pane prefHeight="35.0" prefWidth="650.0" />
             <JFXButton fx:id="btnUserSignOut" onMouseClicked="#signOut" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px; -fx-border-radius: 30px;" text="Sign out" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
                 </font>
+            <tooltip>
+               <Tooltip text="Sign out" />
+            </tooltip>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
          <Pane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="599.0" />
          <JFXButton fx:id="btnClose" onMouseClicked="#close" prefHeight="42.0" prefWidth="182.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-border-color: #1A33D5; -fx-border-width: 2px;" text="close" textFill="#1a33d5">
             <font>
                <Font size="18.0" />
             </font>
+            <tooltip>
+               <Tooltip text="Close" />
+            </tooltip>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </JFXButton>
          <Pane prefHeight="35.0" prefWidth="599.0" />
         </children>

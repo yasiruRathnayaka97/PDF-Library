@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -40,6 +41,9 @@
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
             <JFXButton fx:id="btnHistoryClear" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onMouseClicked="#clearHistoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="clear" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="140.0">
                 <tooltip>
@@ -48,6 +52,9 @@
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </JFXButton>
          <JFXButton fx:id="btnHistoryOpen" buttonType="RAISED" layoutX="20.0" layoutY="20.0" onMouseClicked="#openHistoryFile" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 15px;" text="open" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="60.0">
             <tooltip>
@@ -56,6 +63,9 @@
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </JFXButton>
         </children></AnchorPane>
    <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="527.0" layoutY="326.0" onMouseClicked="#close" prefHeight="40.0" prefWidth="62.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-width: 2px;" text="close" textAlignment="CENTER" textFill="#1a33d5" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="24.0">
@@ -65,6 +75,9 @@
       <font>
          <Font name="System Bold" size="14.0" />
       </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </JFXButton>
    <StackPane fx:id="spinner" prefHeight="150.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
