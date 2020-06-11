@@ -62,21 +62,6 @@ public class WindowManager {
         stage.close();
     }
 
-    public void dirWindow(Stage stage){
-        dirChooser = new DirectoryChooser();
-
-        //get selected directory to file
-        indexManager.setDirPath(dirChooser.showDialog(stage).getAbsolutePath());
-
-        //indexing
-        try {
-            stageLoader("../IndexingLoader.fxml",4,"");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-    }
-
     public void openSaveDialog(Stage stage){
         try {
             FileChooser fileChooser = new FileChooser();

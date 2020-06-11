@@ -7,10 +7,7 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -49,7 +46,6 @@ public class HistoryController implements Initializable {
         windowManager = new WindowManager();
         searchManager = SearchManager.getInstance();
         indexManager = IndexManager.getInstance();
-        spinner.setVisible(false);
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
         colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
         colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));

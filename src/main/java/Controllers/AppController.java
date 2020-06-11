@@ -7,10 +7,15 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,7 +30,9 @@ public class AppController implements Initializable {
     @FXML
     private JFXListView listViewResult;
     @FXML
-    JFXComboBox dropDownSearchType;
+    private JFXComboBox dropDownSearchType;
+    @FXML
+    private StackPane spinner;
 
     private ObservableList<String> searchTypes;
     private IndexManager indexManager;
@@ -45,6 +52,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         windowManager = new WindowManager();
         accountManager = AccountManager.getInstance();
+        indexManager = IndexManager.getInstance();
         btnUser.textProperty().bind(accountManager.getUsername());
 
         //home pane
@@ -77,12 +85,29 @@ public class AppController implements Initializable {
     }
 
     public void handleDirectory(MouseEvent mouseEvent) {
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        //get selected directory to file
         try{
-            windowManager.dirWindow((Stage) btnUser.getScene().getWindow());
-        }catch(Exception e){
+            indexManager.setDirPath(dirChooser.showDialog((Stage) btnUser.getScene().getWindow()).getAbsolutePath());
 
-        }
+            Task longTask = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    spinner.setVisible(true);
+                    indexManager.indexDirectory();
+                    return null;
+                }
+            };
 
+            longTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent t) {
+                    spinner.setVisible(false);
+                }
+            });
+
+            new Thread(longTask).start();
+        }catch (Exception e){ }
     }
 
     public void handleFav(MouseEvent mouseEvent) {

@@ -66,17 +66,17 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </JFXButton>
-   <StackPane fx:id="spinner" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <StackPane fx:id="spinner" prefHeight="150.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-         <Pane opacity="0.7" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #bababa;" StackPane.alignment="CENTER" />
-         <AnchorPane maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: #bababa; -fx-border-width: 2px;" StackPane.alignment="CENTER">
+         <Pane opacity="0.7" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" StackPane.alignment="CENTER" />
+         <AnchorPane maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" StackPane.alignment="CENTER">
             <children>
-               <Label layoutX="93.0" layoutY="218.0" prefHeight="30.0" prefWidth="119.0" text="Please Wait!" AnchorPane.bottomAnchor="51.599999999999994" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="92.0">
+               <Label layoutX="77.0" layoutY="214.0" prefHeight="35.0" prefWidth="146.0" text="Please Wait!" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="77.0">
                   <font>
-                     <Font size="20.0" />
+                     <Font name="System Bold" size="24.0" />
                   </font>
                </Label>
-               <JFXSpinner layoutX="95.0" layoutY="72.0" prefHeight="110.0" prefWidth="110.0" stylesheets="@Stylesheets/Spinner.css" AnchorPane.topAnchor="72.0">
+               <JFXSpinner layoutX="80.0" layoutY="61.0" prefHeight="140.0" prefWidth="140.0" stylesheets="@Stylesheets/Spinner.css" AnchorPane.topAnchor="61.0">
                   <styleClass>
                      <String fx:value="materialDesign" />
                      <String fx:value="arc" />
