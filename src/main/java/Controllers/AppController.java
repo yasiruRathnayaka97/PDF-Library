@@ -25,7 +25,7 @@ public class AppController implements Initializable {
     @FXML
     private JFXListView listViewResult;
     @FXML
-    private JFXComboBox dropDownSearchType;
+    JFXComboBox dropDownSearchType;
 
     private ObservableList<String> searchTypes;
     private IndexManager indexManager;
@@ -132,7 +132,6 @@ public class AppController implements Initializable {
             //add to history
             historyManager.addHistory(keyword,searchType,indexManager.getDirPath());
             searchResult = searchManager.getSearchResult();
-
 
             //display search result in list view
             if (!searchResult.isEmpty()){

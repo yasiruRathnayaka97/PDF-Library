@@ -82,7 +82,7 @@ public class SearchManager {
                     String resultContent = d.get("content");
                     String resultPdfName = d.get("pdfName");
                     String resultPageNum = d.get("pageNum");
-                if (searchType == "content") {
+                if (searchType.equals("content")) {
 
                     String result1 = "Match content: " + resultContent + ".\n" + "Match PDF name: " + resultPdfName + "\n" + "Match page number: " + resultPageNum + "\n" + "Match PDF path: " + resultPath;
                     matchPdfList.add(result1);

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.lang.String?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowHistoryItemController">
+   <children>
+      <JFXButton fx:id="btnClose" buttonType="RAISED" layoutX="793.0" layoutY="524.0" onMouseClicked="#close" prefHeight="40.0" prefWidth="62.0" style="-fx-border-color: #1A33D5; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-width: 2px;" text="close" textAlignment="CENTER" textFill="#1a33d5" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="24.0">
+         <tooltip>
+            <Tooltip text="Close" />
+         </tooltip>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXListView fx:id="listViewResult" prefHeight="316.0" prefWidth="506.0" showTooltip="true" style="-fx-background-color: white;" stylesheets="@Stylesheets/ListView.css" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="60.0">
+         <styleClass>
+            <String fx:value="list-cell" />
+            <String fx:value="list-view" />
+         </styleClass>
+      </JFXListView>
+      <Label layoutX="47.0" layoutY="29.0" text="Search Keyword :" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="24.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Group layoutX="618.4000244140625" layoutY="24.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="24.0">
+         <children>
+            <Label text="Search Type :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblType" layoutX="86.5999755859375" text="Search Type">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label fx:id="lblKeyword" layoutX="146.0" layoutY="24.0" text="Search Keyword" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="24.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

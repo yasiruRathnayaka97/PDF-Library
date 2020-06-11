@@ -37,8 +37,6 @@ public class IndexManager {
         return instance;
     }
 
-
-
     public String createIndex(String filePath,String  indexDirPath) {
         File file = new File(filePath);
         File dir = new File(indexDirPath);

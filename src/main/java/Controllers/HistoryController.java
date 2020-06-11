@@ -1,23 +1,30 @@
 package Controllers;
 
-import Models.AlertManager;
-import Models.HistoryItem;
-import Models.HistoryManager;
-import Models.WindowManager;
+import Models.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import Models.IndexManager;
+import Models.WindowManager;
 
 public class HistoryController implements Initializable {
+    @FXML
+    private StackPane spinner;
     @FXML
     private TableView<HistoryItem> historyTable;
     @FXML
@@ -32,13 +39,17 @@ public class HistoryController implements Initializable {
     private HistoryManager historyManager;
     private AlertManager alertManager;
     private WindowManager windowManager;
+    private SearchManager searchManager;
+    private IndexManager indexManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         historyManager = HistoryManager.getInstance();
         alertManager = AlertManager.getInstance();
         windowManager = new WindowManager();
-
+        searchManager = SearchManager.getInstance();
+        indexManager = IndexManager.getInstance();
+        spinner.setVisible(false);
         colKeyword.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("keyword"));
         colType.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("type"));
         colDirectory.setCellValueFactory(new PropertyValueFactory<HistoryItem,String>("directory"));
@@ -73,4 +84,38 @@ public class HistoryController implements Initializable {
     public void close(MouseEvent mouseEvent){
         windowManager.closeWindow((Stage) btnClose.getScene().getWindow());
     }
+
+    public void openHistoryFile(MouseEvent mouseEvent) throws IOException {
+        try {
+            indexManager.setDirPath(historyTable.getSelectionModel().getSelectedItem().getDirectory());
+            Task longTask = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    spinner.setVisible(true);
+                    indexManager.indexDirectory();
+                    return null;
+                }
+            };
+
+            longTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent t) {
+                    try {
+                        System.out.println(historyTable.getSelectionModel().getSelectedItem().getType().equals("content"));
+                        spinner.setVisible(false);
+                        System.out.println(historyTable.getSelectionModel().getSelectedItem().getType());
+                        searchManager.setSearchResult(historyTable.getSelectionModel().getSelectedItem().getKeyword(),historyTable.getSelectionModel().getSelectedItem().getType());
+                        windowManager.stageLoader("../ShowHistoryItem.fxml",2,"PDF-Library");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            new Thread(longTask).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
