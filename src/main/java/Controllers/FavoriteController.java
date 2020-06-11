@@ -70,7 +70,7 @@ public class FavoriteController implements Initializable {
     }
 
     public void deleteFav(MouseEvent mouseEvent) {
-        boolean res = favoriteManager.deleteFav(tableFav.getSelectionModel().getSelectedItem(), comboFavCategory.getSelectionModel().getSelectedItem());
+        boolean res = favoriteManager.deleteFav(tableFav.getFocusModel().getFocusedItem(), comboFavCategory.getSelectionModel().getSelectedItem());
         if(!res){
             try {
                 alertManager.showAlert("No item has been selected!");
@@ -94,7 +94,7 @@ public class FavoriteController implements Initializable {
 
     public void openFav(MouseEvent mouseEvent) {
         try {
-            pdfManager.openPdf(tableFav.getSelectionModel().getSelectedItem().getPath());
+            pdfManager.openPdf(tableFav.getFocusModel().getFocusedItem().getPath());
         }catch (Exception e){
             try {
                 alertManager.showAlert("No item has been selected!");

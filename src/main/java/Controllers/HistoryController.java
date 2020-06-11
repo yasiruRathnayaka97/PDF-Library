@@ -60,7 +60,7 @@ public class HistoryController implements Initializable {
 
     public void deleteHistoryFile(MouseEvent mouseEvent) {
         try {
-            historyManager.deleteOne(historyTable.getSelectionModel().getSelectedItem().getId());
+            historyManager.deleteOne(historyTable.getFocusModel().getFocusedItem().getId());
             historyTable.setItems(FXCollections.observableArrayList(historyManager.getHistory()));
         }catch (Exception e){
             try {
@@ -83,7 +83,12 @@ public class HistoryController implements Initializable {
 
     public void openHistoryFile(MouseEvent mouseEvent) throws IOException {
         try {
-            indexManager.setDirPath(historyTable.getSelectionModel().getSelectedItem().getDirectory());
+            if(historyTable.getItems().isEmpty()){
+                alertManager.showAlert("No item has been selected!");
+                return;
+            }
+
+            indexManager.setDirPath(historyTable.getFocusModel().getFocusedItem().getDirectory());
             Task longTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
@@ -97,10 +102,9 @@ public class HistoryController implements Initializable {
                 @Override
                 public void handle(WorkerStateEvent t) {
                     try {
-                        System.out.println(historyTable.getSelectionModel().getSelectedItem().getType().equals("content"));
                         spinner.setVisible(false);
-                        System.out.println(historyTable.getSelectionModel().getSelectedItem().getType());
-                        searchManager.setSearchResult(historyTable.getSelectionModel().getSelectedItem().getKeyword(),historyTable.getSelectionModel().getSelectedItem().getType());
+                        System.out.println(historyTable.getFocusModel().getFocusedItem().getType());
+                        searchManager.setSearchResult(historyTable.getFocusModel().getFocusedItem().getKeyword(),historyTable.getFocusModel().getFocusedItem().getType());
                         windowManager.stageLoader("../ShowHistoryItem.fxml",2,"PDF Library");
                     } catch (Exception e) {
                         e.printStackTrace();
