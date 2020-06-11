@@ -138,6 +138,7 @@ public class AppController implements Initializable {
                 listViewResult.setItems(FXCollections.observableArrayList(searchResult));
             }
             else{
+                listViewResult.setItems(null);
                 listViewResult.setPlaceholder(new Label(keyword+" not match for any "+searchType));
             }
         }catch (Exception e){
