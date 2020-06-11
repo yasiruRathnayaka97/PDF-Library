@@ -33,6 +33,10 @@ public class WindowManager {
 
         stage.setTitle(title);
 
+        if(title.equals("PDF Library")){
+            stage.titleProperty().bind(indexManager.appTitleProperty());
+        }
+
         if(borderType==1){
             stage.setMaximized(true);
             stage.initModality(Modality.WINDOW_MODAL);
@@ -66,7 +70,7 @@ public class WindowManager {
 
         //indexing
         try {
-            stageLoader("../IndexingLoader.fxml",4,null);
+            stageLoader("../IndexingLoader.fxml",4,"");
         } catch (Exception e) {
             e.printStackTrace();
             return;

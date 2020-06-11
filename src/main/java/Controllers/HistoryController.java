@@ -105,7 +105,7 @@ public class HistoryController implements Initializable {
                         spinner.setVisible(false);
                         System.out.println(historyTable.getSelectionModel().getSelectedItem().getType());
                         searchManager.setSearchResult(historyTable.getSelectionModel().getSelectedItem().getKeyword(),historyTable.getSelectionModel().getSelectedItem().getType());
-                        windowManager.stageLoader("../ShowHistoryItem.fxml",2,"PDF-Library");
+                        windowManager.stageLoader("../ShowHistoryItem.fxml",2,"PDF Library");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

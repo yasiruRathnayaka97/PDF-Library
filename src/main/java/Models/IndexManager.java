@@ -1,5 +1,6 @@
 package Models;
 
+import javafx.beans.property.SimpleStringProperty;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -10,6 +11,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class IndexManager {
     Analyzer analyzer;
     private List<String> paths;
     private String dirPath;
+    private SimpleStringProperty appTitle;
     private FileManager fm;
     private static IndexManager instance;
     private PdfCrawler pc;
@@ -29,6 +32,7 @@ public class IndexManager {
         this.pm = new PdfManager();
         this.fm = new FileManager();
         this.pc= new PdfCrawler();
+        this.appTitle = new SimpleStringProperty("PDF Library");
     }
 
     public static IndexManager getInstance(){
@@ -96,12 +100,17 @@ public class IndexManager {
     public String setDirPath(String dirPath) {
         this.dirPath = dirPath;
         this.paths = fm.getAllPDFUnderDir(dirPath);
+        this.appTitle.set("PDF Library ["+ dirPath+"]");
         System.out.println("Paths updated");
         return "Paths updated";
     }
 
     public String getDirPath() {
         return dirPath;
+    }
+
+    public SimpleStringProperty appTitleProperty() {
+        return appTitle;
     }
 }
 //can use lucene ram directory for argument dirPath.
