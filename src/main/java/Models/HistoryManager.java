@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HistoryManager{
     private static HistoryManager instance;
@@ -63,7 +64,10 @@ public class HistoryManager{
            resultSet.close();
            stmt.close();
            conn.close();
-           return history;
+
+            Collections.reverse(history);
+           
+           return  history;
         } catch (Exception e){
             e.printStackTrace();
             return null;

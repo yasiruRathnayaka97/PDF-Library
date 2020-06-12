@@ -157,7 +157,6 @@ public class FavoriteManager {
     }
 
     public ObservableList<FavoriteItem> getFavorites(String categoryName){
-        ObservableList<FavoriteItem> favorites = FXCollections.observableArrayList();
         for(String id:categories.keySet()){
             if(categories.get(id).getName().equals(categoryName)){
                 return categories.get(id).getFavorites();
