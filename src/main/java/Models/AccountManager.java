@@ -99,7 +99,7 @@ public class AccountManager{
             }
 
             this.username.set(username);
-            this.password.set(password);
+            this.password.set(getMd5(password));
 
             if (isHasRegistered(username)){
                 return "This username has been used!";
@@ -108,7 +108,7 @@ public class AccountManager{
             conn=dbManager.connect();
             stmt = conn.prepareStatement("INSERT INTO user(username, password) VALUES (?,?)");
             stmt.setString(1,username);
-            stmt.setString(2,getMd5(password));
+            stmt.setString(2,this.password.getValue());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
