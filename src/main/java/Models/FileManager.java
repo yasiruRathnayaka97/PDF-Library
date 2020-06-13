@@ -16,6 +16,7 @@ public class FileManager {
     public boolean saveFile(String path){
         AccountManager accountManager = AccountManager.getInstance();
         SearchManager searchManager = SearchManager.getInstance();
+        IndexManager indexManager = IndexManager.getInstance();
         String resultout="";
 
         ArrayList<String> results = searchManager.getSearchResult();
@@ -25,9 +26,10 @@ public class FileManager {
         }
 
         String content = "username: "+accountManager.getUsername()
-                +"\nkeyword: "+ searchManager.getSearchKeyword()
-                + "\nsearch type: "+ searchManager.getSearchType()
-                + "\nsearch results: \n"+ resultout;
+                +"\n\nkeyword: "+ searchManager.getSearchKeyword()
+                + "\n\nsearch type: "+ searchManager.getSearchType()
+                +"\n\nsearch directory: "+ indexManager.getDirPath()
+                + "\n\nsearch results: \n"+ resultout;
         System.out.println(content);
 
         try {
