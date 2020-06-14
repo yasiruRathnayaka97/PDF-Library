@@ -20,9 +20,12 @@ import java.util.stream.Collectors;
 public class SearchManager {
 
     private static SearchManager instance;
-
+    private IndexManager indexManager;
+    private HistoryManager historyManager;
+    private StateManager stateManager;
     private SearchManager(){
         indexManager = IndexManager.getInstance();
+        stateManager=stateManager.getInstance();
         historyManager = HistoryManager.getInstance();
     };
 
@@ -32,8 +35,7 @@ public class SearchManager {
         return instance;
     }
 
-    private IndexManager indexManager;
-    private HistoryManager historyManager;
+
 
     private ArrayList<String> searchResult;
     private String searchType;
@@ -59,7 +61,7 @@ public class SearchManager {
     }
 
     public ArrayList<String> search(String searchType, String  keyword) {
-        String dirPath="./Index";
+        String dirPath=stateManager.getCurrentState().getIndexDir();
         ArrayList<String> matchPdfList=new ArrayList<String>();
         try {
             Directory dir = FSDirectory.open(Paths.get(dirPath));

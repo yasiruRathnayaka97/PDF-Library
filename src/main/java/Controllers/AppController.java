@@ -45,6 +45,7 @@ public class AppController implements Initializable {
     private FavoriteManager favoriteManager;
     private PdfManager pdfManager;
     private SearchManager searchManager;
+    private StateManager stateManager;
     private WindowManager windowManager;
     private AccountManager accountManager;
 
@@ -64,6 +65,7 @@ public class AppController implements Initializable {
         pdfManager = new PdfManager();
         favoriteManager = FavoriteManager.getInstance();
         searchManager = SearchManager.getInstance();
+        stateManager=StateManager.getInstance();
 
         //close when sign out
         accountManager.getUsername().addListener((observableValue, oldValue, newValue) -> {
@@ -164,7 +166,7 @@ public class AppController implements Initializable {
             }
             else{
                 listViewResult.setItems(null);
-                listViewResult.setPlaceholder(new Label(keyword+" not match for any "+searchType));
+                listViewResult.setPlaceholder(new Label(keyword+" keyword not match for any "+searchType));
             }
         }catch (Exception e){
             e.printStackTrace();

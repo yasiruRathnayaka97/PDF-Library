@@ -1,9 +1,8 @@
 package Models;
 
 import org.apache.commons.io.FileUtils;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -83,6 +82,70 @@ public class FileManager {
         }
 
     }
+    public boolean isParentAndChild(String parent,String child){
+        Path parentPath =Paths.get(parent).toAbsolutePath();
+        Path childPath = Paths.get(child).toAbsolutePath();
+        if (childPath.startsWith(parentPath))
+            return true;
+        else
+            return  false;
 
-}
+    }
+
+    public String writeSubIndexDirInfo(String indexDir,String superParentPath,int weight,List <String> pathList) {
+
+        String content = "";
+        for (int j = 0; j < pathList.size(); j++) {
+            content += pathList.get(j);
+        }
+        content = indexDir +","+superParentPath+","+weight +","+content+"\n";
+        return content;
+    }
+        public boolean writeIndexDirInfo(ArrayList<State> stateList){
+            String path = "./indexInfo";
+            String out="";
+            for (int i=0;i<stateList.size(); i++){
+                out+=this.writeSubIndexDirInfo(stateList.get(i).getIndexDir(),stateList.get(i).getSuperParentPath(),stateList.get(i).getWeight(),stateList.get(i).getPathList());
+            }
+            try {
+                FileWriter fileWriter = new FileWriter(path);
+                fileWriter.write(out);
+                fileWriter.close();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        public ArrayList<State> readIndexDirInfo(ArrayList<State> stateList) throws IOException {
+
+            try(BufferedReader br=new BufferedReader(new FileReader("./IndexInfo"))){
+                String line;
+                while((line=br.readLine())!=null){
+                    String[] arr=line.split(",");
+                    State state=new State();
+                    state.setIndexDir(arr[0]);
+                    state.setSuperParentPath(arr[1]);
+                    state.setWeight(Integer.parseInt(arr[2]));
+                    ArrayList<String> list=new ArrayList<String>();
+                    for(int k=3;k<arr.length;k++){
+                        list.add(arr[k]);
+                    }
+                    state.setPathList(list);
+                    stateList.add(state);
+
+                }
+                return stateList;
+            }
+            catch(FileNotFoundException e){
+                return stateList;
+            }
+        }
+    }
+
+
+
+
+
 

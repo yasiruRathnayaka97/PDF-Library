@@ -16,9 +16,11 @@ public class WindowManager {
     private DirectoryChooser dirChooser;
     private IndexManager indexManager;
     private FileManager fileManager;
+    private StateManager stateManager;
 
     public WindowManager(){
         indexManager = IndexManager.getInstance();
+        stateManager=StateManager.getInstance();
         fileManager = new FileManager();
     };
 
@@ -58,6 +60,7 @@ public class WindowManager {
     }
 
     public void closeWindow(Stage stage){
+        fileManager.writeIndexDirInfo(stateManager.getStateList());
         this.stage = stage;
         stage.close();
     }
