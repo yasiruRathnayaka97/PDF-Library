@@ -12,6 +12,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class IndexManager {
     private FileManager fm;
     private static IndexManager instance;
     private PdfCrawler pc;
+    private  StateManager stateManager;
 
     private IndexManager() {
         this.analyzer= new StandardAnalyzer();
@@ -33,6 +35,8 @@ public class IndexManager {
         this.fm = new FileManager();
         this.pc= new PdfCrawler();
         this.appTitle = new SimpleStringProperty("PDF Library");
+        this.stateManager=StateManager.getInstance();
+
     }
 
     public static IndexManager getInstance(){
@@ -41,10 +45,13 @@ public class IndexManager {
         return instance;
     }
 
-    public String createIndex(String filePath,String  indexDirPath) {
+    public String createIndex(String filePath,String indexDirPath) {
+        this.fm.createDir(indexDirPath);
         File file = new File(filePath);
         File dir = new File(indexDirPath);
+
         if (!file.exists() | !dir.exists()) {
+            System.out.println("sss");
             return "File or dir not exist";
         }
         //index file name
@@ -57,6 +64,7 @@ public class IndexManager {
         ArrayList<String> contentArrayList = pm.readPdf(filePath);
         ArrayList<String[]> docArr = pc.getCrawlData(contentArrayList);
             try {
+
                 Directory directory = FSDirectory.open(Paths.get(indexDirPath));
                 IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
                 IndexWriter iw = new IndexWriter(directory, config);
@@ -86,9 +94,14 @@ public class IndexManager {
     }
 
     public String indexDirectory(){
-        this.fm.clearDir("./Index");
+//       this.fm.clearDir("./Index");
+
+        if (paths==null){
+            return "No paths";
+        }
+
         for(int i=0;i<this.paths.size();i++){
-            this.createIndex(this.paths.get(i),"./Index");
+            this.createIndex(this.paths.get(i), stateManager.getCurrentState().getIndexDir());
         }
         return "Successfully indexed directory";
     }
@@ -98,8 +111,12 @@ public class IndexManager {
     }
 
     public String setDirPath(String dirPath) {
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
+            return "dir not exist";
+        }
         this.dirPath = dirPath;
-        this.paths = fm.getAllPDFUnderDir(dirPath);
+        this.paths = stateManager.updateStates(dirPath,fm.getAllPDFUnderDir(dirPath),0).getPathList();
         this.appTitle.set("PDF Library ["+ dirPath+"]");
         System.out.println("Paths updated");
         return "Paths updated";

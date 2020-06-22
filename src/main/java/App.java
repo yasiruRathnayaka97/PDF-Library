@@ -1,22 +1,28 @@
 
-import Models.AccountManager;
-import Models.FileManager;
-import Models.WindowManager;
+import Models.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.nio.channels.AcceptPendingException;
+import java.util.ArrayList;
 
 
 public class App extends Application {
     private WindowManager windowManager;
     private AccountManager accountManager;
-
     public static void main(String[] args)
     {
         FileManager fm=new FileManager();
+        StateManager sm=StateManager.getInstance();
         AccountManager accountManager = AccountManager.getInstance();
         fm.createDir("./index");
+        ArrayList<State> stateList=new ArrayList<State>();
+        try {
+            sm.setStateList(fm.readIndexDirInfo(stateList));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         launch();
     }
 
