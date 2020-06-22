@@ -83,7 +83,8 @@ public class FileMangerTest {
         stateList.add(s2);
         assertTrue( fileManager.writeIndexDirInfo(stateList));
     }
-    @Test
+
+    /*@Test
     public void readIndexDirInfoTest() throws IOException {
         ArrayList<State> list=new ArrayList<State>();
         String parentPath="./sample/sampleSub";
@@ -105,5 +106,5 @@ public class FileMangerTest {
         stateList.add(s1);
         stateList.add(s2);
         assertEquals(stateList,fileManager.readIndexDirInfo(list));
-    }
+    }*/
 }
