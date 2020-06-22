@@ -111,7 +111,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField fx:id="textSearch" focusColor="#1a33d5" layoutX="35.0" layoutY="37.0" prefHeight="26.0" prefWidth="362.0" promptText="Type here" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="37.0">
+            <JFXTextField fx:id="textSearch" focusColor="#1a33d5" labelFloat="true" layoutX="35.0" layoutY="37.0" prefHeight="26.0" prefWidth="362.0" promptText="Search Keyword" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="37.0">
                <tooltip>
                   <Tooltip text="Type Search keyword Here">
                      <font>
