@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="439.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConfirmWindowController">
+    <children>
+        <JFXButton fx:id="btnAction" buttonType="RAISED" layoutX="138.0" layoutY="126.0" onMouseClicked="#action" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: red; -fx-background-radius: 30px;" text="Action" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="130.0">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <Label fx:id="lbl" alignment="CENTER" layoutX="31.0" layoutY="31.0" prefHeight="119.0" prefWidth="420.0" text="Label" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+      <JFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="236.0" layoutY="126.0" onMouseClicked="#closeWindow" prefHeight="46.0" prefWidth="72.0" style="-fx-background-color: #1A33D5; -fx-background-radius: 30px;" text="Cancel" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="130.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+    </children>
+</AnchorPane>

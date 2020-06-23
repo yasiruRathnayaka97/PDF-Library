@@ -25,6 +25,7 @@ public class AlertWindowController implements Initializable{
         alertManager = AlertManager.getInstance();
         windowManager = new WindowManager();
         lbl.setText(alertManager.getMessage());
+
     }
 
     //close alert window
