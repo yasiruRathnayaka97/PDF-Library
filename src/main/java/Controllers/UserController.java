@@ -50,7 +50,7 @@ public class UserController implements Initializable {
 
     public void changeUsernamePassword(){
         try {
-            windowManager.stageLoader("../ChangeWindow.fxml",3,"PDF Library");
+            windowManager.stageLoader("../ChangeWindow.fxml",3,"PDF-Library");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import Models.SearchManager;
 public class SearchPerformanceTest {
-    SearchManager searchManager;
+    /*SearchManager searchManager;
     @Before
     public void setup(){
          this.searchManager = SearchManager.getInstance();
@@ -46,5 +46,5 @@ public class SearchPerformanceTest {
         long stopTime=System.currentTimeMillis();
         long execTime=stopTime-startTime;
         System.out.println("execution time for many document index set without change dir: "+execTime);
-    }
+    }*/
 }
