@@ -1,0 +1,7 @@
+.list-view {
+    -fx-selection-bar: #1A33D5 ;
+}
+
+.list-cell {
+    -fx-border-color: #bababa;
+}
