@@ -80,7 +80,7 @@ public class AppController implements Initializable {
     //vertical box
     public void handleUser(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../User.fxml",3,"User Settings");
+            windowManager.stageLoader("/User.fxml",3,"User Settings");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class AppController implements Initializable {
 
     public void handleFav(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../Favorite.fxml",2,"Favorites");
+            windowManager.stageLoader("/Favorite.fxml",2,"Favorites");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,7 +122,7 @@ public class AppController implements Initializable {
 
     public void handleHistory(MouseEvent mouseEvent) {
         try {
-            windowManager.stageLoader("../History.fxml",2,"History");
+            windowManager.stageLoader("/History.fxml",2,"History");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -193,7 +193,7 @@ public class AppController implements Initializable {
             favoriteManager.setPath(arr[arr.length-1].trim());
             favoriteManager.setKeyword(textSearch.getText());
             favoriteManager.setSearchType(dropDownSearchType.getSelectionModel().getSelectedItem().toString());
-            windowManager.stageLoader("../NewFavorite.fxml",3,"Add favourite");
+            windowManager.stageLoader("/NewFavorite.fxml",3,"Add favourite");
         } catch (Exception e) {
             try {
                 alertManager.showAlert("No item has been selected!");

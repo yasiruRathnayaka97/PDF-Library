@@ -105,7 +105,7 @@ public class HistoryController implements Initializable {
                         spinner.setVisible(false);
                         System.out.println(historyTable.getFocusModel().getFocusedItem().getType());
                         searchManager.setSearchResult(historyTable.getFocusModel().getFocusedItem().getKeyword(),historyTable.getFocusModel().getFocusedItem().getType());
-                        windowManager.stageLoader("../ShowHistoryItem.fxml",2,"PDF Library");
+                        windowManager.stageLoader("/ShowHistoryItem.fxml",2,"PDF Library");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

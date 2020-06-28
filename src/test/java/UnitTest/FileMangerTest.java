@@ -35,11 +35,7 @@ public class FileMangerTest {
         fileManager.clearDir("./pdf/Dilanka");
     }
 
-    //clearDir
-    @Test
-    public void clearDirTest1(){
-        assertEquals("deleted",fileManager.clearDir("./pdf/Dilanka"));
-    }
+
 
     //getAllPDFUnderDir
     @Test
@@ -84,7 +80,7 @@ public class FileMangerTest {
         assertTrue( fileManager.writeIndexDirInfo(stateList));
     }
 
-    /*@Test
+    @Test
     public void readIndexDirInfoTest() throws IOException {
         ArrayList<State> list=new ArrayList<State>();
         String parentPath="./sample/sampleSub";
@@ -105,6 +101,12 @@ public class FileMangerTest {
         s2.setIndexDir(indexDir);
         stateList.add(s1);
         stateList.add(s2);
-        assertEquals(stateList,fileManager.readIndexDirInfo(list));
-    }*/
+        assertEquals(stateList.size(),fileManager.readIndexDirInfo(list).size());
+        //objects not equal to each other.
+    }
+    //clearDir
+    @Test
+    public void clearDirTest1(){
+        assertEquals("deleted",fileManager.clearDir("./pdf/Dilanka"));
+    }
 }

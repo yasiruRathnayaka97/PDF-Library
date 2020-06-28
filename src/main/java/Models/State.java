@@ -40,4 +40,7 @@ public class State {
     public void setSuperParentPath(String superParentPath) {
         this.superParentPath = superParentPath;
     }
+    public int getPathListLength() {
+        return pathList.size();
+    }
 }

@@ -34,7 +34,7 @@ public class PdfManager {
                     PDDocument pdf = PDDocument.load(file);
                     PDFTextStripper pdfStripper = new PDFTextStripper();
                     for(int pageNumber=1;pageNumber<=pdf.getNumberOfPages();pageNumber++){
-                        String pageContent=readPdfPage(pdf,pdfStripper, pageNumber);
+                        String pageContent=String.join(" ",readPdfPage(pdf,pdfStripper, pageNumber).split("\\r?\\n"));
                         contentArrayList.add(pageContent);
                     }
                     pdf.close();

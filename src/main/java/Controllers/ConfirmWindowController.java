@@ -45,7 +45,7 @@ public class ConfirmWindowController implements Initializable {
         accountManager.deleteAccount(accountManager.getUsername().getValue());
         windowManager.closeWindow((Stage) btnAction.getScene().getWindow());
         try {
-            windowManager.stageLoader("../SignInSignUp.fxml",3,"Welcome to PDF Library");
+            windowManager.stageLoader("/SignInSignUp.fxml",3,"Welcome to PDF Library");
         } catch (Exception e) {
             e.printStackTrace();
         }

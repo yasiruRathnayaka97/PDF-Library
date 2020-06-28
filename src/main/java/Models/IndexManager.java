@@ -28,7 +28,6 @@ public class IndexManager {
     private static IndexManager instance;
     private PdfCrawler pc;
     private  StateManager stateManager;
-
     private IndexManager() {
         this.analyzer= new StandardAnalyzer();
         this.pm = new PdfManager();
@@ -51,7 +50,7 @@ public class IndexManager {
         File dir = new File(indexDirPath);
 
         if (!file.exists() | !dir.exists()) {
-            System.out.println("sss");
+
             return "File or dir not exist";
         }
         //index file name
@@ -63,12 +62,13 @@ public class IndexManager {
         Field filePathField = new StringField("path", Paths.get(filePath).toString(), Field.Store.YES);
         ArrayList<String> contentArrayList = pm.readPdf(filePath);
         ArrayList<String[]> docArr = pc.getCrawlData(contentArrayList);
-            try {
-
+          try {
+                int weight=0;
                 Directory directory = FSDirectory.open(Paths.get(indexDirPath));
                 IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
                 IndexWriter iw = new IndexWriter(directory, config);
                 for (String[] doc:docArr) {
+                    weight++;
                     Document document = new Document();
                     String content=doc[1];
                     String pageNumber=doc[0];
@@ -84,7 +84,8 @@ public class IndexManager {
 
                 }
                 iw.close();
-                return "Successfully Indexed";
+               stateManager.getCurrentState().setWeight(stateManager.getCurrentState().getWeight()+weight);
+               return "Successfully Indexed";
             } catch (Exception e) {
                 e.printStackTrace();
                 return "Error";
@@ -95,7 +96,6 @@ public class IndexManager {
 
     public String indexDirectory(){
 //       this.fm.clearDir("./Index");
-
         if (paths==null){
             return "No paths";
         }
@@ -116,7 +116,7 @@ public class IndexManager {
             return "dir not exist";
         }
         this.dirPath = dirPath;
-        this.paths = stateManager.updateStates(dirPath,fm.getAllPDFUnderDir(dirPath),0).getPathList();
+        this.paths = stateManager.updateStates(dirPath,fm.getAllPDFUnderDir(dirPath));
         this.appTitle.set("PDF Library ["+ dirPath+"]");
         System.out.println("Paths updated");
         return "Paths updated";

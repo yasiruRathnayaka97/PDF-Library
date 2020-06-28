@@ -50,7 +50,7 @@ public class UserController implements Initializable {
 
     public void changeUsernamePassword(){
         try {
-            windowManager.stageLoader("../ChangeWindow.fxml",3,"PDF-Library");
+            windowManager.stageLoader("/ChangeWindow.fxml",3,"PDF-Library");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class UserController implements Initializable {
         /*accountManager.deleteAccount(accountManager.getUsername().getValue());
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
         try {
-            windowManager.stageLoader("../SignInSignUp.fxml",3,"Welcome to PDF Library");
+            windowManager.stageLoader("/SignInSignUp.fxml",3,"Welcome to PDF Library");
         } catch (Exception e) {
             e.printStackTrace();
         }*/
@@ -72,7 +72,7 @@ public class UserController implements Initializable {
         accountManager.signOut();
         windowManager.closeWindow((Stage) lblUserUsername.getScene().getWindow());
         try {
-            windowManager.stageLoader("../SignInSignUp.fxml",3,"Welcome to PDF Library");
+            windowManager.stageLoader("/SignInSignUp.fxml",3,"Welcome to PDF Library");
         } catch (Exception e) {
             e.printStackTrace();
         }

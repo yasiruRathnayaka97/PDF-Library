@@ -2,17 +2,28 @@ package PerformaceTest;
 
 import Models.FileManager;
 import Models.IndexManager;
+import Models.State;
+import Models.StateManager;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class IndexPerformanceTest {
     IndexManager indexManager;
+    StateManager sm;
     @Before
     public void setup(){
         this.indexManager = IndexManager.getInstance();
         FileManager fm=new FileManager();
         fm.createDir("./index_large");
         fm.createDir("./index_small");
+        indexManager = IndexManager.getInstance();
+        sm= StateManager.getInstance();
+        sm.setStateList(new ArrayList<State>());
+        State s=new State();
+        s.setWeight(0);
+        sm.setCurrentState(s);
     }
     @Test
     public void smallPDF(){
